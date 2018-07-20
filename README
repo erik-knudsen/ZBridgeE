@@ -26,4 +26,16 @@ Installation for ZBridge development:
 		Install mscgen
 		Set dot and mscgen pathes in DoxyFile
                 
-5. Install MSVC.
+5. For Android see the "Getting Started with Qt for Android" in the 
+   Qt documentation. The Android SDK Tools, The Android NDK and JAVA SE Development
+   kits are needed. There is also some updating and configuration to
+   be performed.
+   The Double Dummy Solver by Bo Haglund is statically linked. Makefile_linux
+   is used to generate libdds.a.
+                
+6. For Windows.
+   Install Visual Studio Community 2015. Start Visual Studio and create a
+   new c++ project and install required parts.
+   The Double Dummy Solver by Bo Haglund is generated as a dll. Makefile_Visual
+   is used to generate .lib and .dll files. The .lib file is for the linker
+   and the .dll file is for the executable.
