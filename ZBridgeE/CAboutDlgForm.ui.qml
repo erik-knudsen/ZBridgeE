@@ -22,7 +22,7 @@ Item {
 
     id: item1
     width: 1000
-    height: 800
+    height: 850
     property alias okButton: okButton
 
     Label {
@@ -140,7 +140,7 @@ Item {
     Label {
         id: label7
         font.pixelSize: fontPixelsize / 2
-        text: qsTr("See the help file for copyright information and additional details on the terms of use and redistribution.")
+        text: qsTr("The terms of use and redistribution is covered by GNU General Public License version 3 (GPLv3).")
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         anchors.top: label6.bottom
