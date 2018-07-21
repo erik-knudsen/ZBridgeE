@@ -44,10 +44,12 @@ Installation for ZBridge development:
    Install Visual Studio Community 2015. Start Visual Studio and create a
    new c++ project and install required parts.
    The Double Dummy Solver by Bo Haglund is generated as a dll. Makefile_Visual
-   is used to generate .lib and .dll files. The .lib file is for the linker
-   and the .dll file is for the executable.
+   is used to generate dds.lib and dds.dll files. The dds.lib file is for the linker
+   and the dds.dll file is for the executable.
+   I have found it necessary to remove the automatic initialization
+   of the DDS dll and instead initialize in the startup of ZBridge (SetMaxThreads(0)).
    You cannot use the MinGW C++ compiler, which can be installed as a part 
    of Qt. Only the Visual Studio C++ compiler has support for the Qt webview
    module. This module is used for ZBridgeE help.
-   I have found it necessary to remove the automatic initialization
-   of the DDS dll and instead initialize in the startup of ZBridge (SetMaxThreads(0)).
+   The assets folder in the android-sources folder has help files for ZBridgeE. This folder
+   must be installed in the build folder and renamed to android_asset for help to work.
