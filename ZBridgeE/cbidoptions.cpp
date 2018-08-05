@@ -53,8 +53,13 @@ CBidOptions::CBidOptions(CZBridgeApp *app, CZBridgeDoc *doc, QWidget *parent) :
     layout->addWidget(pWidget);
 
     QObject *pBidOptionsObject = pWidget->rootObject();
-    QVariant returnedValue;
 
+    //Set screen zoom factor.
+    QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pBidOptionsObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
     this->app = app;
     this->doc = doc;
 
@@ -66,8 +71,8 @@ CBidOptions::CBidOptions(CZBridgeApp *app, CZBridgeDoc *doc, QWidget *parent) :
     connect(pBidOptionsObject, SIGNAL(on_newConvention_clicked()), this, SLOT(on_newConvention_clicked()));
     connect(pBidOptionsObject, SIGNAL(on_editConvention_clicked()), this, SLOT(on_editConvention_clicked()));
     connect(pBidOptionsObject, SIGNAL(on_deleteConvention_clicked()), this, SLOT(on_DeleteConvention_clicked()));
-    connect(pBidOptionsObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_buttonBox_accepted()));
-    connect(pBidOptionsObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_buttonBox_rejected()));
+    connect(pBidOptionsObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pBidOptionsObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     //Find available bid option sets.
     curBidOption = doc->getCurBidOption();
@@ -392,7 +397,7 @@ void CBidOptions::on_DeleteConvention_clicked()
 /**
  * @brief Ok was clicked.
  */
-void CBidOptions::on_buttonBox_accepted()
+void CBidOptions::on_ok_clicked()
 {
     QObject *pBidOptionsObject = pWidget->rootObject();
     QVariant returnedValue;
@@ -410,7 +415,7 @@ void CBidOptions::on_buttonBox_accepted()
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CBidOptions::on_buttonBox_rejected()
+void CBidOptions::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

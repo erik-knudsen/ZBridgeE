@@ -58,8 +58,8 @@ private slots:
     void on_cardBack3_clicked();
     void on_cardBack4_clicked();
     void on_cardBack5_clicked();
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+    void on_ok_clicked();
+    void on_cancel_clicked();
     void quickWidgetStatusChanged(QQuickWidget::Status);
     void sceneGraphError(QQuickWindow::SceneGraphError error, const QString &message);
 

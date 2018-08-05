@@ -18,6 +18,7 @@
 #include <QQuickItem>
 #include <QHBoxLayout>
 
+#include "czbridgeapp.h"
 #include "cmessage.h"
 
 CMessage::CMessage(QWidget *parent) :
@@ -37,6 +38,13 @@ CMessage::CMessage(QWidget *parent) :
     layout->addWidget(pWidget);
 
     QObject *pMessageObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
+    QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pMessageObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     //Connect signals (QML -> C++).
     connect(pMessageObject, SIGNAL(onAccepted()), this, SLOT(onAccepted()));

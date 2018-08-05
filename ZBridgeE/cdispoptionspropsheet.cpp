@@ -43,7 +43,13 @@ CDispOptionsPropSheet::CDispOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc,
     layout->addWidget(pWidget);
 
     QObject *pDispOptionsPropSheetObject = pWidget->rootObject();
+
+    //Screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pDispOptionsPropSheetObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     this->app = app;
     this->doc = doc;
@@ -55,8 +61,8 @@ CDispOptionsPropSheet::CDispOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc,
     connect(pDispOptionsPropSheetObject, SIGNAL(on_cardBack3_clicked()), this, SLOT(on_cardBack3_clicked()));
     connect(pDispOptionsPropSheetObject, SIGNAL(on_cardBack4_clicked()), this, SLOT(on_cardBack4_clicked()));
     connect(pDispOptionsPropSheetObject, SIGNAL(on_cardBack5_clicked()), this, SLOT(on_cardBack5_clicked()));
-    connect(pDispOptionsPropSheetObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_buttonBox_accepted()));
-    connect(pDispOptionsPropSheetObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_buttonBox_rejected()));
+    connect(pDispOptionsPropSheetObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pDispOptionsPropSheetObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     displayOptionDoc = doc->getDisplayOptions();
 
@@ -84,14 +90,14 @@ void CDispOptionsPropSheet::closeEvent(QCloseEvent *event)
     eventLoop.exit(QDialog::Rejected);
 }
 
-void CDispOptionsPropSheet::on_buttonBox_accepted()
+void CDispOptionsPropSheet::on_ok_clicked()
 {
     doc->setDisplayOptions(displayOptionDoc);
 
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CDispOptionsPropSheet::on_buttonBox_rejected()
+void CDispOptionsPropSheet::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

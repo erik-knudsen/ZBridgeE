@@ -44,6 +44,13 @@ CSeatConfiguration::CSeatConfiguration(CZBridgeApp *app, CZBridgeDoc *doc, QWidg
 
     QObject *pSeatConfigurationObject = pWidget->rootObject();
 
+    //Screen zoom factor.
+    QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pSeatConfigurationObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
+
     this->app = app;
     this->doc = doc;
 
@@ -57,12 +64,11 @@ CSeatConfiguration::CSeatConfiguration(CZBridgeApp *app, CZBridgeDoc *doc, QWidg
     connect(pSeatConfigurationObject, SIGNAL(on_eastActor_currentIndexChanged(int)), this, SLOT(on_eastActor_currentIndexChanged(int)));
     connect(pSeatConfigurationObject, SIGNAL(on_southActor_currentIndexChanged(int)), this, SLOT(on_southActor_currentIndexChanged(int)));
     connect(pSeatConfigurationObject, SIGNAL(on_role_currentIndexChanged(int)), this, SLOT(on_role_currentIndexChanged(int)));
-    connect(pSeatConfigurationObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_buttonBox_accepted()));
-    connect(pSeatConfigurationObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_buttonBox_rejected()));
+    connect(pSeatConfigurationObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pSeatConfigurationObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     QVariantList items;
     items << tr("Manual") << tr("Auto");
-    QVariant returnedValue;
     for (int i = 0; i < 4; i++)
         QMetaObject::invokeMethod(pSeatConfigurationObject, "actorAddItems",
                 Q_RETURN_ARG(QVariant, returnedValue),
@@ -179,7 +185,7 @@ void CSeatConfiguration::on_role_currentIndexChanged(int index)
     updateSeatAndActor();
 }
 
-void CSeatConfiguration::on_buttonBox_accepted()
+void CSeatConfiguration::on_ok_clicked()
 {
     QVariant text;
     QObject *pSeatConfigurationObject = pWidget->rootObject();
@@ -221,7 +227,7 @@ void CSeatConfiguration::on_buttonBox_accepted()
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CSeatConfiguration::on_buttonBox_rejected()
+void CSeatConfiguration::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

@@ -28,7 +28,6 @@ class CMainFrame;
 class CZBridgeDoc;
 class CGamesDoc;
 
-
 /**
  * @brief ZBridge application.
  *
@@ -41,11 +40,14 @@ class CZBridgeApp : public QApplication
     Q_OBJECT
 public:
     explicit CZBridgeApp(int &argc, char **argv);
+    static int getZoom() { return zf; }
 
 private:
     CMainFrame * mainFrame;
     CZBridgeDoc * doc;
     CGamesDoc * games;
+
+    static int zf;
 
 signals:
 

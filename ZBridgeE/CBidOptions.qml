@@ -17,50 +17,50 @@ import QtQuick 2.4
 
 CBidOptionsForm {
     signal on_northSouth_clicked()
-    signal on_eastWest_clicked()
     signal on_northSouthConvention_currentIndexChanged(int index)
+    signal on_eastWest_clicked()
     signal on_eastWestConvention_currentIndexChanged(int index)
     signal on_newConvention_clicked()
     signal on_editConvention_clicked()
     signal on_deleteConvention_clicked()
-    signal on_buttonBox_accepted()
-    signal on_buttonBox_rejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
 
-    buttonBox.onRejected:
+    northSouth.onClicked:
     {
-        on_buttonBox_rejected()
+        on_northSouth_clicked()
     }
-    buttonBox.onAccepted:
+    northSouthConvention.onCurrentIndexChanged:
     {
-        on_buttonBox_accepted()
-    }
-    deleteConvention.onClicked:
-    {
-        on_deleteConvention_clicked()
-    }
-    editConvention.onClicked:
-    {
-        on_editConvention_clicked()
-    }
-    newConvention.onClicked:
-    {
-        on_newConvention_clicked()
+        on_northSouthConvention_currentIndexChanged(northSouthConvention.currentIndex)
     }
     eastWest.onClicked:
     {
         on_eastWest_clicked()
     }
-    northSouth.onClicked:
-    {
-        on_northSouth_clicked()
-    }
     eastWestConvention.onCurrentIndexChanged:
     {
         on_eastWestConvention_currentIndexChanged(eastWestConvention.currentIndex)
     }
-    northSouthConvention.onCurrentIndexChanged:
+    newConvention.onClicked:
     {
-        on_northSouthConvention_currentIndexChanged(northSouthConvention.currentIndex)
+        on_newConvention_clicked()
+    }
+    editConvention.onClicked:
+    {
+        on_editConvention_clicked()
+    }
+    deleteConvention.onClicked:
+    {
+        on_deleteConvention_clicked()
+    }
+    ok.onClicked:
+    {
+        on_ok_clicked()
+    }
+    cancel.onClicked:
+    {
+        on_cancel_clicked()
     }
     function addNorthSouthConventionItem(text)
     {
@@ -133,5 +133,9 @@ CBidOptionsForm {
     function setEditConventionEnable(enable)
     {
         editConvention.enabled = enable
+    }    
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

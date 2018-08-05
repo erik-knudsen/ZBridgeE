@@ -26,15 +26,16 @@ CSeatConfigurationForm {
     signal on_role_currentIndexChanged(int index)
     signal on_buttonBox_accepted()
     signal on_buttonBox_rejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
 
-    dialogButtonBox.onRejected:
+    cancel.onClicked:
     {
-        on_buttonBox_rejected()
+        on_cancel_clicked()
     }
-
-    dialogButtonBox.onAccepted:
+    ok.onClicked:
     {
-        on_buttonBox_accepted()
+        on_ok_clicked()
     }
     southActor.onCurrentIndexChanged:
     {
@@ -192,5 +193,9 @@ CSeatConfigurationForm {
             east.checked = true
         else
             south.checked = true
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

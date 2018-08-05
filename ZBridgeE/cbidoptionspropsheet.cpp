@@ -67,10 +67,16 @@ CBidOptionsPropSheet::CBidOptionsPropSheet(CBidOptionDoc &bidOptionDoc, CZBridge
     connect(pBidOptionsPropSheetObject, SIGNAL(on_michaelsCueBid_clicked(bool)), this, SLOT(on_michaelsCueBid_clicked(bool)));
     connect(pBidOptionsPropSheetObject, SIGNAL(on_unusualNT_clicked(bool)), this, SLOT(on_unusualNT_clicked(bool)));
     connect(pBidOptionsPropSheetObject, SIGNAL(on_jumpOvercallWeak_clicked(bool)), this, SLOT(on_jumpOvercallWeak_clicked(bool)));
-    connect(pBidOptionsPropSheetObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_buttonBox_accepted()));
-    connect(pBidOptionsPropSheetObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_buttonBox_rejected()));
+    connect(pBidOptionsPropSheetObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pBidOptionsPropSheetObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     QVariant returnedValue;
+
+    //Screen zoom factor.
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pBidOptionsPropSheetObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     //General.
     if (bidOptionDoc.bidStyle == EUROPEAN_STYLE)
@@ -278,12 +284,12 @@ void CBidOptionsPropSheet::on_jumpOvercallWeak_clicked(bool checked)
         bidOptionDoc.jumpOvercalls = JUMP_OVERCALL_STRONG;
 }
 
-void CBidOptionsPropSheet::on_buttonBox_accepted()
+void CBidOptionsPropSheet::on_ok_clicked()
 {
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CBidOptionsPropSheet::on_buttonBox_rejected()
+void CBidOptionsPropSheet::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

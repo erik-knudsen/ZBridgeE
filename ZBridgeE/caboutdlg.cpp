@@ -54,8 +54,13 @@ CAboutDlg::CAboutDlg(CZBridgeApp *app, CZBridgeDoc *doc, QWidget *parent) :
     layout->addWidget(pWidget);
 
     QObject *pAboutDlgObject = pWidget->rootObject();
-    QVariant returnedValue;
 
+    //Set screen zoom factor.
+    QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pAboutDlgObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
     this->app = app;
     this->doc = doc;
 

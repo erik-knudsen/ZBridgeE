@@ -17,12 +17,13 @@ import QtQuick 2.4
 import QtQuick.Controls 2.2
 
 Item {
-    property int fontPixelsize: 70
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
     id: item1
-    width: 1000
-    height: 850
+    width: 100 * zf
+    height: 85 * zf
     property alias okButton: okButton
 
     Label {
@@ -32,9 +33,9 @@ Item {
         font.capitalization: Font.AllUppercase
         font.bold: true
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 1 *zf
     }
 
     Button {
@@ -42,20 +43,21 @@ Item {
         font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
+        width: 6 * fontPixelsize/2
     }
 
     Image {
         id: image
-        width: 250
+        width: 25 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: label.bottom
         anchors.topMargin: 25
         anchors.bottom : parent.bottom
-        anchors.bottomMargin: 25
+        anchors.bottomMargin: 3 * zf
         source: "resources/BridgeScene.bmp"
     }
 
@@ -65,11 +67,11 @@ Item {
         text: qsTr("Copyright")
         horizontalAlignment: Text.AlignHCenter
         anchors.top: label.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
 
     Label {
@@ -80,9 +82,9 @@ Item {
         anchors.top: label1.bottom
         anchors.topMargin: 0
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
 
     Label {
@@ -91,11 +93,11 @@ Item {
         text: qsTr("Version 0.1")
         horizontalAlignment: Text.AlignHCenter
         anchors.top: label2.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
 
     Label {
@@ -106,9 +108,9 @@ Item {
         anchors.top: label3.bottom
         anchors.topMargin: 0
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
 
     Label {
@@ -119,9 +121,9 @@ Item {
         anchors.top: label4.bottom
         anchors.topMargin: 0
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
 
     Label {
@@ -131,11 +133,11 @@ Item {
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         anchors.top: label5.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
     Label {
         id: label7
@@ -144,10 +146,10 @@ Item {
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         anchors.top: label6.bottom
-        anchors.topMargin: 5
+        anchors.topMargin: zf / 2
         anchors.left: image.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: 2 * zf
     }
 }

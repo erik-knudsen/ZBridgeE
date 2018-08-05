@@ -17,11 +17,12 @@ import QtQuick 2.4
 import QtQuick.Controls 2.2
 
 Item {
-    property int fontPixelsize: 70
+    property int zf: 5
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 1200
-    height: 900
+    width: 120 *zf
+    height: 130 *zf
     property alias jumpOvercallWeak: jumpOvercallWeak
     property alias unusualNT: unusualNT
     property alias michaelsCueBid: michaelsCueBid
@@ -39,44 +40,37 @@ Item {
     property alias stayman: stayman
     property alias europeanStyle: europeanStyle
     property alias americanStyle: americanStyle
-    property alias dialogButtonBox: dialogButtonBox
+    property alias ok: ok
+    property alias cancel: cancel
 
-    Rectangle {
-        id: header
-        anchors.top: parent.top
-        anchors.topMargin: 0
+    TabBar {
+        id: tabBar
+        currentIndex: swipeView.currentIndex
+        position: TabBar.Header
+        font.pixelSize: fontPixelsize
         width: parent.width
-        height: 60
+        MouseArea
+        {
+            anchors.fill: parent
+        }
 
-        TabBar {
-            id: tabBar
-            currentIndex: swipeView.currentIndex
-            position: TabBar.Header
-            font.pixelSize: fontPixelsize
-            width: parent.width
-
-            TabButton {
-                text: "General"
-            }
-            TabButton {
-                text: "Notrump"
-            }
-            TabButton {
-                text: "Misc"
-            }
+        TabButton {
+            text: "General"
+        }
+        TabButton {
+            text: "Notrump"
+        }
+        TabButton {
+            text: "Misc"
         }
     }
 
     SwipeView {
         id: swipeView
-        width: parent.width
-        height: 700
+        height: 90 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 0
         anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.top: header.bottom
-        anchors.topMargin: 20
+        anchors.top: tabBar.bottom
         currentIndex: tabBar.currentIndex
         font.pixelSize: fontPixelsize
 
@@ -89,104 +83,78 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 rows: 2
                 columns: 2
-                verticalItemAlignment: Grid.AlignVCenter
-                spacing: 10
+                spacing: 1 * zf
 
                 GroupBox {
                     id: groupBox
-                    width: 525
-                    height: 325
                     title: qsTr("Style")
 
-                    RadioButton {
-                        id: americanStyle
-                        text: qsTr("American")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: parent.top
-                        anchors.topMargin: 0
-                    }
+                    Column
+                    {
+                        RadioButton {
+                            id: americanStyle
+                            text: qsTr("American")
+                        }
 
-                    RadioButton {
-                        id: europeanStyle
-                        text: qsTr("European")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: americanStyle.bottom
-                        anchors.topMargin: 0
+                        RadioButton {
+                            id: europeanStyle
+                            text: qsTr("European")
+                        }
                     }
                 }
 
                 GroupBox {
                     id: groupBox1
-                    width: 525
-                    height: 325
                     title: qsTr("After 1NT")
 
-                    CheckBox {
-                        id: stayman
-                        text: qsTr("Stayman")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: parent.top
-                        anchors.topMargin: 0
-                    }
+                    Column
+                    {
+                        CheckBox {
+                            id: stayman
+                            text: qsTr("Stayman")
+                        }
 
-                    CheckBox {
-                        id: jacobyTransfers
-                        text: qsTr("Jacoby")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: stayman.bottom
-                        anchors.topMargin: 0
+                        CheckBox {
+                            id: jacobyTransfers
+                            text: qsTr("Jacoby")
+                            height: fontPixelsize * 2
+                        }
                     }
                 }
 
                 GroupBox {
                     id: groupBox2
-                    width: 525
-                    height: 325
                     title: qsTr("Majors")
 
-                    RadioButton {
-                        id: majorFour
-                        text: qsTr("Four-Card")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: parent.top
-                        anchors.topMargin: 0
-                    }
+                    Column
+                    {
+                        RadioButton {
+                            id: majorFour
+                            text: qsTr("Four-Card")
+                        }
 
-                    RadioButton {
-                        id: majorFive
-                        text: qsTr("Five-Card")
-                        anchors.top: majorFour.bottom
-                        anchors.topMargin: 0
+                        RadioButton {
+                            id: majorFive
+                            text: qsTr("Five-Card")
+                        }
                     }
                 }
 
                 GroupBox {
                     id: groupBox3
-                    width: 525
-                    height: 325
                     title: qsTr("Other")
 
-                    CheckBox {
-                        id: limitRaises
-                        text: qsTr("Limit Raises")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: parent.top
-                        anchors.topMargin: 0
-                    }
+                    Column
+                    {
+                        CheckBox {
+                            id: limitRaises
+                            text: qsTr("Limit Raises")
+                        }
 
-                    CheckBox {
-                        id: weakTwo
-                        text: qsTr("Weak Two-Bids")
-                        anchors.left: parent.left
-                        anchors.leftMargin: 0
-                        anchors.top: limitRaises.bottom
-                        anchors.topMargin: 0
+                        CheckBox {
+                            id: weakTwo
+                            text: qsTr("Weak Two")
+                        }
                     }
                 }
             }
@@ -195,114 +163,88 @@ Item {
             id: nt
             GroupBox {
                 id: groupBox4
-                width: 650
-                height: 425
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 title: qsTr("1NT Open Range")
 
-                RadioButton {
-                    id: oneNTRange12_14
-                    text: qsTr("12-14 points")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: parent.top
-                    anchors.topMargin: 0
-                }
+                Column
+                {
+                    RadioButton {
+                        id: oneNTRange12_14
+                        text: qsTr("12-14 points")
+                    }
 
-                RadioButton {
-                    id: oneNTRange15_17
-                    text: qsTr("15-17 points")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: oneNTRange12_14.bottom
-                    anchors.topMargin: 0
-                }
-                CheckBox {
-                    id: open1NTWeakMajor
-                    text: qsTr("Weak 5 card major")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: oneNTRange15_17.bottom
-                    anchors.topMargin: 10
+                    RadioButton {
+                        id: oneNTRange15_17
+                        text: qsTr("15-17 points")
+                    }
+                    CheckBox {
+                        id: open1NTWeakMajor
+                        text: qsTr("Weak 5 card major")
+                    }
                 }
             }
 
-            }
+        }
         Item {
             id: misc
             GroupBox {
                 id: groupBox5
-                width: 720
-                height: 675
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 title: qsTr("Advanced")
 
-                CheckBox {
-                    id: structuredReverses
-                    text: qsTr("Reverse Restriction")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: parent.top
-                    anchors.topMargin: 0
-                }
+                Column
+                {
+                    CheckBox {
+                        id: structuredReverses
+                        text: qsTr("Reverse Restriction")
+                    }
 
-                CheckBox {
-                    id: negativeDoubles
-                    text: qsTr("Negative Doubles")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: structuredReverses.bottom
-                    anchors.topMargin: 0
-                }
-                CheckBox {
-                    id: takeoutDoubles
-                    text: qsTr("Takeout Doubles")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: negativeDoubles.bottom
-                    anchors.topMargin: 0
-                }
-                CheckBox {
-                    id: michaelsCueBid
-                    text: qsTr("Michaels Cue Bids")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: takeoutDoubles.bottom
-                    anchors.topMargin: 0
-                }
-                CheckBox {
-                    id: unusualNT
-                    text: qsTr("Unusual Notrump")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: michaelsCueBid.bottom
-                    anchors.topMargin: 0
-                }
-                CheckBox {
-                    id: jumpOvercallWeak
-                    text: qsTr("Jump Overcalls Weak")
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.top: unusualNT.bottom
-                    anchors.topMargin: 0
+                    CheckBox {
+                        id: negativeDoubles
+                        text: qsTr("Negative Doubles")
+                    }
+                    CheckBox {
+                        id: takeoutDoubles
+                        text: qsTr("Takeout Doubles")
+                    }
+                    CheckBox {
+                        id: michaelsCueBid
+                        text: qsTr("Michaels Cue Bids")
+                    }
+                    CheckBox {
+                        id: unusualNT
+                        text: qsTr("Unusual Notrump")
+                    }
+                    CheckBox {
+                        id: jumpOvercallWeak
+                        text: qsTr("Jump Overcalls Weak")
+                    }
                 }
             }
         }
     }
 
-    Rectangle {
-        id: footer
+    Row
+    {
+        id: okBox
         anchors.top: swipeView.bottom
-        anchors.topMargin: 0
-        width: parent.width
-        height: 130
-        DialogButtonBox {
-            id: dialogButtonBox
-            width: parent.width
-            height: parent.height
-            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        anchors.topMargin: 6 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
+
+        Button {
+            id: ok
+            width: 10 * fontPixelsize/2
+            text: qsTr("OK")
+            font.pixelSize: fontPixelsize
+        }
+
+        Button {
+            id: cancel
+            width: 10 * fontPixelsize/2
+            text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
         }
     }

@@ -16,8 +16,8 @@
 import QtQuick 2.4
 
 CDealOptionsPropSheetForm {
-    signal on_buttonBox_accepted()
-    signal on_buttonBox_rejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
     signal on_hcp_editingFinished(int suit, int seat)
     signal on_suitSize_editingFinished(int suit, int seat)
     signal on_dp_editingFinished(int seat)
@@ -33,13 +33,13 @@ CDealOptionsPropSheetForm {
     property int eAST_SEAT: 2
     property int sOUTH_SEAT: 3
 
-    dialogButtonBox.onRejected:
+    cancel.onClicked:
     {
-        on_buttonBox_rejected()
+        on_cancel_clicked()
     }
-    dialogButtonBox.onAccepted:
+    ok.onClicked:
     {
-        on_buttonBox_accepted()
+        on_ok_clicked()
     }
     hcpTotalWest.onEditingFinished:
     {
@@ -635,6 +635,10 @@ CDealOptionsPropSheetForm {
             return false
 
         return true
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }
 

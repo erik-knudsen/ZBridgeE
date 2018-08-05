@@ -25,6 +25,7 @@
 #include <QHBoxLayout>
 #include <QString>
 
+#include "czbridgeapp.h"
 #include "cnewconvention.h"
 
 CNewConvention::CNewConvention(QString &refConventionName, QWidget *parent) :
@@ -42,11 +43,17 @@ CNewConvention::CNewConvention(QString &refConventionName, QWidget *parent) :
     layout->addWidget(pWidget);
 
     QObject *pNewConventionObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pNewConventionObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     //Connect signals (QML -> C++).
-    connect(pNewConventionObject, SIGNAL(onAccepted()), this, SLOT(onAccepted()));
-    connect(pNewConventionObject, SIGNAL(onRejected()), this, SLOT(onRejected()));
+    connect(pNewConventionObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pNewConventionObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     QMetaObject::invokeMethod(pNewConventionObject, "setRefConventionName",
             Q_RETURN_ARG(QVariant, returnedValue),
@@ -85,12 +92,12 @@ void CNewConvention::closeEvent(QCloseEvent *event)
     eventLoop.exit(QDialog::Rejected);
 }
 
-void CNewConvention::onAccepted()
+void CNewConvention::on_ok_clicked()
 {
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CNewConvention::onRejected()
+void CNewConvention::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

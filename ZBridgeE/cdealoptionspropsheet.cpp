@@ -44,7 +44,13 @@ CDealOptionsPropSheet::CDealOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc,
     layout->addWidget(pWidget);
 
     QObject *pDealOptionsPropSheetObject = pWidget->rootObject();
+
+    //Screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pDealOptionsPropSheetObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     this->app = app;
     this->doc = doc;
@@ -55,8 +61,8 @@ CDealOptionsPropSheet::CDealOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc,
     connect(pDealOptionsPropSheetObject, SIGNAL(on_hcp_editingFinished(int, int)), this, SLOT(on_hcp_editingFinished(int, int)));
     connect(pDealOptionsPropSheetObject, SIGNAL(on_suitSize_editingFinished(int, int)), this, SLOT(on_suitSize_editingFinished(int, int)));
     connect(pDealOptionsPropSheetObject, SIGNAL(on_dp_editingFinished(int)), this, SLOT(on_dp_editingFinished(int)));
-    connect(pDealOptionsPropSheetObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_ok_clicked()));
-    connect(pDealOptionsPropSheetObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_cancel_clicked()));
+    connect(pDealOptionsPropSheetObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pDealOptionsPropSheetObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     QString txt;
 

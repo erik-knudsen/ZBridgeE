@@ -61,8 +61,8 @@ private slots:
     void on_eastActor_currentIndexChanged(int index);
     void on_southActor_currentIndexChanged(int index);
     void on_role_currentIndexChanged(int index);
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+    void on_ok_clicked();
+    void on_cancel_clicked();
     void quickWidgetStatusChanged(QQuickWidget::Status);
     void sceneGraphError(QQuickWindow::SceneGraphError error, const QString &message);
 

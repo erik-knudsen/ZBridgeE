@@ -57,4 +57,8 @@ CMessageForm {
         dialogButtonBox.standardButtons = DialogButtonBox.Ok
         image.source = "qrc:///resources/qmessagebox-crit.png"
     }
+    function setZoom(zoom)
+    {
+        zf = zoom
+    }
 }

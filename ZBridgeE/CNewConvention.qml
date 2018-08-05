@@ -15,16 +15,16 @@
 import QtQuick 2.4
 
 CNewConventionForm {
-    signal onAccepted()
-    signal onRejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
 
-    buttonBox.onRejected:
+    cancel.onClicked:
     {
-        onRejected()
+        on_cancel_clicked()
     }
-    buttonBox.onAccepted:
+    ok.onClicked:
     {
-        onAccepted()
+        on_ok_clicked()
     }
 
     function setRefConventionName(refConventionName)
@@ -34,5 +34,9 @@ CNewConventionForm {
     function getNewConventionName()
     {
         return newConvention.text
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

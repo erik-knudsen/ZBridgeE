@@ -17,15 +17,17 @@ import QtQuick 2.4
 import QtQuick.Controls 2.2
 
 Item {
-    property int fontPixelsize: 70
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    property int editW: 150
-    property int editH: 80
+    property int editW: 15 * zf
+    property int editH: 9 * zf
 
-    width: 1000
-    height: 850
-    property alias dialogButtonBox: dialogButtonBox
+    width: 100 * zf
+    height: 102 * zf
+    property alias ok: ok
+    property alias cancel: cancel
     property alias hcpTotalWest: hcpTotalWest
     property alias hcpTotalNorth: hcpTotalNorth
     property alias hcpTotalEast: hcpTotalEast
@@ -67,41 +69,37 @@ Item {
     property alias dpEast: dpEast
     property alias dpSouth: dpSouth
 
-    Rectangle {
-        id: header
-        anchors.top: parent.top
-        anchors.topMargin: 0
+    TabBar {
+        id: tabBar
+        currentIndex: swipeView.currentIndex
+        position: TabBar.Header
+        font.pixelSize: fontPixelsize
         width: parent.width
-        height: 60
+        MouseArea
+        {
+            anchors.fill: parent
+        }
 
-        TabBar {
-            id: tabBar
-            currentIndex: swipeView.currentIndex
-            position: TabBar.Header
-            font.pixelSize: fontPixelsize
-            width: parent.width
-
-            TabButton {
-                text: "HCP"
-            }
-            TabButton {
-                text: "Length"
-            }
-            TabButton {
-                text: "DP"
-            }
+        TabButton {
+            text: "HCP"
+        }
+        TabButton {
+            text: "Length"
+        }
+        TabButton {
+            text: "DP"
         }
     }
 
     SwipeView {
         id: swipeView
-        height: 650
+        height: 65 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 0 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.top: header.bottom
-        anchors.topMargin: 0
+        anchors.leftMargin: 0 * zf
+        anchors.top: tabBar.bottom
+        anchors.topMargin: 0 * zf
         currentIndex: tabBar.currentIndex
         font.pixelSize: fontPixelsize
 
@@ -116,7 +114,7 @@ Item {
                 columns: 5
                 verticalItemAlignment: Grid.AlignVCenter
                 horizontalItemAlignment: Grid.AlignHCenter
-                spacing: 10
+                spacing: 1 * zf
 
                 Label {
                     id: label
@@ -187,8 +185,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_spade.ico"
                 }
                 Rectangle {
@@ -236,8 +234,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_heart.ico"
                 }
                 Rectangle {
@@ -285,8 +283,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_diamond.ico"
                 }
                 Rectangle {
@@ -334,8 +332,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_club.ico"
                 }
                 Rectangle {
@@ -395,7 +393,7 @@ Item {
                 columns: 5
                 verticalItemAlignment: Grid.AlignVCenter
                 horizontalItemAlignment: Grid.AlignHCenter
-                spacing: 10
+                spacing: 1 * zf
 
                 Label {
                     id: label6
@@ -418,8 +416,8 @@ Item {
                     text: qsTr("South")
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_spade.ico"
                 }
                 Rectangle {
@@ -467,8 +465,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_heart.ico"
                 }
                 Rectangle {
@@ -516,8 +514,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_diamond.ico"
                 }
                 Rectangle {
@@ -565,8 +563,8 @@ Item {
                     }
                 }
                 Image {
-                    width: 50
-                    height: 50
+                    width: 5 * zf
+                    height: 5 * zf
                     source: "qrc:///resources/suit_club.ico"
                 }
                 Rectangle {
@@ -627,7 +625,7 @@ Item {
                 columns: 4
                 verticalItemAlignment: Grid.AlignVCenter
                 horizontalItemAlignment: Grid.AlignHCenter
-                spacing: 10
+                spacing: 1 * zf
 
                 Label {
                     id: label11
@@ -693,17 +691,25 @@ Item {
         }
     }
 
-    Rectangle {
-        id: footer
+    Row
+    {
+        id: okBox
         anchors.top: swipeView.bottom
-        anchors.topMargin: 0
-        width: parent.width
-        height: 130
-        DialogButtonBox {
-            id: dialogButtonBox
-            width: parent.width
-            height: parent.height
-            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        anchors.topMargin: 4 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
+
+        Button {
+            id: ok
+            width: 10 * fontPixelsize/2
+            text: qsTr("OK")
+            font.pixelSize: fontPixelsize
+        }
+
+        Button {
+            id: cancel
+            width: 10 * fontPixelsize/2
+            text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
         }
     }

@@ -17,11 +17,14 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    property int fontPixelsize: 70
+
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 1300
-    height: 450
+    width: 130 * zf
+    height: 50 * zf
+
     property alias image: image
     property alias title: title
     property alias dialogButtonBox: dialogButtonBox
@@ -30,38 +33,33 @@ Item {
     Text {
         id: title
         anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors.topMargin: 0 * zf
         width: parent.width
         font.pixelSize: fontPixelsize
     }
 
     Image {
         id: image
-        width: 100
-        height: 100
+        width: 10 * zf
+        height: 10 * zf
         anchors.top: title.bottom
-        anchors.topMargin: 50
+        anchors.topMargin: 5 * zf
     }
 
     Text {
         id: desc
         anchors.verticalCenter: image.verticalCenter
         anchors.left: image.right
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 *zf
         font.pixelSize: fontPixelsize
     }
 
-    Rectangle {
-        id: footer
+    DialogButtonBox {
+        id: dialogButtonBox
         anchors.top: desc.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
         width: parent.width
-        height: 130
-        DialogButtonBox {
-            id: dialogButtonBox
-            width: parent.width
-            height: parent.height
-            font.pixelSize: fontPixelsize
-        }
+        height: 13 * zf
+        font.pixelSize: fontPixelsize
     }
 }

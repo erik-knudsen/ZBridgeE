@@ -18,9 +18,15 @@ import QtQuick.Controls 2.2
 Item {
     id: configurationDialog
 
-    width: 1020
-    height: 750
-    property alias dialogButtonBox: dialogButtonBox
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
+    property string fontFamily: "MS Shell Dlg 2"
+
+    width: 109 * zf
+    height: 80 * zf
+
+    property alias ok: ok
+    property alias cancel: cancel
     property alias portLabel: portLabel
     property alias hostLabel: hostLabel
     property alias port: port
@@ -39,251 +45,215 @@ Item {
     property alias westName: westName
     property alias west: west
 
-    property int fontPixelsize: 70
-    property string fontFamily: "MS Shell Dlg 2"
-
-    Rectangle {
-        id: header
-        anchors.top: parent.top
-        anchors.topMargin: 0
+    TabBar {
+        id: tabBar
+        currentIndex: swipeView.currentIndex
+        position: TabBar.Header
+        font.pixelSize: fontPixelsize
         width: parent.width
-        height: 60
+        MouseArea
+        {
+            anchors.fill: parent
+        }
 
-        TabBar {
-            id: tabBar
-            currentIndex: swipeView.currentIndex
-            position: TabBar.Header
-            font.pixelSize: fontPixelsize
-            width: parent.width
-
-            TabButton {
-                text: qsTr("Seat")
-            }
-            TabButton {
-                text: qsTr("Role")
-            }
+        TabButton {
+            text: qsTr("Seat")
+        }
+        TabButton {
+            text: qsTr("Role")
         }
     }
 
     SwipeView {
         id: swipeView
-        height: 550
+        height: 45 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 0
         anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.top: header.bottom
-        anchors.topMargin: 0
+        anchors.top: tabBar.bottom
+        anchors.topMargin: 4 * zf
+        anchors.leftMargin: 1 * zf
         currentIndex: tabBar.currentIndex
         font.pixelSize: fontPixelsize
 
         Item {
-            GroupBox {
-                id: groupBox
-                anchors.fill: parent
-                title: qsTr("   ")
+            Grid {
+                id: grid
+                rows: 4
+                columns: 3
+                spacing: 2 * zf
 
-                Grid {
-                    id: grid
-                    spacing: 15
-                    rows: 4
-                    columns: 3
+                RadioButton {
+                    id: west
+                    width: 30 * zf
+                    height: 9 * zf
+                    text: qsTr("West")
+                }
+                Rectangle {
+                    width: 37 * zf
+                    height: 9 * zf
+                    TLineEdit {
+                        id: westName
+                        anchors.fill: parent
+                        input.font.pixelSize: fontPixelsize
+                        input.font.family: fontFamily
+                    }
+                }
+                Rectangle {
+                    width: 36 * zf
+                    height: 9 * zf
+                ComboBox {
+                    id: westActor
                     anchors.fill: parent
-                    verticalItemAlignment: Grid.AlignVCenter
-
-                    RadioButton {
-                        id: west
-                        width: 270
-                        height: 90
-                        text: qsTr("West")
+                }
+                }
+                RadioButton {
+                    id: north
+                    width: 30 * zf
+                    height: 9 * zf
+                    text: qsTr("North")
+                }
+                Rectangle {
+                    width: 37 * zf
+                    height: 9 * zf
+                    TLineEdit {
+                        id: northName
+                        anchors.fill: parent
+                        input.font.pixelSize: fontPixelsize
+                        input.font.family: fontFamily
                     }
-                    Rectangle {
-                        width: 370
-                        height: 90
-                        TLineEdit {
-                            id: westName
-                            anchors.fill: parent
-                            text: qsTr("")
-                            input.font.pixelSize: fontPixelsize
-                            input.font.family: fontFamily
-                        }
+                }
+                Rectangle {
+                    width: 36 * zf
+                    height: 9 * zf
+                ComboBox {
+                    id: northActor
+                    anchors.fill: parent
+                }
+                }
+                RadioButton {
+                    id: east
+                    width: 30 * zf
+                    height: 9 * zf
+                    text: qsTr("East")
+                }
+                Rectangle {
+                    width: 37 * zf
+                    height: 9 * zf
+                    TLineEdit {
+                        id: eastName
+                        anchors.fill: parent
+                        input.font.pixelSize: fontPixelsize
+                        input.font.family: fontFamily
                     }
-                    Rectangle {
-                        width: 330
-                        height: 90
-                        ComboBox {
-                            id: westActor
-                            anchors.fill: parent
-                        }
+                }
+                Rectangle {
+                    width: 36 * zf
+                    height: 9 * zf
+                ComboBox {
+                    id: eastActor
+                    anchors.fill: parent
+                }
+                }
+                RadioButton {
+                    id: south
+                    width: 30 * zf
+                    height: 9 * zf
+                    text: qsTr("South")
+                }
+                Rectangle {
+                    width: 37 * zf
+                    height: 9 * zf
+                    TLineEdit {
+                        id: southName
+                        anchors.fill: parent
+                        input.font.pixelSize: fontPixelsize
+                        input.font.family: fontFamily
                     }
-                    RadioButton {
-                        id: north
-                        width: 270
-                        height: 90
-                        text: qsTr("North")
-                    }
-                    Rectangle {
-                        width: 370
-                        height: 90
-                        TLineEdit {
-                            id: northName
-                            anchors.fill: parent
-                            text: qsTr("")
-                            input.font.pixelSize: fontPixelsize
-                            input.font.family: fontFamily
-                        }
-                    }
-                    Rectangle {
-                        width: 330
-                        height: 90
-                        ComboBox {
-                            id: northActor
-                            anchors.fill: parent
-                        }
-                    }
-                    RadioButton {
-                        id: east
-                        width: 270
-                        height: 90
-                        text: qsTr("East")
-                    }
-                    Rectangle {
-                        width: 370
-                        height: 90
-                        TLineEdit {
-                            id: eastName
-                            anchors.fill: parent
-                            text: qsTr("")
-                            input.font.pixelSize: fontPixelsize
-                            input.font.family: fontFamily
-                        }
-                    }
-                    Rectangle {
-                        width: 330
-                        height: 90
-                        ComboBox {
-                            id: eastActor
-                            anchors.fill: parent
-                        }
-                    }
-                    RadioButton {
-                        id: south
-                        width: 270
-                        height: 90
-                        text: qsTr("South")
-                    }
-                    Rectangle {
-                        width: 370
-                        height: 90
-                        TLineEdit {
-                            id: southName
-                            anchors.fill: parent
-                            text: qsTr("")
-                            input.font.pixelSize: fontPixelsize
-                            input.font.family: fontFamily
-                        }
-                    }
-                    Rectangle {
-                        width: 330
-                        height: 90
-                        ComboBox {
-                            id: southActor
-                            anchors.fill: parent
-                        }
-                    }
+                }
+                Rectangle {
+                    width: 36 * zf
+                    height: 9 * zf
+                ComboBox {
+                    id: southActor
+                    anchors.fill: parent
+                }
                 }
             }
         }
 
         Item {
-            GroupBox {
-                id: groupBox1
-                anchors.fill: parent
-                title: qsTr("  ")
+            Grid {
+                id: grid1
+                rows: 2
+                columns: 3
+                spacing: 1.5 * zf
 
-                Grid {
-                    id: grid1
-                    spacing: 15
-                    anchors.fill: parent
-                    rows: 2
-                    columns: 3
-                    verticalItemAlignment: Grid.AlignVCenter
-
-                    Rectangle {
-                        width: 420
-                        height: 90
-                        ComboBox {
-                            id: role
-                            anchors.fill: parent
-                        }
+                ComboBox {
+                    id: role
+                    width: 47 * zf
+                    height: 9 * zf
+                }
+                Label {
+                    id: hostLabel
+                    width: 17 * zf
+                    height: 9 * zf
+                    text: qsTr(" Host:")
+                }
+                Rectangle {
+                    width: 38 * zf
+                    height: 9* zf
+                    TLineEdit {
+                        id: host
+                        anchors.fill: parent
+                        input.font.pixelSize: fontPixelsize
+                        input.font.family: fontFamily
                     }
-                    Rectangle {
-                        id: rectangle1
-                        width: 170
-                        height: 90
-                        Label {
-                            id: hostLabel
-                            text: qsTr(" Host:")
-                            anchors.fill: parent
-                        }
-                    }
-                    Rectangle {
-                        width: 380
-                        height: 90
-                        TLineEdit {
-                            id: host
-                            anchors.fill: parent
-                            text: qsTr("")
-                            input.font.pixelSize: fontPixelsize
-                            input.font.family: "MS Shell Dlg 2"
-                        }
-                    }
-                    Rectangle {
-                        width: 420
-                        height: 90
-                        Label {
-                            id: label1
-                            anchors.fill: parent
-                            text: qsTr("    ")
-                        }
-                    }
-                    Rectangle {
-                        id: rectangle
-                        width: 170
-                        height: 90
-                        Label {
-                            id: portLabel
-                            text: qsTr(" Port:")
-                            anchors.fill: parent
-                        }
-                    }
-                    Rectangle {
-                        width: 380
-                        height: 90
-                        TLineEdit {
-                            id: port
-                            anchors.fill: parent
-                            text: qsTr("")
-                            input.font.pixelSize: fontPixelsize
-                            input.font.family: "MS Shell Dlg 2"
-                        }
+                }
+                Label {
+                    id: label1
+                    width: 47 * zf
+                    height: 9 * zf
+                    text: qsTr("    ")
+                }
+                Label {
+                    id: portLabel
+                    width: 17 * zf
+                    height: 9 * zf
+                    text: qsTr(" Port:")
+                }
+                Rectangle {
+                    width: 38 * zf
+                    height: 9 * zf
+                    TLineEdit {
+                        id: port
+                        anchors.fill: parent
+                        input.font.pixelSize: fontPixelsize
+                        input.font.family: fontFamily
                     }
                 }
             }
         }
     }
 
-    Rectangle {
-        id: footer
+    Row
+    {
+        id: okBox
         anchors.top: swipeView.bottom
-        anchors.topMargin: 20
-        width: parent.width
-        height: 130
-        DialogButtonBox {
-            id: dialogButtonBox
-            width: parent.width
-            height: parent.height
-            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        anchors.topMargin: 4 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
+
+        Button {
+            id: ok
+            width: 10 * fontPixelsize/2
+            text: qsTr("OK")
+            font.pixelSize: fontPixelsize
+        }
+
+        Button {
+            id: cancel
+            width: 10 * fontPixelsize/2
+            text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
         }
     }

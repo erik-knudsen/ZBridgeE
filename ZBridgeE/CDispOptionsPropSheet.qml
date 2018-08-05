@@ -16,8 +16,8 @@
 import QtQuick 2.4
 
 CDispOptionsPropSheetForm {
-    signal on_buttonBox_accepted()
-    signal on_buttonBox_rejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
     signal on_cardBack0_clicked()
     signal on_cardBack1_clicked()
     signal on_cardBack2_clicked()
@@ -62,13 +62,13 @@ CDispOptionsPropSheetForm {
         on_cardBack0_clicked()
         setChecked(cARD_BACK_0)
     }
-    dialogButtonBox.onRejected:
+    cancel.onClicked:
     {
-        on_buttonBox_rejected()
+        on_cancel_clicked()
     }
-    dialogButtonBox.onAccepted:
+    ok.onClicked:
     {
-        on_buttonBox_accepted()
+        on_ok_clicked()
     }
 
     function setChecked(cardBack)
@@ -79,5 +79,9 @@ CDispOptionsPropSheetForm {
         cardBack3.checked = (cardBack === cARD_BACK_3)
         cardBack4.checked = (cardBack === cARD_BACK_4)
         cardBack5.checked = (cardBack === cARD_BACK_5)
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

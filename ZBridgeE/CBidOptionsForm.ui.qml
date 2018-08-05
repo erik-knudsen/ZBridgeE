@@ -18,120 +18,123 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    width: 750
-    height: 800
-    property alias newConvention: newConvention
-    property alias ewModel: ewModel
-    property alias nsModel: nsModel
-    property alias buttonBox: buttonBox
-    property alias deleteConvention: deleteConvention
-    property alias editConvention: editConvention
-    property alias eastWest: eastWest
-    property alias northSouth: northSouth
-    property alias eastWestConvention: eastWestConvention
-    property alias northSouthConvention: northSouthConvention
 
-    property int fontPixelsize: 70
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
+
+    width: 100 * zf
+    height: 87 * zf
+    property alias northSouth: northSouth
+    property alias northSouthConvention: northSouthConvention
+    property alias nsModel: nsModel
+    property alias eastWest: eastWest
+    property alias eastWestConvention: eastWestConvention
+    property alias ewModel: ewModel
+    property alias newConvention: newConvention
+    property alias editConvention: editConvention
+    property alias deleteConvention: deleteConvention
+    property alias ok: ok
+    property alias cancel: cancel
 
     GroupBox {
         id: groupBox
-        height: 350
+        height: 45 * zf
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
         font.pixelSize: fontPixelsize
         title: qsTr("Convention")
 
-        ComboBox {
-            id: northSouthConvention
-            height: 95
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.left: eastWest.right
-            anchors.leftMargin: 20
-            anchors.top: northSouth.top
-            ListModel {
-                id: nsModel
+        Grid
+        {
+            rows: 2
+            columns: 2
+            spacing: 5 * zf
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            RadioButton {
+                id: northSouth
+                text: qsTr("N/S")
             }
-            model: nsModel
-        }
 
-        ComboBox {
-            id: eastWestConvention
-            height: 95
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.left: eastWest.right
-            anchors.leftMargin: 20
-            anchors.top: eastWest.top
-            ListModel {
-                id: ewModel
+            ComboBox {
+                id: northSouthConvention
+                width: 12 * fontPixelsize/2
+                ListModel {
+                    id: nsModel
+                }
+                model: nsModel
             }
-            model: ewModel
-        }
 
-        RadioButton {
-            id: northSouth
-            text: qsTr("N/S")
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            anchors.top: parent.top
-            anchors.topMargin: 15
-        }
+            RadioButton {
+                id: eastWest
+                text: qsTr("E/W")
+            }
 
-        RadioButton {
-            id: eastWest
-            text: qsTr("E/W")
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            anchors.top: northSouth.bottom
-            anchors.topMargin: 10
+            ComboBox {
+                id: eastWestConvention
+                width: 12 * fontPixelsize/2
+                ListModel {
+                    id: ewModel
+                }
+                model: ewModel
+            }
         }
     }
 
-    Button {
-        id: newConvention
-        text: qsTr("New")
-        anchors.left: parent.left
-        anchors.leftMargin: 95
+    Row
+    {
+        id: rowLine
         anchors.top: groupBox.bottom
-        anchors.topMargin: 60
-        font.pixelSize: fontPixelsize
+        anchors.topMargin: 6 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
+
+        Button {
+            id: newConvention
+            width: 8 * fontPixelsize/2
+            text: qsTr("New")
+            font.pixelSize: fontPixelsize
+        }
+
+        Button {
+            id: editConvention
+            width: 8 * fontPixelsize/2
+            text: qsTr("Edit")
+            font.pixelSize: fontPixelsize
+        }
+
+        Button {
+            id: deleteConvention
+            width: 8 * fontPixelsize/2
+            text: qsTr("Delete")
+            font.pixelSize: fontPixelsize
+        }
     }
 
-    Button {
-        id: editConvention
-        text: qsTr("Edit")
-        anchors.left: newConvention.right
-        anchors.leftMargin: 20
-        anchors.top: newConvention.top
-        font.pixelSize: fontPixelsize
-    }
+    Row
+    {
+        id: okBox
+        anchors.top: rowLine.bottom
+        anchors.topMargin: 6 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
 
-    Button {
-        id: deleteConvention
-        text: qsTr("Delete")
-        anchors.left: editConvention.right
-        anchors.leftMargin: 20
-        anchors.top: newConvention.top
-        font.pixelSize: fontPixelsize
-    }
+        Button {
+            id: ok
+            width: 10 * fontPixelsize/2
+            text: qsTr("OK")
+            font.pixelSize: fontPixelsize
+        }
 
-    Rectangle {
-        id: footer
-        anchors.top: newConvention.bottom
-        anchors.topMargin: 60
-        width: parent.width
-        height: 130
-        DialogButtonBox {
-            id: buttonBox
-            width: parent.width
-            height: parent.height
-            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        Button {
+            id: cancel
+            width: 10 * fontPixelsize/2
+            text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
         }
     }

@@ -17,31 +17,27 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    width: 1320
-    height: 450
-    property alias newConvention: newConvention
-    property alias refConvention: refConvention
-    property alias buttonBox: buttonBox
 
-    property int fontPixelsize: 70
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    Text {
-        id: title
-        anchors.top: parent.top
-        anchors.topMargin: 0
-        width: parent.width
-        font.pixelSize: fontPixelsize
-    }
+    property alias newConvention: newConvention
+    property alias refConvention: refConvention
+    property alias ok: ok
+    property alias cancel: cancel
+
+    width: 132 * zf
+    height: 48 * zf
 
     Grid {
         id: grid
         rows: 2
         columns: 2
-        anchors.top: title.bottom
-        anchors.topMargin: 20
+        anchors.top: parent.top
+        anchors.topMargin: 4 * zf
         width: parent.width
-        spacing: 20
+        spacing: 2 * zf
 
         Label {
             id: label
@@ -49,16 +45,13 @@ Item {
             text: qsTr(" Reference name")
         }
 
-        Rectangle {
-            width: 750
-            height: 90
-            TLineEdit {
-                id: refConvention
-                anchors.fill: parent
-                text: qsTr("")
-                input.font.pixelSize: fontPixelsize
-                input.font.family: fontFamily
-            }
+        TLineEdit {
+            id: refConvention
+            width: 75 * zf
+            height: 9 * zf
+            text: qsTr("")
+            input.font.pixelSize: fontPixelsize
+            input.font.family: fontFamily
         }
 
         Label {
@@ -67,30 +60,35 @@ Item {
             text: qsTr(" New name")
         }
 
-        Rectangle {
-            width: 750
-            height: 90
-            TLineEdit {
-                id: newConvention
-                anchors.fill: parent
-                text: qsTr("")
-                input.font.pixelSize: fontPixelsize
-                input.font.family: fontFamily
-            }
+        TLineEdit {
+            id: newConvention
+            width: 75 * zf
+            height: 9 * zf
+            text: qsTr("")
+            input.font.pixelSize: fontPixelsize
+            input.font.family: fontFamily
         }
     }
 
-    Rectangle {
-        id: footer
+    Row
+    {
+        id: okBox
         anchors.top: grid.bottom
-        anchors.topMargin: 5
-        width: parent.width
-        height: 130
-        DialogButtonBox {
-            id: buttonBox
-            width: parent.width
-            height: parent.height
-            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        anchors.topMargin: 6 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
+
+        Button {
+            id: ok
+            width: 10 * fontPixelsize/2
+            text: qsTr("OK")
+            font.pixelSize: fontPixelsize
+        }
+
+        Button {
+            id: cancel
+            width: 10 * fontPixelsize/2
+            text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
         }
     }

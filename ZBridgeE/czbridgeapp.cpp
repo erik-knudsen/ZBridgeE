@@ -22,6 +22,7 @@
 #include <QAbstractSocket>
 #include <QTime>
 #include <QtWebView/QtWebView>
+#include <QScreen>
 
 #include "czbridgeapp.h"
 #include "mt19937ar.h"
@@ -33,6 +34,7 @@
 
 Q_DECLARE_METATYPE(Seat)
 
+int CZBridgeApp::zf = 10;
 
 /**
  * Main for starting the ZBridge application.
@@ -62,7 +64,35 @@ int main(int argc, char *argv[])
  */
 CZBridgeApp::CZBridgeApp(int &argc, char **argv) :
     QApplication(argc, argv)
-{
+{    
+    //Calculate zoom factor for QML pixels.
+    //Pixel sizes are used in all QML displays.
+    QRect rect = QGuiApplication::primaryScreen()->geometry();
+    qreal dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
+    qreal dpiC = 40;            //DPI used for QML pixels.
+    qreal zfr = dpi/dpiC;
+
+    //Must use landscape mode.
+    qreal height = qMin(rect.width(), rect.height());
+    qreal width = qMax(rect.width(), rect.height());
+
+    //Check for minimum display.
+    qreal xSize = width/dpi;
+    qreal ySize = height/dpi;
+    if ((xSize <= 4) || (ySize <= 2.25))
+        exit(-1);
+
+    //Correct so that dialogs can be shown on screen
+    //Max dialog w x h: 150 x 170 QML pixels i.e.
+    //w = 150/40x2.54 = 9.525 cm, h = 170/40x2.54 = 10.975 cm
+    if (height < 170 * zfr)
+        zfr = height / 170;
+    if (width < 150 *zfr)
+        zfr = width / 150;
+
+    //Zoom factor to use for QML pixels.
+    zf = (int)(zfr + 0.5);
+
     QtWebView::initialize();
 
     doc = new CZBridgeDoc(this);

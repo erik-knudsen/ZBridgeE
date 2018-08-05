@@ -22,4 +22,9 @@ CAboutDlgForm {
     {
         on_OKButton_Clicked()
     }
+
+    function setZoom(zoom)
+    {
+        zf = zoom
+    }
 }

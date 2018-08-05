@@ -33,8 +33,8 @@ CBidOptionsPropSheetForm {
     signal on_michaelsCueBid_clicked(bool checked)
     signal on_unusualNT_clicked(bool checked)
     signal on_jumpOvercallWeak_clicked(bool checked)
-    signal on_buttonBox_accepted()
-    signal on_buttonBox_rejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
 
     americanStyle.onClicked:
     {
@@ -104,13 +104,13 @@ CBidOptionsPropSheetForm {
     {
         on_jumpOvercallWeak_clicked(jumpOvercallWeak.checked)
     }
-    dialogButtonBox.onRejected:
+    ok.onClicked:
     {
-        on_buttonBox_rejected()
+        on_ok_clicked()
     }
-    dialogButtonBox.onAccepted:
+    cancel.onClicked:
     {
-        on_buttonBox_accepted()
+        on_cancel_clicked()
     }
 
     function americanStyleSetChecked(checked)
@@ -180,5 +180,9 @@ CBidOptionsPropSheetForm {
     function jumpOvercallWeakSetChecked(checked)
     {
         jumpOvercallWeak.checked = checked
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }
