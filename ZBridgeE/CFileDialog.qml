@@ -18,18 +18,23 @@ import Qt.labs.platform 1.0
 import Qt.labs.folderlistmodel 2.1
 
 Item {
-    signal on_buttonBox_accepted()
-    signal on_buttonBox_rejected()
+    signal on_ok_clicked()
+    signal on_cancel_clicked()
 
     id: item1
-    property int fontPixelsize: 70
+
+    property int zf: 10
+
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 1200
-    height: 850
+    width: 120 * zf
+    height: 95 * zf
 
     ToolButton{
         id: localStorage
+        height: 15 * zf
+        width: 15 * zf
         anchors.top: directory.bottom
         anchors.left: parent.left
         font.pixelSize: fontPixelsize
@@ -39,9 +44,11 @@ Item {
     }
     ToolButton{
         id: globalStorage
+        height: 15 * zf
+        width: 15 * zf
         anchors.top: directory.bottom
         anchors.left: localStorage.right
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         font.pixelSize: fontPixelsize
         text: qsTr("G")
         onClicked: folderModel.folder = StandardPaths.writableLocation(StandardPaths.GenericDataLocation)
@@ -51,31 +58,26 @@ Item {
     Text {
         id: directory
         width: parent.width
-        height: 60
+        height: 6 * zf
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         font.pixelSize: fontPixelsize / 2
         color: "steelblue"
     }
 
-    Rectangle {
-        id: fileName
-        width: parent.width - 600
-        height: 60
-        anchors.left: globalStorage.right
-        anchors.leftMargin: 200
-        anchors.top: directory.bottom
-        anchors.topMargin: 10
         TLineEdit {
             id: refFilename
-            width: parent.width
-            height: parent.height
-            input.font.pixelSize: fontPixelsize / 2
+            width: parent.width - 50 * zf
+            height: 9 * zf
+            anchors.left: globalStorage.right
+            anchors.leftMargin: 20 * zf
+            anchors.top: directory.bottom
+            anchors.topMargin: 1 * zf
+            input.font.pixelSize: fontPixelsize
             input.font.family: fontFamily
         }
-    }
 
     FolderListModel {
         id: folderModel
@@ -88,17 +90,17 @@ Item {
     ListView {
         id: list
         width: parent.width
-        height: 550
+        height: 55 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.top: fileName.bottom
-        anchors.topMargin: 20
+        anchors.leftMargin: 0 * zf
+        anchors.top: localStorage.bottom
+        anchors.topMargin: 2 * zf
         model: folderModel
 
         delegate: Component {
             Item {
                 width: parent.width
-                height: 120
+                height: 12 * zf
                 Text {
                     text: fileName
                     font.pixelSize: fontPixelsize
@@ -126,22 +128,28 @@ Item {
         }
     }
 
-    Rectangle {
-        id: footer
-        width: parent.width
-        height: 130
-        anchors.left: parent.left
-        anchors.leftMargin: 0
+    Row
+    {
+        id: okBox
         anchors.top: list.bottom
-        anchors.topMargin: 10
-        DialogButtonBox {
-            id: dialogButtonBox
-            width: parent.width
-            height: parent.height
-            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+        anchors.topMargin: 4 *zf
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1 * zf
+
+        Button {
+            id: ok
+            width: 10 * fontPixelsize/2
+            text: qsTr("OK")
             font.pixelSize: fontPixelsize
-            onAccepted: on_buttonBox_accepted()
-            onRejected: on_buttonBox_rejected()
+            onClicked: on_ok_clicked()
+        }
+
+        Button {
+            id: cancel
+            width: 10 * fontPixelsize/2
+            text: qsTr("Cancel")
+            font.pixelSize: fontPixelsize
+            onClicked: on_cancel_clicked()
         }
     }
 
@@ -165,5 +173,9 @@ Item {
             return path.slice(0, inx + 1)
         else
             return ""
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

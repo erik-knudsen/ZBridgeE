@@ -37,11 +37,14 @@ Item {
     signal on_action_Contents_triggered()
     signal on_action_About_ZBridge_triggered()
 
-    property int fontPixelsize: 70
+    property int zf: 10
+
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    height: 600
-    width: 1100
+
+    height: fontPixelsize * 11
+    width: 42 * fontPixelsize/2
 
     Action {
         id: actionOpen
@@ -79,13 +82,13 @@ Item {
     }
     Action {
         id: action_Score
-        text: qsTr("Score")
+        text: qsTr("Score...")
         icon.source: "qrc:///resources/ViewScore.bmp"
         onTriggered: on_action_Score_triggered()
     }
     Action {
         id: actionDouble_Dummy_Results
-        text: qsTr("Double Dummy Results")
+        text: qsTr("Double Dummy...")
         icon.source: "qrc:///resources/ViewPlayHistory.bmp"
         onTriggered: on_actionDouble_Dummy_Results_triggered()
     }
@@ -152,15 +155,16 @@ Item {
     MenuBar {
         id: menuBar
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 0 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0
+        anchors.leftMargin: 0 * zf
         anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors.topMargin: 0 * zf
         font.pixelSize: fontPixelsize
         Menu {
             title: qsTr("File")
-            width: 400
+            width: 10 * fontPixelsize/2
+            height: 8 * fontPixelsize
             MenuItem {
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
@@ -194,7 +198,8 @@ Item {
         }
         Menu {
             title: qsTr("View")
-            width: 750
+            width: 20 * fontPixelsize/2
+            height: 5 * fontPixelsize
             MenuItem {
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
@@ -216,7 +221,8 @@ Item {
         }
         Menu {
             title: qsTr("Game")
-            width: 700
+            width: 23 * fontPixelsize/2
+            height: 13 * fontPixelsize/2
             MenuItem {
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
@@ -244,7 +250,8 @@ Item {
         }
         Menu {
             title: qsTr("Options")
-            width: 700
+            width: 20 * fontPixelsize/2
+            height: 8 * fontPixelsize
             MenuItem {
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
@@ -278,7 +285,8 @@ Item {
         }
         Menu {
             title: qsTr("About")
-            width: 500
+            width: 15 * fontPixelsize/2
+            height: 7 * fontPixelsize/2
             MenuItem {
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
@@ -353,5 +361,9 @@ Item {
     function actionActivate_Deal_ProfileGetChecked()
     {
         return actionActivate_Deal_Profile.checked
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

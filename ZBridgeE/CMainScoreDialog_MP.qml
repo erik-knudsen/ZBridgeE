@@ -17,37 +17,39 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    width: 900
-    height: 850
 
     signal rowClicked(int row)
     signal cellClicked(int row, int column)
     signal on_OKButton_Clicked()
 
-    property int fontPixelsize: 70
+    property int zf: 10
+
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
-    property int h: 90
+    property int h: 9 * zf
+
+    width: 105 * zf
+    height: 85 * zf
 
     Button {
         id: okButton
         font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors.topMargin: 0 * zf
         onClicked: on_OKButton_Clicked()
     }
 
     GroupBox {
         id: groupBox
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: okButton.bottom
-        anchors.topMargin: 0
-        height: 150
+        anchors.topMargin: 0 * zf
         font.pixelSize: fontPixelsize / 2
         title: qsTr("Participants")
 
@@ -83,11 +85,11 @@ Item {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: groupBox.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
     }
 
     ListModel {
@@ -123,8 +125,8 @@ Item {
                 height: h
                 font.pixelSize: fontPixelsize
                 text: board
-                padding: 0
-                leftPadding: 15
+                padding: 0 * zf
+                leftPadding: 1.5 * zf
                 onClicked: rowClicked(row.inx)
             }
             Text {
@@ -164,8 +166,8 @@ Item {
                 height: h
                 font.pixelSize: fontPixelsize
                 text: boardRes
-                padding: 0
-                leftPadding: 15
+                padding: 0 * zf
+                leftPadding: 1.5 * zf
                 onClicked: cellClicked(row.inx, 5)
             }
             ItemDelegate {
@@ -173,8 +175,8 @@ Item {
                 height: h
                 font.pixelSize: fontPixelsize
                 text: allRes
-                padding: 0
-                leftPadding: 10
+                padding: 0 * zf
+                leftPadding: 1 * zf
                 onClicked: cellClicked(row.inx, 6)
             }
         }
@@ -183,13 +185,13 @@ Item {
     ListView {
         id: listView
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 0 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0
+        anchors.leftMargin: 0 * zf
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
+        anchors.bottomMargin: 0 * zf
         anchors.top: scoringMethod.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
 
         contentWidth: headerItem.width
         flickableDirection: Flickable.HorizontalAndVerticalFlick
@@ -204,7 +206,7 @@ Item {
                     text: modelData
                     font.bold: true
                     font.pixelSize: fontPixelsize
-                    padding: 10
+                    padding: 1 * zf
                     background: Rectangle { color: "silver" }
                 }
             }
@@ -239,5 +241,9 @@ Item {
     function nsNamesSetText(text)
     {
         nsNames.text = text
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

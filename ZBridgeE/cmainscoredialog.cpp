@@ -27,6 +27,7 @@
 #include "crankscoredialog.h"
 #include "cplaydialog.h"
 #include "cgamesdoc.h"
+#include "czbridgeapp.h"
 #include "cmainscoredialog.h"
 
 CMainScoreDialog::CMainScoreDialog(CGamesDoc *games, QWidget *parent) :
@@ -106,6 +107,12 @@ void CMainScoreDialog::sUpdateTable()
         layout->addWidget(pWidget);
 
         pScoreTableObject = pWidget->rootObject();
+
+        //Set screen zoom factor.
+        int zf = CZBridgeApp::getZoom();
+        QMetaObject::invokeMethod(pScoreTableObject, "setZoom",
+                                  Q_RETURN_ARG(QVariant, returnedValue),
+                                  Q_ARG(QVariant, zf));
 
         //Respond to click of cell.
         connect(pScoreTableObject, SIGNAL(cellClicked(int, int)), this, SLOT(cellClicked(int, int)));

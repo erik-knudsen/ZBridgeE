@@ -23,11 +23,14 @@ Item {
 
     signal on_Exit()
 
-    property int shorterDesktop: 768
-    property int longerDesktop: 1500
+    property int zf: 10
+    property int zfs: 10
 
-    width: longerDesktop
-    height: shorterDesktop
+    property int fontPixelsize: 6 * zf
+    property string fontFamily: "MS Shell Dlg 2"
+
+    width: 190 * zfs
+    height: 100 *zfs
 
     RowLayout {
         id: container
@@ -36,7 +39,7 @@ Item {
 
         ContentList {
             id: contentList
-            width: 400
+            Layout.preferredWidth: 11 * fontPixelsize
             Layout.fillWidth: true
             Layout.fillHeight: true
             onContentSelected: webView.showContent(url)
@@ -46,16 +49,14 @@ Item {
         ColumnLayout {
 
             RowLayout {
-                spacing: 10
+                spacing: 1 * zf
 
-                Layout.leftMargin: 20
+                Layout.leftMargin: 2 * zf
 
                 ToolButton {
                     id: backButton
-                    Layout.preferredHeight: 100
-                    Layout.preferredWidth: 100
-                    anchors.top: parent.top
-                    anchors.left: parent.left
+                    Layout.preferredHeight: 15 * zf
+                    Layout.preferredWidth: 15 * zf
                     onClicked: webView.goBack()
                     enabled: webView.canGoBack
                     contentItem: Image {
@@ -66,9 +67,8 @@ Item {
 
                 ToolButton {
                     id: forwardButton
-                    Layout.preferredHeight: 100
-                    Layout.preferredWidth: 100
-                    anchors.left: backButton.right
+                    Layout.preferredHeight: 15 * zf
+                    Layout.preferredWidth: 15 * zf
                     onClicked: webView.goForward()
                     enabled: webView.canGoForward
                     contentItem: Image {
@@ -80,7 +80,7 @@ Item {
 
             WebView {
                 id: webView
-                width: longerDesktop - 400
+                Layout.preferredWidth: itemWindow.width - 11 * fontPixelsize
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
@@ -132,5 +132,11 @@ Item {
                 }
             }
         }
+    }
+    function setZoom(zoom, zooms)
+    {
+        zf = zoom
+        zfs = zooms
+        contentList.zf = zf
     }
 }

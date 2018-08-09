@@ -46,7 +46,13 @@ CGameOptionsPropSheet::CGameOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc,
     layout->addWidget(pWidget);
 
     QObject *pGameOptionsPropSheetObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pGameOptionsPropSheetObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     this->app = app;
     this->doc = doc;
@@ -64,8 +70,8 @@ CGameOptionsPropSheet::CGameOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc,
     connect(pGameOptionsPropSheetObject, SIGNAL(on_level1_clicked()), this, SLOT(on_level1_clicked()));
     connect(pGameOptionsPropSheetObject, SIGNAL(on_level2_clicked()), this, SLOT(on_level2_clicked()));
     connect(pGameOptionsPropSheetObject, SIGNAL(on_level3_clicked()), this, SLOT(on_level3_clicked()));
-    connect(pGameOptionsPropSheetObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_buttonBox_accepted()));
-    connect(pGameOptionsPropSheetObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_buttonBox_rejected()));
+    connect(pGameOptionsPropSheetObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pGameOptionsPropSheetObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 
     gameOptionDoc = doc->getGameOptions();
 
@@ -121,14 +127,14 @@ void CGameOptionsPropSheet::closeEvent(QCloseEvent *event)
     eventLoop.exit(QDialog::Rejected);
 }
 
-void CGameOptionsPropSheet::on_buttonBox_accepted()
+void CGameOptionsPropSheet::on_ok_clicked()
 {
     doc->setGameOptions(gameOptionDoc);
 
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CGameOptionsPropSheet::on_buttonBox_rejected()
+void CGameOptionsPropSheet::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

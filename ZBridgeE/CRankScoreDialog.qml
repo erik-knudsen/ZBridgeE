@@ -17,38 +17,41 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    width: 900
-    height: 850
 
     signal on_OKButton_Clicked()
 
-    property int fontPixelSize: 70
+    property int zf: 10
+
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
-    property int h: 90
+    property int h: 9 * zf
+
+    width: 105 * zf
+    height: 85 * zf
 
     Button {
         id: okButton
-        font.pixelSize: fontPixelSize
+        font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors.topMargin: 0 * zf
         onClicked: on_OKButton_Clicked()
     }
 
     Label {
         id: scoringMethod
         text: qsTr("scoring method")
-        font.pixelSize: fontPixelSize / 2
+        font.pixelSize: fontPixelsize / 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: okButton.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
     }
 
     ListModel {
@@ -117,7 +120,7 @@ Item {
             Text {
                 width: listView.headerItem.headerAt(0).width
                 height: h
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 text: name
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -125,7 +128,7 @@ Item {
             Text {
                 width: listView.headerItem.headerAt(1).width
                 height: h
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: point
@@ -136,13 +139,13 @@ Item {
     ListView {
         id: listView
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 0 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0
+        anchors.leftMargin: 0 * zf
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
+        anchors.bottomMargin: 0 * zf
         anchors.top: scoringMethod.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
 
         contentWidth: headerItem.width
         flickableDirection: Flickable.HorizontalAndVerticalFlick
@@ -156,8 +159,8 @@ Item {
                 Label {
                     text: modelData
                     font.bold: true
-                    font.pixelSize: fontPixelSize
-                    padding: 10
+                    font.pixelSize: fontPixelsize
+                    padding: 1 * zf
                     background: Rectangle { color: "silver" }
                 }
             }
@@ -185,5 +188,9 @@ Item {
     }
     function sort() {
         scoreModel.sort()
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

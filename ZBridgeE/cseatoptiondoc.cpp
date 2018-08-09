@@ -100,8 +100,8 @@ void CSeatOptionDoc::ReadSettings()
     westActor = ((tmp >= MANUAL_ACTOR) && (tmp <= REMOTE_ACTOR)) ? (Actor)tmp : AUTO_ACTOR;
     tmp = settings.value("northActor", AUTO_ACTOR).toInt();
     northActor = ((tmp >= MANUAL_ACTOR) && (tmp <= REMOTE_ACTOR)) ? (Actor)tmp : AUTO_ACTOR;
-    tmp = settings.value("eastActor", "").toInt();
+    tmp = settings.value("eastActor", AUTO_ACTOR).toInt();
     eastActor = ((tmp >= MANUAL_ACTOR) && (tmp <= REMOTE_ACTOR)) ? (Actor)tmp : AUTO_ACTOR;
-    tmp = settings.value("southActor", "").toInt();
+    tmp = settings.value("southActor", MANUAL_ACTOR).toInt();
     southActor = ((tmp >= MANUAL_ACTOR) && (tmp <= REMOTE_ACTOR)) ? (Actor)tmp : AUTO_ACTOR;
 }

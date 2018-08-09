@@ -17,67 +17,70 @@ import QtQuick.Controls 2.2
 
 Item {
     id: item1
-    width: 900
-    height: 850
 
     signal namesClicked(int row)
     signal on_OKButton_Clicked()
 
-    property int fontPixelSize: 70
+    property int zf: 10
+
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
-    property int h: 90
+    property int h: 9 * zf
+
+    width: 105 * zf
+    height: 85 * zf
 
     Button {
         id: okButton
-        font.pixelSize: fontPixelSize
+        font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 0
+        anchors.topMargin: 0 * zf
         onClicked: on_OKButton_Clicked()
     }
 
     Label {
         id: board
         text: qsTr("board")
-        font.pixelSize: fontPixelSize / 2
+        font.pixelSize: fontPixelsize / 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: okButton.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
     }
 
     Label {
         id: vulnerability
         text: qsTr("vulnerability")
-        font.pixelSize: fontPixelSize / 2
+        font.pixelSize: fontPixelsize / 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: board.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
     }
 
     Label {
         id: scoringMethod
         text: qsTr("scoring method")
-        font.pixelSize: fontPixelSize / 2
+        font.pixelSize: fontPixelsize / 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1 * zf
         anchors.top: vulnerability.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
     }
 
     ListModel {
@@ -107,16 +110,16 @@ Item {
             ItemDelegate {
                 width: listView.headerItem.headerAt(0).width
                 height: h
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 text: name
-                padding: 0
-                leftPadding: 15
+                padding: 0 * zf
+                leftPadding: 1.5 * zf
                 onClicked: namesClicked(row.inx)
             }
             Text {
                 width: listView.headerItem.headerAt(1).width
                 height: h
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 text: contract
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -124,7 +127,7 @@ Item {
             Text {
                 width: listView.headerItem.headerAt(2).width
                 height: h
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: tricks
@@ -133,14 +136,14 @@ Item {
                 width: listView.headerItem.headerAt(3).width
                 height: h
                 verticalAlignment: Text.AlignVCenter
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 horizontalAlignment: Text.AlignHCenter
                 text: score
             }
             Text {
                 width: listView.headerItem.headerAt(4).width
                 height: h
-                font.pixelSize: fontPixelSize
+                font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: point
@@ -151,13 +154,13 @@ Item {
     ListView {
         id: listView
         anchors.right: parent.right
-        anchors.rightMargin: 0
+        anchors.rightMargin: 0 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0
+        anchors.leftMargin: 0 * zf
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
+        anchors.bottomMargin: 0 * zf
         anchors.top: scoringMethod.bottom
-        anchors.topMargin: 20
+        anchors.topMargin: 2 * zf
 
         contentWidth: headerItem.width
         flickableDirection: Flickable.HorizontalAndVerticalFlick
@@ -171,8 +174,8 @@ Item {
                 Label {
                     text: modelData
                     font.bold: true
-                    font.pixelSize: fontPixelSize
-                    padding: 10
+                    font.pixelSize: fontPixelsize
+                    padding: 1 * zf
                     background: Rectangle { color: "silver" }
                 }
             }
@@ -206,5 +209,9 @@ Item {
     function boardSetText(text)
     {
         board.text = text
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }

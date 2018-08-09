@@ -52,8 +52,8 @@ protected:
     void closeEvent(QCloseEvent *event);
 
 private slots:
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+    void on_ok_clicked();
+    void on_cancel_clicked();
     void on_biddingPause_sliderMoved(int position);
     void on_playPause_sliderMoved(int position);
     void on_insertBiddingPause_clicked(bool checked);

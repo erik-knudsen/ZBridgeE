@@ -68,6 +68,7 @@ private:
 
     CGamesDoc *games;
     int index;
+    int zf;
 
     QEventLoop eventLoop;
 };

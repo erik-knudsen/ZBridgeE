@@ -25,6 +25,7 @@
 #include <QQmlContext>
 #include <QApplication>
 
+#include "czbridgeapp.h"
 #include "ccontent.h"
 
 /**
@@ -52,7 +53,14 @@ CContent::CContent(QWidget *parent) :
     layout->addWidget(pWidget);
 
     QObject *pContentObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    int zfs = CZBridgeApp::getZoomS();
+    QMetaObject::invokeMethod(pContentObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf), Q_ARG(QVariant, zfs));
 
     connect(pContentObject, SIGNAL(on_Exit()), this, SLOT(on_Exit()));
 }

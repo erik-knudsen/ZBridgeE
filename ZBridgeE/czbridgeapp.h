@@ -41,6 +41,7 @@ class CZBridgeApp : public QApplication
 public:
     explicit CZBridgeApp(int &argc, char **argv);
     static int getZoom() { return zf; }
+    static int getZoomS() { return zfs; }
 
 private:
     CMainFrame * mainFrame;
@@ -48,6 +49,7 @@ private:
     CGamesDoc * games;
 
     static int zf;
+    static int zfs;
 
 signals:
 

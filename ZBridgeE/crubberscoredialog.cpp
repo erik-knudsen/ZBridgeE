@@ -22,6 +22,7 @@
 #include <QPainter>
 
 #include "cgamesdoc.h"
+#include "czbridgeapp.h"
 #include "crubberscoredialog.h"
 
 CRubberScoreDialog::CRubberScoreDialog(CGamesDoc *games, int index, QWidget *parent) :
@@ -37,6 +38,9 @@ CRubberScoreDialog::CRubberScoreDialog(CGamesDoc *games, int index, QWidget *par
     pal.setColor(QPalette::Background, Qt::white);
     setAutoFillBackground(true);
     setPalette(pal);
+
+    //Screen zoom factor.
+    zf = CZBridgeApp::getZoom();
 
     rubberPoints = new rubberPoint[index + 1];
 
@@ -103,11 +107,11 @@ void CRubberScoreDialog::paintEvent(QPaintEvent * /* event */)
     QPainter painter(this);
 
     QFont font("MS Shell Dlg 2");
-    font.setPixelSize(35);
+    font.setPixelSize(3.5 * zf);
     painter.setFont(font);
 
-    int lineSize = 45;
-    int columnSize = 145;
+    int lineSize = 4.5 * zf;
+    int columnSize = 14.5 * zf;
 
     //Player texts.
     QString nsTxt = tr("NS");

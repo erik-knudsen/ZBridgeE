@@ -26,6 +26,7 @@
 #include "Defines.h"
 #include "cgamesdoc.h"
 #include "cplaydialog.h"
+#include "czbridgeapp.h"
 #include "crankscoredialog.h"
 
 CRankScoreDialog::CRankScoreDialog(CGamesDoc *games, int scoringMethod, int index, QWidget *parent) :
@@ -47,7 +48,13 @@ CRankScoreDialog::CRankScoreDialog(CGamesDoc *games, int scoringMethod, int inde
     layout->addWidget(pWidget);
 
     QObject *pRankScoreDialogObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pRankScoreDialogObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     connect(pRankScoreDialogObject, SIGNAL(on_OKButton_Clicked()), this, SLOT(on_OKButton_Clicked()));
 

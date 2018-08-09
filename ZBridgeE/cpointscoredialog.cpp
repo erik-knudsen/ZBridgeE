@@ -26,6 +26,7 @@
 #include "Defines.h"
 #include "cgamesdoc.h"
 #include "cplaydialog.h"
+#include "czbridgeapp.h"
 #include "cpointscoredialog.h"
 
 CPointScoreDialog::CPointScoreDialog(CGamesDoc *games, int scoringMethod, int index, QWidget *parent) :
@@ -51,7 +52,13 @@ CPointScoreDialog::CPointScoreDialog(CGamesDoc *games, int scoringMethod, int in
     layout->addWidget(pWidget);
 
     QObject *pPointScoreDialogObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pPointScoreDialogObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     connect(pPointScoreDialogObject, SIGNAL(on_OKButton_Clicked()), this, SLOT(on_OKButton_Clicked()));
 

@@ -23,6 +23,7 @@
 #include <QQuickItem>
 #include <QHBoxLayout>
 
+#include "czbridgeapp.h"
 #include "cfiledialog.h"
 
 CFileDialog::CFileDialog(QString headLine, QStringList nameFilters, QWidget *parent) :
@@ -40,14 +41,20 @@ CFileDialog::CFileDialog(QString headLine, QStringList nameFilters, QWidget *par
     layout->addWidget(pWidget);
 
     QObject *pFileDialogObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
     QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pFileDialogObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     QMetaObject::invokeMethod(pFileDialogObject, "setNameFilters",
             Q_RETURN_ARG(QVariant, returnedValue),
             Q_ARG(QVariant, nameFilters));
 
-    connect(pFileDialogObject, SIGNAL(on_buttonBox_accepted()), this, SLOT(on_buttonBox_accepted()));
-    connect(pFileDialogObject, SIGNAL(on_buttonBox_rejected()), this, SLOT(on_buttonBox_rejected()));
+    connect(pFileDialogObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
+    connect(pFileDialogObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 }
 
 CFileDialog::~CFileDialog()
@@ -90,12 +97,12 @@ void CFileDialog::closeEvent(QCloseEvent *event)
     eventLoop.exit(QDialog::Rejected);
 }
 
-void CFileDialog::on_buttonBox_accepted()
+void CFileDialog::on_ok_clicked()
 {
     eventLoop.exit(QDialog::Accepted);
 }
 
-void CFileDialog::on_buttonBox_rejected()
+void CFileDialog::on_cancel_clicked()
 {
     eventLoop.exit(QDialog::Rejected);
 }

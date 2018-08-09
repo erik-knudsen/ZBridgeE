@@ -34,7 +34,8 @@
 
 Q_DECLARE_METATYPE(Seat)
 
-int CZBridgeApp::zf = 10;
+int CZBridgeApp::zf;
+int CZBridgeApp::zfs = 10;
 
 /**
  * Main for starting the ZBridge application.
@@ -92,6 +93,12 @@ CZBridgeApp::CZBridgeApp(int &argc, char **argv) :
 
     //Zoom factor to use for QML pixels.
     zf = (int)(zfr + 0.5);
+
+    //Zoom factor for help screen (80% x 80% of available screen).
+    if ((zfs * 190) > (width - zfs * 20))
+        zfs = (width - zfs * 20) / 190;
+    if ((zfs * 100) > (height - zfs * 20))
+        zfs = (height - zfs * 20) / 100;
 
     QtWebView::initialize();
 

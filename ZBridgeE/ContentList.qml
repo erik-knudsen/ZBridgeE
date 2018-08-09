@@ -22,6 +22,10 @@ FocusScope {
     signal contentSelected(url url)
     signal contentExit()
 
+    property int zf: 10
+    property int fontPixelsize: 6 * zf
+    property string fontFamily: "MS Shell Dlg 2"
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -34,7 +38,9 @@ FocusScope {
                 id: headerText
                 width: parent.width
                 text: qsTr("Content")
-                padding: 10
+                font.pixelSize: fontPixelsize
+                font.family: fontFamily
+                font.bold: true
                 anchors.centerIn: parent
             }
         }
@@ -53,6 +59,8 @@ FocusScope {
             delegate: ItemDelegate {
                 width: parent.width
                 text: model.name
+                font.pixelSize: fontPixelsize
+                font.family: fontFamily
                 contentItem: Text {
                     text: parent.text
                     font: parent.font

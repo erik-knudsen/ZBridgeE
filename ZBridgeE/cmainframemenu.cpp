@@ -22,6 +22,7 @@
 #include <QHBoxLayout>
 #include <QQuickItem>
 
+#include "czbridgeapp.h"
 #include "cmainframemenu.h"
 
 CMainFrameMenu::CMainFrameMenu(CMainFrameMenuEnables &mainFrameMenuEnables, QWidget *parent) :
@@ -50,6 +51,13 @@ CMainFrameMenu::CMainFrameMenu(CMainFrameMenuEnables &mainFrameMenuEnables, QWid
     layout->addWidget(pMenuWidget);
 
     QObject *pMenuObject = pMenuWidget->rootObject();
+
+    //Set screen zoom factor.
+    QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pMenuObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     connect(pMenuObject, SIGNAL(on_hideMenu_triggered()), this, SLOT(on_hideMenu_triggered_S()));
     connect(pMenuObject, SIGNAL(on_actionOpen_triggered()), this, SLOT(on_actionOpen_triggered_S()));
