@@ -17,13 +17,15 @@ import QtQuick 2.4
 import QtQuick.Controls 2.2
 
 Item {
+    id: item1
+
     property int zf: 10
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    id: item1
     width: 100 * zf
     height: 85 * zf
+
     property alias okButton: okButton
 
     Label {

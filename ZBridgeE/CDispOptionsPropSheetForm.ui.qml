@@ -24,6 +24,7 @@ Item {
 
     width: 61 * zf
     height: 64 * zf
+
     property alias cardBack5: cardBack5
     property alias cardBack4: cardBack4
     property alias cardBack3: cardBack3

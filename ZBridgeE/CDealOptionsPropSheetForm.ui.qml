@@ -26,6 +26,7 @@ Item {
 
     width: 100 * zf
     height: 102 * zf
+
     property alias ok: ok
     property alias cancel: cancel
     property alias hcpTotalWest: hcpTotalWest

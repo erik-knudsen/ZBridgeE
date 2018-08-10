@@ -23,6 +23,7 @@ Item {
 
     width: 120 *zf
     height: 130 *zf
+
     property alias jumpOvercallWeak: jumpOvercallWeak
     property alias unusualNT: unusualNT
     property alias michaelsCueBid: michaelsCueBid

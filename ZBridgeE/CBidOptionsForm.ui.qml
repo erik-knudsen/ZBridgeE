@@ -25,6 +25,7 @@ Item {
 
     width: 100 * zf
     height: 87 * zf
+
     property alias northSouth: northSouth
     property alias northSouthConvention: northSouthConvention
     property alias nsModel: nsModel
@@ -64,6 +65,7 @@ Item {
             ComboBox {
                 id: northSouthConvention
                 width: 12 * fontPixelsize/2
+                height: 9 * zf
                 ListModel {
                     id: nsModel
                 }
@@ -78,6 +80,7 @@ Item {
             ComboBox {
                 id: eastWestConvention
                 width: 12 * fontPixelsize/2
+                height: 9 * zf
                 ListModel {
                     id: ewModel
                 }

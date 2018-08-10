@@ -29,6 +29,7 @@
 #include "dll.h"
 #include "cmessagebox.h"
 #include "cddslock.h"
+#include "czbridgeapp.h"
 #include "cddtable.h"
 
 CDDTable::CDDTable(int cards[][13], Seat dealer, Team vulnerable, QWidget *parent) :
@@ -47,6 +48,12 @@ CDDTable::CDDTable(int cards[][13], Seat dealer, Team vulnerable, QWidget *paren
 
     QObject *pDDTableObject = pWidget->rootObject();
     QVariant returnedValue;
+
+    //Screen zoom factor.
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pDDTableObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     ddTableDeal tableDeal;
     ddTableResults table;

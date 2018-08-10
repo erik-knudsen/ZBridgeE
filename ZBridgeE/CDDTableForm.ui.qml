@@ -19,14 +19,16 @@ import QtQuick.Controls 2.2
 Item {
     id: item1
 
-    property int fontPixelsize: 70
+    property int zf: 10
+    property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    property int editW: 210
-    property int editH: 90
+    property int editW: 21 *zf
+    property int editH: 9 *zf
 
-    width: 1320
-    height: 800
+    width: 132 *zf
+    height: 80 *zf
+
     property alias parScore: parScore
     property alias parContract: parContract
     property alias tricksCEW: tricksCEW
@@ -43,12 +45,12 @@ Item {
 
     GroupBox {
         id: groupBox
-        height: 750
-        width: 700
+        height: 75 * zf
+        width: 70 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 1  *zf
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
         font.pixelSize: fontPixelsize
         title: qsTr("DD Results")
 
@@ -57,7 +59,7 @@ Item {
             anchors.fill: parent
             rows: 6
             columns: 3
-            spacing: 10
+            spacing: 1 * zf
 
             Label {
                 id: label
@@ -97,8 +99,8 @@ Item {
             }
             Image {
                 id: image
-                width: 70
-                height: 70
+                width: 7 * zf
+                height: 7 * zf
                 source: "qrc:///resources/suit_spade.ico"
             }
             Label {
@@ -115,8 +117,8 @@ Item {
             }
             Image {
                 id: image1
-                width: 70
-                height: 70
+                width: 7 * zf
+                height: 7 * zf
                 source: "qrc:///resources/suit_heart.ico"
             }
             Label {
@@ -133,8 +135,8 @@ Item {
             }
             Image {
                 id: image2
-                width: 70
-                height: 70
+                width: 7 * zf
+                height: 7 * zf
                 source: "qrc:///resources/suit_diamond.ico"
             }
             Label {
@@ -151,8 +153,8 @@ Item {
             }
             Image {
                 id: image3
-                width: 70
-                height: 70
+                width: 7 * zf
+                height: 7 * zf
                 source: "qrc:///resources/suit_club.ico"
             }
             Label {
@@ -172,12 +174,12 @@ Item {
 
     GroupBox {
         id: groupBox1
-        height: 300
-        width: 550
+        height: 30 * zf
+        width: 55 * zf
         anchors.left: groupBox.right
-        anchors.leftMargin: 20
+        anchors.leftMargin: 2 * zf
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: 1 * zf
         font.pixelSize: fontPixelsize
         title: qsTr("Par")
 
@@ -205,8 +207,8 @@ Item {
         font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
-        anchors.rightMargin: 10
+        anchors.rightMargin: 1 * zf
         anchors.bottom: groupBox.bottom
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 1 * zf
     }
 }

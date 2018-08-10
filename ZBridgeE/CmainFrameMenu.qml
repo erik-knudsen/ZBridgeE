@@ -17,6 +17,7 @@ import QtQuick 2.7
 
 Item {
     id: item1
+
     signal on_hideMenu_triggered()
     signal on_actionOpen_triggered()
     signal on_actionSave_triggered()
@@ -41,7 +42,6 @@ Item {
 
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
-
 
     height: fontPixelsize * 11
     width: 42 * fontPixelsize/2

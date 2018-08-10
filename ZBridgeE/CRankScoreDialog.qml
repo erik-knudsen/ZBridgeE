@@ -85,7 +85,7 @@ Item {
             var store=begin;
             var ix;
             for(ix=begin; ix<end-1; ++ix) {
-                if(Number(get(ix)[sortColumnName]) < piv) {
+                if(Number(get(ix)[sortColumnName]) > piv) {
                     swap(store,ix);
                     ++store;
                 }
@@ -117,13 +117,13 @@ Item {
             id: row
             spacing: 1
             property int inx: index
-            Text {
+            ItemDelegate {
                 width: listView.headerItem.headerAt(0).width
                 height: h
                 font.pixelSize: fontPixelsize
                 text: name
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
+                padding: 0 * zf
+                leftPadding: 1.5 * zf
             }
             Text {
                 width: listView.headerItem.headerAt(1).width

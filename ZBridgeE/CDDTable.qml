@@ -71,4 +71,8 @@ CDDTableForm {
     {
         parContract.text = text
     }
+    function setZoom(zoom)
+    {
+        zf = zoom
+    }
 }

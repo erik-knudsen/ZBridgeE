@@ -101,10 +101,10 @@ Item {
                 Rectangle {
                     width: 36 * zf
                     height: 9 * zf
-                ComboBox {
-                    id: westActor
-                    anchors.fill: parent
-                }
+                    ComboBox {
+                        id: westActor
+                        anchors.fill: parent
+                    }
                 }
                 RadioButton {
                     id: north
@@ -125,10 +125,10 @@ Item {
                 Rectangle {
                     width: 36 * zf
                     height: 9 * zf
-                ComboBox {
-                    id: northActor
-                    anchors.fill: parent
-                }
+                    ComboBox {
+                        id: northActor
+                        anchors.fill: parent
+                    }
                 }
                 RadioButton {
                     id: east
@@ -149,10 +149,10 @@ Item {
                 Rectangle {
                     width: 36 * zf
                     height: 9 * zf
-                ComboBox {
-                    id: eastActor
-                    anchors.fill: parent
-                }
+                    ComboBox {
+                        id: eastActor
+                        anchors.fill: parent
+                    }
                 }
                 RadioButton {
                     id: south
@@ -173,10 +173,10 @@ Item {
                 Rectangle {
                     width: 36 * zf
                     height: 9 * zf
-                ComboBox {
-                    id: southActor
-                    anchors.fill: parent
-                }
+                    ComboBox {
+                        id: southActor
+                        anchors.fill: parent
+                    }
                 }
             }
         }
