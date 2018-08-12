@@ -2,6 +2,7 @@
 #include <QQuickItem>
 #include <QHBoxLayout>
 
+#include "czbridgeapp.h"
 #include "cpopup.h"
 
 CPopup::CPopup(QWidget *parent) :
@@ -24,6 +25,15 @@ CPopup::CPopup(QWidget *parent) :
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(pWidget);
+
+    QObject *pPopupDlgObject = pWidget->rootObject();
+
+    //Set screen zoom factor.
+    QVariant returnedValue;
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pPopupDlgObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 }
 
 CPopup::~CPopup()

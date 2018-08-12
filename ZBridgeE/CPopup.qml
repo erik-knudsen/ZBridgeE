@@ -16,10 +16,13 @@ import QtQuick 2.4
 import QtQuick.Controls 2.2
 
 Item {
-    property int fontPixelsize: 25
+    id: cPopup
+
+    property int zf: 10
+
+    property int fontPixelsize: 4 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    id: cPopup
 //    implicitWidth: description.implicitWidth
 //    implicitHeight: description.implicitHeight
 
@@ -47,9 +50,15 @@ Item {
                 m = 0;
             }
         }
+        if (m > k)
+            k = m;
 
         description.text = text
         width = k * fontPixelsize / 2
-        height = (j + 1) * (fontPixelsize + 8)
+        height = (j + 2) * (fontPixelsize + 3)
+    }
+    function setZoom(zoom)
+    {
+        zf = zoom
     }
 }
