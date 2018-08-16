@@ -426,7 +426,8 @@ void CMainFrame::resetPlay()
     connect(this, &CMainFrame::sNewSession, tableManagerAuto, &CTblMngrBase::sNewSession);
     thread->start();
 
-    connect(tableManager, &CTblMngr::sShowScore, this, &CMainFrame::on_action_Score_triggered);
+    connect(tableManager, &CTblMngr::sShowScore, this, &CMainFrame::on_action_Score_triggered,
+            Qt::QueuedConnection);
 
     //If non saved game then ask if it should be saved (save can only be enabled on server).
     if (mainFrameMenuEnables.actionSaveGetEnabled() &&
