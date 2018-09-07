@@ -39,6 +39,18 @@ Installation for ZBridge development:
    be performed.
    The Double Dummy Solver by Bo Haglund is statically linked. Makefile_linux
    is used to generate libdds.a.
+   Use 
+     CC = C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/windows/bin/arm-linux-androideabi-g++
+   for the compiler and
+   use
+     CC_FLAGS = -O0 -fopenmp  -c -D__ANDROID_API__=16 --sysroot=C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sysroot -isystem C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sysroot/usr/include/arm-linux-androideabi -isystem C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -fstack-protector-strong -DANDROID -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -fno-builtin-memmove -g -marm -std=gnu++11 -Wall -W -D_REENTRANT -fPIC
+   to get OpenMP multithreading and
+   use
+     CC_FULL_FLAGS = $(CC_FLAGS)
+   to turn off warnings.
+
+
+
                 
 6. For Windows.
    Install Visual Studio Community 2015. Start Visual Studio and create a
@@ -46,6 +58,7 @@ Installation for ZBridge development:
    The Double Dummy Solver by Bo Haglund is generated as a dll. Makefile_Visual
    is used to generate dds.lib and dds.dll files. The dds.lib file is for the linker
    and the dds.dll file is for the executable.
+   Use CC_FULL_FLAGS = $(CC_FLAGS) to turn off warnings.
    I have found it necessary to remove the automatic initialization
    of the DDS dll and instead initialize in the startup of ZBridge (SetMaxThreads(0)).
    You cannot use the MinGW C++ compiler, which can be installed as a part 
