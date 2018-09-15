@@ -217,5 +217,17 @@ FORMS    +=
 RESOURCES = \
     resources.qrc
 
-DISTFILES +=
+android: {
+DISTFILES += \
+    android-sources/AndroidManifest.xml \
+    android-sources/gradle/wrapper/gradle-wrapper.jar \
+    android-sources/gradlew \
+    android-sources/res/values/libs.xml \
+    android-sources/build.gradle \
+    android-sources/gradle/wrapper/gradle-wrapper.properties \
+    android-sources/gradlew.bat
+}
+win32: {
+RC_ICONS = resources/IDR_MAIN.ICO
+}
 
