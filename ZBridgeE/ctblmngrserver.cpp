@@ -694,6 +694,11 @@ void CTblMngrServer::newDeal()
 {
     waiting = false;
 
+    QApplication::postEvent(parent(), new UPDATE_UI_ACTION_Event(UPDATE_UI_UNDO , false));
+    QApplication::postEvent(parent(), new UPDATE_UI_ACTION_Event(UPDATE_UI_REBID , false));
+    QApplication::postEvent(parent(), new UPDATE_UI_ACTION_Event(UPDATE_UI_REPLAY , false));
+    QApplication::postEvent(parent(), new UPDATE_UI_ACTION_Event(UPDATE_UI_HINT , false));
+
     playView->resetView();
 
     zBridgeServerIface_raise_newDeal(&handle);
@@ -1203,7 +1208,7 @@ void CTblMngrServer::sShowPlay()
  */
 void CTblMngrServer::sEnableContinueSync(int syncState)
 {
-    if (!waiting)
+//    if (!waiting)
     {
         waiting = true;
         switch (syncState)
@@ -1251,7 +1256,7 @@ void CTblMngrServer::sEnableContinueSync(int syncState)
  */
 void CTblMngrServer::sDisableContinueSync(int syncState)
 {
-    if (waiting)
+//    if (waiting)
     {
         waiting = false;
         switch (syncState)
