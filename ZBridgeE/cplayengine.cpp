@@ -34,7 +34,7 @@ const int MAX_ITER = 1000;      //Maximum number of iterations for finding a han
 
 CPlayEngine::CPlayEngine(int computerLevel, CBidOptionDoc &nsBidOptionDoc, CBidOptionDoc &ewBidOptionDoc)
 {
-    noHandsDD = (computerLevel == 0) ? (5) : (computerLevel == 1) ? (10) : (computerLevel == 2) ? (25) : (40);    
+    noHandsDD = (computerLevel == 0) ? (5) : (computerLevel == 1) ? (10) : (computerLevel == 2) ? (25) : (40);
     assert(noHandsDD <= MAX_NO_HANDS);
 
     nsBidOptions = nsBidOptionDoc;
@@ -181,12 +181,10 @@ int CPlayEngine::getNextPlay(Seat seat, Seat dummySeat, int ownCards[], int dumm
                     for (int k = 0; k < noPlayed; k++)
                         cards[newNo++] = played[k];
                 }
-                CFeatures features;
-                features.setCardFeatures(cards);
-                int res = features.featureIsOk(bidHistory.getHighFeatures((Seat)i), bidHistory.getLowFeatures((Seat)i));
-                if (res != 0)
+                bool res = bidHistory.checkCardFeatures(cards, (Seat)i);
+                if (res)
                     noFailures++;
-                if ((res != 0) && (noFailures > maxFailures))
+                if ((res) && (noFailures > maxFailures))
                     break;
             }
         }
@@ -1072,7 +1070,7 @@ int CPlayEngine::getFollow(Suit cardLeadSuit, int cardsLH[], int numBest, int si
             highCard = cardsLH[i];
         if (cardsLH[i] < lowCard)
             lowCard = cardsLH[i];
-    }    
+    }
     if (highCard == -1)
         return cardC;
 
