@@ -96,9 +96,11 @@ FocusScope {
                     append({"name": "Quick Start", url: "file:///" + applicationDirPath + "/pages/quickstart.html"});
                     append({"name": "About Bridge", url: "file:///" + applicationDirPath + "/pages/rules.html"});
                     append({"name": "About ZBridge", url: "file:///" + applicationDirPath + "/pages/aboutzbridge.html"});
+                    append({"name": "Main Window", url:  "file:///" + applicationDirPath + "/pages/mainwindow.html"});
                     append({"name": "Toolbar and Menu", url: "file:///" + applicationDirPath + "/pages/menus.html"});
                     append({"name": "Dialogs", url: "file:///" + applicationDirPath + "/pages/dialogs.html"});
                     append({"name": "Bidding Conventions", url: "file:///" + applicationDirPath + "/pages/bidconv.html"});
+                    append({"name": "Bidding Systems", url: "file:///" + applicationDirPath + "/pages/bidsys.html"});
                     append({"name": "Exit", url: ""});
 */
                     append({"name": "Introduction", url: "file:///android_asset/pages/intro_1.html"});

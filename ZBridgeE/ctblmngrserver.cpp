@@ -63,7 +63,7 @@ const int ENABLE_UNDO_LEADER = 3;
  */
 CTblMngrServer::CTblMngrServer(CZBridgeDoc *doc, CGamesDoc *games,
         CBidAndPlayEngines *bidAndPlayEngines, QHostAddress hostAddress, CPlayView *playView,
-                               QMainWindow *parent) throw(NetProtocolException) :
+                               QMainWindow *parent) :
     CTblMngr(playView, parent)
 {
     this->doc = doc;

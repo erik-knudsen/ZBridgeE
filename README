@@ -7,9 +7,9 @@ bridge programs with regard to their net abilities.
 ZBridgeE is for embedded computers (currently only Android). Its companion ZBridge
 is for Windows computers. They use the same communication protocol i.e. they can
 play bridge with each other on the internet. 
-Yakindu is used for modelling the states of the communication protocol.
+ItemisCREATE (Yakindu) is used for modelling the states of the communication protocol.
 Bridge bidding is implemented by means of a table. Bo Haglunds Double Dummy Solver
-is used for calculating the best card to play (version DDS 2.8.4).
+is used for calculating the best card to play (version DDS 2.9.1).
 
 The ZBridgeE software is covered by the GNU GENERAL PUBLIC LICENSE Version3 (GPLv3).
 
@@ -18,51 +18,32 @@ Development environment is Qt with the use of Qt Creator as IDE.
 
 Installation for ZBridge development:
 
-1. Install smartgit (I do not use Qt Creators GIT functionality).
+1. Install Github Desktop (I do not use Qt Creators GIT functionality).
 	Clone ZBridgeE to c:/projects/qt/zbridgeE
 	
-2. Install eclipse (I use eclipse for using yakindu and UMLet).
-	Install yakindu in eclipse.
+2. Install ItemisCREATE. It is an Eclipse based program.
 	Install UMLet in eclipse.
 	Import project ZBridgeE to eclipse without copy (default)
 	
-3. Install Qt (at least v. 5)
+3. Install Qt.
 
 4. Install DoxyGen
-		Install Graphviz
-		Install mscgen
-		Set dot and mscgen pathes in DoxyFile
+		Install Graphviz.
+		Set dot and mscgen pathes in DoxyFile.
+
+5. For Windows.
+	Install Visual Studio Community.
+	The MinGW C++ compiler, which can be installed as a part of Qt cannot be used. 
+	Only the Visual Studio C++ compiler has support for the Qt webview module. 
+	This module is used for ZBridgeE help.	
                 
-5. For Android see the "Getting Started with Qt for Android" in the 
-   Qt documentation. The Android SDK Tools, The Android NDK and JAVA SE Development
-   kits are needed. There is also some updating and configuration to
-   be performed.
-   The Double Dummy Solver by Bo Haglund is statically linked. Makefile_linux
-   is used to generate libdds.a.
-   Use 
-     CC = C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/windows/bin/arm-linux-androideabi-g++
-   for the compiler and
-   use
-     CC_FLAGS = -O0 -fopenmp  -c -D__ANDROID_API__=16 --sysroot=C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sysroot -isystem C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sysroot/usr/include/arm-linux-androideabi -isystem C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:\android\android-ndk-r15c-windows-x86\android-ndk-r15c/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -fstack-protector-strong -DANDROID -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -fno-builtin-memmove -g -marm -std=gnu++11 -Wall -W -D_REENTRANT -fPIC
-   to get OpenMP multithreading and
-   use
-     CC_FULL_FLAGS = $(CC_FLAGS)
-   to turn off warnings.
-
-
-
-                
-6. For Windows.
-   Install Visual Studio Community 2015. Start Visual Studio and create a
-   new c++ project and install required parts.
-   The Double Dummy Solver by Bo Haglund is generated as a dll. Makefile_Visual
-   is used to generate dds.lib and dds.dll files. The dds.lib file is for the linker
-   and the dds.dll file is for the executable.
-   Use CC_FULL_FLAGS = $(CC_FLAGS) to turn off warnings.
-   I have found it necessary to remove the automatic initialization
-   of the DDS dll and instead initialize in the startup of ZBridge (SetMaxThreads(0)).
-   You cannot use the MinGW C++ compiler, which can be installed as a part 
-   of Qt. Only the Visual Studio C++ compiler has support for the Qt webview
-   module. This module is used for ZBridgeE help.
-   The assets folder in the android-sources folder has help files for ZBridgeE. This folder
-   must be installed in the build folder and renamed to android_asset for help to work.
+6. The Double Dummy Solver by Bo Haglund is generated as a dll (dds.dll, dds.lib)
+	for Windows and as a static library (libdds_arm64-v8a.a) for Android.
+	Both libraries are in the folder c:/projects/qt/ZBridgeE/ZBridgeE/. 
+	The Double Dummy Solver can also be found in the dds repository as a Qt projects 
+	and can be generated here. After building the Windows version of the ZBridgeE
+	application, copy dds.ddl to the build directory (debug or release)
+	to be used by the ZbridgeE application (where the zbridge.exe file is
+	located). Also The assets folder in the android-sources folder has help files for 
+	ZBridgeE. This folder must be installed in the build folder and renamed to 
+	android_asset for help to work (for the Windows version).

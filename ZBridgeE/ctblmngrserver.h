@@ -58,7 +58,7 @@ class CTblMngrServer : public CTblMngr
 public:
     CTblMngrServer(CZBridgeDoc *doc, CGamesDoc *games, CBidAndPlayEngines *bidAndPlayEngines,
                    QHostAddress hostAddress, CPlayView *playView,
-                   QMainWindow *parent = 0) throw(NetProtocolException);
+                   QMainWindow *parent = 0);
     ~CTblMngrServer();
 
     //Run cycle for the server statechart.

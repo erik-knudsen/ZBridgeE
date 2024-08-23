@@ -35,7 +35,7 @@ CRubberScoreDialog::CRubberScoreDialog(CGamesDoc *games, int index, QWidget *par
 
     //Set black background
     QPalette pal = palette();
-    pal.setColor(QPalette::Background, Qt::white);
+    pal.setColor(QPalette::Base, Qt::white);
     setAutoFillBackground(true);
     setPalette(pal);
 

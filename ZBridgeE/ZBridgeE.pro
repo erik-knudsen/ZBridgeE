@@ -13,15 +13,14 @@ TARGET = ZBridgeE
 TEMPLATE = app
 android: {
 #   Bo Haglunds Double Dummy Solver (included in app).
-    LIBS += -fopenmp
-    LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\libdds.a
+    LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\libdds_arm64-v8a.a
 #   Help files.
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
 }
 win32: {
 #   Bo Haglunds Double Dummy Solver (as a DLL).
 #   MinGW 32 bit(does not work, there is no webview).
-#    //LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\dds.dll
+#    LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\dds.dll
 #   MSVC 2015 32 bit
     LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\dds.lib
 }
@@ -217,16 +216,6 @@ FORMS    +=
 RESOURCES = \
     resources.qrc
 
-android: {
-DISTFILES += \
-    android-sources/AndroidManifest.xml \
-    android-sources/gradle/wrapper/gradle-wrapper.jar \
-    android-sources/gradlew \
-    android-sources/res/values/libs.xml \
-    android-sources/build.gradle \
-    android-sources/gradle/wrapper/gradle-wrapper.properties \
-    android-sources/gradlew.bat
-}
 win32: {
 RC_ICONS = resources/IDR_MAIN.ICO
 }
