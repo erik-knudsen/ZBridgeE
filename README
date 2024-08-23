@@ -33,17 +33,18 @@ Installation for ZBridge development:
 
 5. For Windows.
 	Install Visual Studio Community.
-	The MinGW C++ compiler, which can be installed as a part of Qt cannot be used. 
-	Only the Visual Studio C++ compiler has support for the Qt webview module. 
-	This module is used for ZBridgeE help.	
+	The MinGW C++ compiler, which can be installed as a part of Qt cannot 
+	be used. Only the Visual Studio C++ compiler has support for the Qt 
+	webview module. This module is used for ZBridgeE help.	
                 
 6. The Double Dummy Solver by Bo Haglund is generated as a dll (dds.dll, dds.lib)
 	for Windows and as a static library (libdds_arm64-v8a.a) for Android.
 	Both libraries are in the folder c:/projects/qt/ZBridgeE/ZBridgeE/. 
-	The Double Dummy Solver can also be found in the dds repository as a Qt projects 
-	and can be generated here. After building the Windows version of the ZBridgeE
-	application, copy dds.ddl to the build directory (debug or release)
-	to be used by the ZbridgeE application (where the zbridge.exe file is
-	located). Also The assets folder in the android-sources folder has help files for 
+	The Double Dummy Solver can also be found in the dds repository as a Qt
+	project	and can be generated here. 
+	After building the Windows version of the ZBridgeE	application, copy 
+	dds.ddl to the build directory (debug or release) to be used by the 
+	ZbridgeE application (where the zbridge.exe file is located). 
+	The assets folder in the android-sources folder has help files for 
 	ZBridgeE. This folder must be installed in the build folder and renamed to 
-	android_asset for help to work (for the Windows version).
+	android_asset for help to work (only for the Windows version).
