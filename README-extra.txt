@@ -2,7 +2,7 @@ Qt and Android.
 
 ZBridgeE:
 
-IemisCEATE (Yakindu)generated files:
+ItemisCEATE (Yakindu)generated files:
 sctypes.h: line 33 outcomment, #define null 0
 
 
@@ -10,13 +10,13 @@ Installation of Qt:
 Select Windows and Android.
 after installation of Qt, install MSVC 2019.
 
-QtCreator > Tools > Maintenance
+QtCreator > Tools > Qt Maintenance Tool > Start Maintenance Tool
 inklude MSVC2019, QtWebengine, QtPositioning, QtWebchannel, QtWebview (2 places).
 ZBridgeE Help uses QtWebview, which cannot be used with the mingw compilers.
 
-QtCreator > Preferences
-Android: update/install JDK, Android SDK, OpenSSL
-Devices: create relevant AVD's (install emulator images etc.)
+QtCreator > Edit > Preferences
+Android tab: update/install JDK, Android SDK, OpenSSL
+Devices tab: create relevant AVD's (install emulator images etc.)
 
 Configure hardware acceleration for the Android Emulator. Normally hardware is used
 for the emulator, but if the graphics drivers are not compatible with the emulator
