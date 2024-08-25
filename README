@@ -42,7 +42,7 @@ Installation for ZBridge development:
 	Both libraries are in the folder c:/projects/qt/ZBridgeE/ZBridgeE/. 
 	The Double Dummy Solver can also be found in the dds repository as a Qt
 	project	and can be generated here. 
-	After building the Windows version of the ZBridgeE	application, copy 
+	After building the Windows version of the ZBridgeE application, copy 
 	dds.ddl to the build directory (debug or release) to be used by the 
 	ZbridgeE application (where the zbridge.exe file is located). 
 	The assets folder in the android-sources folder has help files for 

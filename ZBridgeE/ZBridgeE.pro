@@ -21,7 +21,7 @@ win32: {
 #   Bo Haglunds Double Dummy Solver (as a DLL).
 #   MinGW 32 bit(does not work, there is no webview).
 #    LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\dds.dll
-#   MSVC 2015 32 bit
+#   MSVC
     LIBS += c:\Projects\qt\ZbridgeE\ZBridgeE\dds.lib
 }
 
