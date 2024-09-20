@@ -23,7 +23,7 @@
 
 #include <QGraphicsWidget>
 
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * @brief Show relevant info for play.

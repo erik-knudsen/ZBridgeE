@@ -25,7 +25,7 @@
 #include <QMultiMap>
 
 #include "cauction.h"
-#include "defines.h"
+#include "Defines.h"
 #include "crule.h"
 
 /**

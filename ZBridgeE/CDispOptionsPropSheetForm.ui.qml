@@ -12,8 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: item1
@@ -22,8 +23,8 @@ Item {
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 61 * zf
-    height: 64 * zf
+    width: 90 * zf
+    height: 85 * zf
 
     property alias cardBack5: cardBack5
     property alias cardBack4: cardBack4
@@ -34,15 +35,17 @@ Item {
     property alias ok: ok
     property alias cancel: cancel
 
+
+    GridLayout {
+        id: grid
+        rows: 2
+        columns: 3
+
     ToolButton {
         id: cardBack0
-        width: 20 * zf
-        height: 24 * zf
+        Layout.preferredWidth: 25 * zf
+        Layout.preferredHeight: 30 * zf
         text: qsTr("")
-        anchors.left: parent.left
-        anchors.leftMargin: 0 * zf
-        anchors.top: parent.top
-        anchors.topMargin: 0 * zf
         checkable: true
         Image {
             anchors.rightMargin: 2 * zf
@@ -52,17 +55,17 @@ Item {
             anchors.fill: parent
             source: "resources/cardback1.png"
         }
+        background: Rectangle {
+            color: "#33333333"
+            visible: cardBack0.checked
+        }
     }
 
     ToolButton {
         id: cardBack1
-        width: 20 * zf
-        height: 24 * zf
+        Layout.preferredWidth: 25 * zf
+        Layout.preferredHeight: 30 * zf
         text: qsTr("")
-        anchors.left: cardBack0.right
-        anchors.leftMargin: 0 * zf
-        anchors.top: parent.top
-        anchors.topMargin: 0 * zf
         checkable: true
         Image {
             anchors.rightMargin: 2 * zf
@@ -72,17 +75,17 @@ Item {
             anchors.fill: parent
             source: "resources/cardback22.png"
         }
+        background: Rectangle {
+            color: "#33333333"
+            visible: cardBack1.checked
+        }
     }
 
     ToolButton {
         id: cardBack2
-        width: 20 * zf
-        height: 24 * zf
+        Layout.preferredWidth: 25 * zf
+        Layout.preferredHeight: 30 * zf
         text: qsTr("")
-        anchors.left: cardBack1.right
-        anchors.leftMargin: 0 * zf
-        anchors.top: parent.top
-        anchors.topMargin: 0 * zf
         checkable: true
         Image {
             anchors.rightMargin: 2 * zf
@@ -92,17 +95,17 @@ Item {
             anchors.fill: parent
             source: "resources/cardback3.png"
         }
+        background: Rectangle {
+            color: "#33333333"
+            visible: cardBack2.checked
+        }
     }
 
     ToolButton {
         id: cardBack3
-        width: 20 * zf
-        height: 24 * zf
+        Layout.preferredWidth: 25 * zf
+        Layout.preferredHeight: 30 * zf
         text: qsTr("")
-        anchors.left: parent.left
-        anchors.leftMargin: 0 * zf
-        anchors.top: cardBack0.bottom
-        anchors.topMargin: 0 * zf
         checkable: true
         Image {
             anchors.rightMargin: 2 * zf
@@ -112,17 +115,17 @@ Item {
             anchors.fill: parent
             source: "resources/cardback5.png"
         }
+        background: Rectangle {
+            color: "#33333333"
+            visible: cardBack3.checked
+        }
     }
 
     ToolButton {
         id: cardBack4
-        width: 20 * zf
-        height: 24 * zf
+        Layout.preferredWidth: 25 * zf
+        Layout.preferredHeight: 30 * zf
         text: qsTr("")
-        anchors.left: cardBack3.right
-        anchors.leftMargin: 0 * zf
-        anchors.top: cardBack1.bottom
-        anchors.topMargin: 0 * zf
         checkable: true
         Image {
             anchors.rightMargin: 2 * zf
@@ -132,17 +135,17 @@ Item {
             anchors.fill: parent
             source: "resources/cardback11.png"
         }
+        background: Rectangle {
+            color: "#33333333"
+            visible: cardBack4.checked
+        }
     }
 
     ToolButton {
         id: cardBack5
-        width: 20 * zf
-        height: 24 * zf
+        Layout.preferredWidth: 25 * zf
+        Layout.preferredHeight: 30 * zf
         text: qsTr("")
-        anchors.left: cardBack4.right
-        anchors.leftMargin: 0 * zf
-        anchors.top: cardBack2.bottom
-        anchors.topMargin: 0 * zf
         checkable: true
         Image {
             anchors.rightMargin: 2 * zf
@@ -152,27 +155,34 @@ Item {
             anchors.fill: parent
             source: "resources/cardback2.png"
         }
+        background: Rectangle {
+            color: "#33333333"
+            visible: cardBack5.checked
+        }
+    }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
-        anchors.top: cardBack4.bottom
+        anchors.top: grid.bottom
         anchors.topMargin: 4 *zf
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 1 * zf
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
     }

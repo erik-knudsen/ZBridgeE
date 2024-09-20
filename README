@@ -21,7 +21,8 @@ Installation for ZBridge development:
 1. Install Github Desktop (I do not use Qt Creators GIT functionality).
 	Clone ZBridgeE to c:/projects/qt/zbridgeE
 	
-2. Install ItemisCREATE. It is an Eclipse based program.
+2. Install Yakindu (v. 3.0.0). It is an Eclipse based program.
+    Yakindu requires Java Runtime to be installed.
 	Install UMLet in eclipse.
 	Import project ZBridgeE to eclipse without copy (default)
 	

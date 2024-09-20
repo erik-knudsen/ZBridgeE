@@ -12,8 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: configurationDialog
@@ -22,8 +23,8 @@ Item {
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 109 * zf
-    height: 80 * zf
+    width: 120 * zf
+    height: 105 * zf
 
     property alias ok: ok
     property alias cancel: cancel
@@ -49,6 +50,7 @@ Item {
         id: tabBar
         currentIndex: swipeView.currentIndex
         position: TabBar.Header
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         width: parent.width
         MouseArea
@@ -66,31 +68,31 @@ Item {
 
     SwipeView {
         id: swipeView
-        height: 45 * zf
+        height: 55 * zf
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: tabBar.bottom
         anchors.topMargin: 4 * zf
         anchors.leftMargin: 1 * zf
         currentIndex: tabBar.currentIndex
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
 
         Item {
-            Grid {
+            GridLayout {
                 id: grid
                 rows: 4
                 columns: 3
-                spacing: 2 * zf
 
                 RadioButton {
                     id: west
-                    width: 30 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     text: qsTr("West")
                 }
                 Rectangle {
-                    width: 37 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     TLineEdit {
                         id: westName
                         anchors.fill: parent
@@ -99,22 +101,41 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: 36 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 41 *zf
                     ComboBox {
                         id: westActor
                         anchors.fill: parent
+                        popup: Popup{
+                                    id:popup1
+                                    y: westActor.height - 1
+                                    width: westActor.width
+                                    height: westActor.height * 3
+                                    padding: 0
+
+                                    contentItem: ListView {
+                                        id: listview1
+                                        implicitHeight: popup1.height
+                                        clip: true
+                                        model:westActor.delegateModel
+                                        currentIndex: westActor.highlightedIndex
+                                        interactive: true
+                                        highlightMoveDuration: 0
+                                        boundsBehavior: ListView.StopAtBounds
+
+                                        ScrollBar.vertical:ScrollBar {}
+                                    }
+                                }
                     }
                 }
                 RadioButton {
                     id: north
-                    width: 30 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
                     text: qsTr("North")
                 }
                 Rectangle {
-                    width: 37 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     TLineEdit {
                         id: northName
                         anchors.fill: parent
@@ -123,22 +144,42 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: 36 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 41 *zf
                     ComboBox {
                         id: northActor
                         anchors.fill: parent
+                        popup: Popup{
+                                    id:popup2
+                                    y: northActor.height - 1
+                                    width: northActor.width
+                                    height: northActor.height * 3
+                                    padding: 0
+
+                                    contentItem: ListView {
+                                        id: listview2
+                                        implicitHeight: popup2.height
+                                        clip: true
+                                        model:northActor.delegateModel
+                                        currentIndex: northActor.highlightedIndex
+                                        interactive: true
+                                        highlightMoveDuration: 0
+                                        boundsBehavior: ListView.StopAtBounds
+
+                                        ScrollBar.vertical:ScrollBar {}
+                                    }
+                                }
                     }
                 }
                 RadioButton {
                     id: east
-                    width: 30 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     text: qsTr("East")
                 }
                 Rectangle {
-                    width: 37 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     TLineEdit {
                         id: eastName
                         anchors.fill: parent
@@ -147,22 +188,42 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: 36 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 41 *zf
                     ComboBox {
                         id: eastActor
                         anchors.fill: parent
+                        popup: Popup{
+                                    id:popup3
+                                    y: eastActor.height - 1
+                                    width: eastActor.width
+                                    height: eastActor.height * 3
+                                    padding: 0
+
+                                    contentItem: ListView {
+                                        id: listview3
+                                        implicitHeight: popup3.height
+                                        clip: true
+                                        model:eastActor.delegateModel
+                                        currentIndex: eastActor.highlightedIndex
+                                        interactive: true
+                                        highlightMoveDuration: 0
+                                        boundsBehavior: ListView.StopAtBounds
+
+                                        ScrollBar.vertical:ScrollBar {}
+                                    }
+                                }
                     }
                 }
                 RadioButton {
                     id: south
-                    width: 30 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     text: qsTr("South")
                 }
                 Rectangle {
-                    width: 37 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 37 *zf
                     TLineEdit {
                         id: southName
                         anchors.fill: parent
@@ -171,37 +232,76 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: 36 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 41 *zf
                     ComboBox {
                         id: southActor
                         anchors.fill: parent
+                        popup: Popup{
+                                    id:popup4
+                                    y: northActor.height - 1
+                                    width: southActor.width
+                                    height: southActor.height * 3
+                                    padding: 0
+
+                                    contentItem: ListView {
+                                        id: listview4
+                                        implicitHeight: popup4.height
+                                        clip: true
+                                        model:southActor.delegateModel
+                                        currentIndex: southActor.highlightedIndex
+                                        interactive: true
+                                        highlightMoveDuration: 0
+                                        boundsBehavior: ListView.StopAtBounds
+
+                                        ScrollBar.vertical:ScrollBar {}
+                                    }
+                                }
                     }
                 }
             }
         }
 
         Item {
-            Grid {
+            GridLayout {
                 id: grid1
                 rows: 2
                 columns: 3
-                spacing: 1.5 * zf
 
                 ComboBox {
                     id: role
-                    width: 47 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 54 *zf
+                    popup: Popup{
+                                id:popup5
+                                y: role.height - 1
+                                width: role.width
+                                height: role.height * 4
+                                padding: 0
+
+                                contentItem: ListView {
+                                    id: listview5
+                                    implicitHeight: popup5.height
+                                    clip: true
+                                    model:role.delegateModel
+                                    currentIndex: role.highlightedIndex
+                                    interactive: true
+                                    highlightMoveDuration: 0
+                                    boundsBehavior: ListView.StopAtBounds
+
+                                    ScrollBar.vertical:ScrollBar {}
+                                }
+                            }
                 }
                 Label {
                     id: hostLabel
-                    width: 17 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 17 *zf
                     text: qsTr(" Host:")
                 }
                 Rectangle {
-                    width: 38 * zf
-                    height: 9* zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 40 *zf
                     TLineEdit {
                         id: host
                         anchors.fill: parent
@@ -211,19 +311,19 @@ Item {
                 }
                 Label {
                     id: label1
-                    width: 47 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 47 *zf
                     text: qsTr("    ")
                 }
                 Label {
                     id: portLabel
-                    width: 17 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 17 *zf
                     text: qsTr(" Port:")
                 }
                 Rectangle {
-                    width: 38 * zf
-                    height: 9 * zf
+                    Layout.preferredHeight: 12 * zf
+                    Layout.preferredWidth: 40 *zf
                     TLineEdit {
                         id: port
                         anchors.fill: parent
@@ -235,7 +335,7 @@ Item {
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: swipeView.bottom
@@ -245,15 +345,17 @@ Item {
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
     }

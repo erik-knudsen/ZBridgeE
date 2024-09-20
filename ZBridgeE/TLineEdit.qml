@@ -12,7 +12,7 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.7
+import QtQuick
 
 FocusScope {
     id: root

@@ -2,7 +2,7 @@ Qt and Android.
 
 ZBridgeE:
 
-ItemisCEATE (Yakindu)generated files:
+Yakindu (ItemisCREATE)generated files (version 3.0.0):
 sctypes.h: line 33 outcomment, #define null 0
 
 
@@ -40,7 +40,7 @@ Install USB driver on development machine:
 	Right click on the file AndroidSDK>extras>google>usb_driver android_winusb.inf
 	and install the USB driver (the Windows standard USB driver cannot be used).
 	
-Connect your Android device to the development machine wit a USB cable.
+Connect your Android device to the development machine with a USB cable.
 Test if the connection is working with AndroidSDK>platform-tools adb.exe:
 	adb kill-server
 	adb start-server

@@ -12,8 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: item1
@@ -26,11 +27,12 @@ Item {
     property string fontFamily: "MS Shell Dlg 2"
     property int h: 9 * zf
 
-    width: 105 * zf
+    width: 95 * zf
     height: 85 * zf
 
     Button {
         id: okButton
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
@@ -43,15 +45,16 @@ Item {
     Label {
         id: scoringMethod
         text: qsTr("scoring method")
+        font.family: fontFamily
         font.pixelSize: fontPixelsize / 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        anchors.right: parent.right
+        anchors.right: okButton.left
         anchors.rightMargin: 1 * zf
         anchors.left: parent.left
         anchors.leftMargin: 1 * zf
-        anchors.top: okButton.bottom
-        anchors.topMargin: 1 * zf
+        anchors.top: parent.top
+        anchors.topMargin: 5 * zf
     }
 
     ListModel {
@@ -113,21 +116,23 @@ Item {
     }
     Component {
         id: scoreDelegate
-        Row {
+        RowLayout {
             id: row
             spacing: 1
             property int inx: index
             ItemDelegate {
-                width: listView.headerItem.headerAt(0).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(0).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: name
                 padding: 0 * zf
                 leftPadding: 1.5 * zf
             }
             Text {
-                width: listView.headerItem.headerAt(1).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(1).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -144,13 +149,13 @@ Item {
         anchors.leftMargin: 0 * zf
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0 * zf
-        anchors.top: scoringMethod.bottom
+        anchors.top: okButton.bottom
         anchors.topMargin: 2 * zf
 
         contentWidth: headerItem.width
         flickableDirection: Flickable.HorizontalAndVerticalFlick
 
-        header: Row {
+        header: RowLayout {
             spacing: 1
             function headerAt(index) { return headerRepeater.itemAt(index) }
             Repeater {
@@ -159,6 +164,7 @@ Item {
                 Label {
                     text: modelData
                     font.bold: true
+                    font.family: fontFamily
                     font.pixelSize: fontPixelsize
                     padding: 1 * zf
                     background: Rectangle { color: "silver" }

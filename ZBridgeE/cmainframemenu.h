@@ -28,7 +28,7 @@
 #include <QEventLoop>
 
 #include "cmainframemenuenables.h"
-#include "defines.h"
+#include "Defines.h"
 
 class CMainFrameMenu : public QWidget
 {

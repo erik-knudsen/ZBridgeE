@@ -22,7 +22,7 @@
 #include <QBrush>
 #include <QPainter>
 
-#include "defines.h"
+#include "Defines.h"
 #include "ctopinfo.h"
 
 CTopInfo::CTopInfo(QGraphicsWidget *parent) :

@@ -13,7 +13,7 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.4
+import QtQuick
 
 CBidOptionsForm {
     signal on_northSouth_clicked()

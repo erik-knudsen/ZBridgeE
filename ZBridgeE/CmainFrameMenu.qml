@@ -12,8 +12,8 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick.Controls 2.3
-import QtQuick 2.7
+import QtQuick.Controls
+import QtQuick
 
 Item {
     id: item1
@@ -43,112 +43,88 @@ Item {
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    height: fontPixelsize * 11
-    width: 42 * fontPixelsize/2
+    height: fontPixelsize * 13
+    width: 48 * fontPixelsize/2
 
     Action {
         id: actionOpen
-        text: qsTr("Open...")
-        icon.source: "qrc:///resources/FILEOPEN.BMP"
         onTriggered: on_actionOpen_triggered()
     }
     Action {
         id: actionSave
-        text: qsTr("Save...")
-        icon.source: "qrc:///resources/FILESAVE.BMP"
         onTriggered: on_actionSave_triggered()
     }
     Action {
         id: actionSave_As
-        text: qsTr("Save As...")
         onTriggered: on_actionSave_As_triggered()
     }
     Action {
         id: actionDelete
-        text: qsTr("Delete")
         onTriggered: on_actionDelete_triggered()
     }
     Action {
         id: actionExit
-        text: qsTr("Exit Menu")
         onTriggered: on_hideMenu_triggered()
     }
     Action {
         id: action_Expose_All_Cards
+        checkable: true
         text: qsTr("Expose All Cards")
         icon.source: "qrc:///resources/ExposeAllCards.bmp"
-        checkable: true
         onTriggered: on_action_Expose_All_Cards_triggered()
     }
     Action {
         id: action_Score
-        text: qsTr("Score...")
-        icon.source: "qrc:///resources/ViewScore.bmp"
         onTriggered: on_action_Score_triggered()
     }
     Action {
         id: actionDouble_Dummy_Results
-        text: qsTr("Double Dummy...")
-        icon.source: "qrc:///resources/ViewPlayHistory.bmp"
         onTriggered: on_actionDouble_Dummy_Results_triggered()
     }
     Action {
         id: action_Deal_New_Hand
-        text: qsTr("Deal New Hand")
-        icon.source: "qrc:///resources/DealNewHand.bmp"
         onTriggered: on_action_Deal_New_Hand_triggered()
     }
     Action {
         id: actionActivate_Deal_Profile
-        text: qsTr("Activate Deal Profile")
         checkable: true
+        text: qsTr("Activate Deal Profile")
         onTriggered: on_actionActivate_Deal_Profile_triggered()
     }
     Action {
         id: action_Bid_Rebid
-        text: qsTr("Rebid")
-        icon.source: "qrc:///resources/BidHand.bmp"
         onTriggered: on_action_Bid_Rebid_triggered()
     }
     Action {
         id: action_Restart_Hand
-        text: qsTr("Replay")
-        icon.source: "qrc:///resources/RestartPlay.bmp"
         onTriggered: on_action_Restart_Hand_triggered()
     }
     Action {
         id: actionSeat_Configuration
-        text: qsTr("Seat Configuration...")
         onTriggered: on_actionSeat_Configuration_triggered()
     }
     Action {
         id: action_Bidding_Options
-        text: qsTr("Bidding/Play...")
         onTriggered: on_action_Bidding_Options_triggered()
     }
     Action {
         id: action_Deal_Options
-        text: qsTr("Deal...")
         onTriggered: on_action_Deal_Options_triggered()
     }
     Action {
         id: action_Di_splay_Options
-        text: qsTr("Display Options...")
         onTriggered: on_action_Di_splay_Options_triggered()
     }
     Action {
         id: action_Game_Options
-        text: qsTr("Game...")
         onTriggered: on_action_Game_Options_triggered()
     }
     Action {
         id: action_Contents
-        text: qsTr("Contents")
         onTriggered: on_action_Contents_triggered()
     }
     Action {
         id: action_About_ZBridge
-        text: qsTr("About ZBridge")
         onTriggered: on_action_About_ZBridge_triggered()
     }
 
@@ -160,37 +136,49 @@ Item {
         anchors.leftMargin: 0 * zf
         anchors.top: parent.top
         anchors.topMargin: 0 * zf
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         Menu {
             title: qsTr("File")
-            width: 10 * fontPixelsize/2
-            height: 8 * fontPixelsize
+            width: 14 * fontPixelsize/2+10
+            height: 10 * fontPixelsize
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Open...")
+                icon.source: "qrc:///resources/FILEOPEN.BMP"
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionOpen
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Save...")
+                icon.source: "qrc:///resources/FILESAVE.BMP"
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionSave
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
-                display: AbstractButton.TextBesideIcon
+                text: qsTr("Save As...")
                 icon.color: "transparent"
                 action: actionSave_As
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Delete")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionDelete
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Exit Menu")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionExit
@@ -198,22 +186,29 @@ Item {
         }
         Menu {
             title: qsTr("View")
-            width: 20 * fontPixelsize/2
-            height: 5 * fontPixelsize
+            width: 25 * fontPixelsize/2
+            height: 7 * fontPixelsize
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Expose_All_Cards
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
-               display: AbstractButton.TextBesideIcon
-               icon.color: "transparent"
+                text: qsTr("Score...")
+                icon.source: "qrc:///resources/ViewScore.bmp"
+                display: AbstractButton.TextBesideIcon
+                icon.color: "transparent"
                 action: action_Score
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Double Dummy...")
+                icon.source: "qrc:///resources/ViewPlayHistory.bmp"
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionDouble_Dummy_Results
@@ -221,28 +216,38 @@ Item {
         }
         Menu {
             title: qsTr("Game")
-            width: 23 * fontPixelsize/2
-            height: 13 * fontPixelsize/2
+            width: 25 * fontPixelsize/2
+            height: 9 * fontPixelsize
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Deal New Hand")
+                icon.source: "qrc:///resources/DealNewHand.bmp"
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Deal_New_Hand
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionActivate_Deal_Profile
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Rebid")
+                icon.source: "qrc:///resources/BidHand.bmp"
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Bid_Rebid
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Replay")
+                icon.source: "qrc:///resources/RestartPlay.bmp"
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Restart_Hand
@@ -250,34 +255,44 @@ Item {
         }
         Menu {
             title: qsTr("Options")
-            width: 20 * fontPixelsize/2
-            height: 8 * fontPixelsize
+            width: 23 * fontPixelsize/2
+            height: 10 * fontPixelsize
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Seat Configuration...")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: actionSeat_Configuration
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Bidding/Play...")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Bidding_Options
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Deal...")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Deal_Options
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Display Options...")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Di_splay_Options
             }
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Game...")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Game_Options
@@ -285,16 +300,20 @@ Item {
         }
         Menu {
             title: qsTr("About")
-            width: 15 * fontPixelsize/2
-            height: 7 * fontPixelsize/2
+            width: 19 * fontPixelsize/2
+            height: 5 * fontPixelsize
             MenuItem {
+                height: 13 * zf
                 font.pixelSize: fontPixelsize
+                text: qsTr("Contents")
                 display: AbstractButton.TextBesideIcon
                 icon.color: "transparent"
                 action: action_Contents
             }
             MenuItem {
+                height: 13 * zf
                 display: AbstractButton.TextBesideIcon
+                text: qsTr("About ZBridge")
                 font.pixelSize: fontPixelsize
                 icon.color: "transparent"
                 action: action_About_ZBridge

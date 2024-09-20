@@ -28,7 +28,7 @@
 
 #include "cbids.h"
 #include "cauction.h"
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * @brief Maps bid sequence (auction).

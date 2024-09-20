@@ -13,8 +13,9 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: item1
@@ -23,8 +24,8 @@ Item {
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 100 * zf
-    height: 87 * zf
+    width: 120 * zf
+    height: 110 * zf
 
     property alias northSouth: northSouth
     property alias northSouthConvention: northSouthConvention
@@ -40,56 +41,98 @@ Item {
 
     GroupBox {
         id: groupBox
-        height: 45 * zf
         anchors.right: parent.right
         anchors.rightMargin: 1 * zf
         anchors.left: parent.left
         anchors.leftMargin: 1 * zf
         anchors.top: parent.top
         anchors.topMargin: 2 * zf
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         title: qsTr("Convention")
 
-        Grid
+        GridLayout
         {
             rows: 2
             columns: 2
-            spacing: 5 * zf
             anchors.horizontalCenter: parent.horizontalCenter
 
             RadioButton {
                 id: northSouth
+                Layout.preferredHeight: 12 * zf
                 text: qsTr("N/S")
             }
 
             ComboBox {
                 id: northSouthConvention
-                width: 12 * fontPixelsize/2
-                height: 9 * zf
+                Layout.preferredWidth: 14 * fontPixelsize/2
+                Layout.preferredHeight: 12 * zf
                 ListModel {
                     id: nsModel
                 }
                 model: nsModel
+                popup: Popup{
+                            id:popup
+                            y: northSouthConvention.height - 1
+                            width: northSouthConvention.width
+                            height: northSouthConvention.height * 4
+                            padding: 0
+
+                            contentItem: ListView {
+                                id: listview
+                                implicitHeight: popup.height
+                                clip: true
+                                model:northSouthConvention.delegateModel
+                                currentIndex: northSouthConvention.highlightedIndex
+                                interactive: true
+                                highlightMoveDuration: 0
+                                boundsBehavior: ListView.StopAtBounds
+
+                                ScrollBar.vertical:ScrollBar {}
+                            }
+                        }
             }
 
             RadioButton {
                 id: eastWest
+                Layout.preferredHeight: 12 * zf
                 text: qsTr("E/W")
             }
 
             ComboBox {
                 id: eastWestConvention
-                width: 12 * fontPixelsize/2
-                height: 9 * zf
+                Layout.preferredWidth: 14 * fontPixelsize/2
+                Layout.preferredHeight: 12 * zf
+
                 ListModel {
                     id: ewModel
                 }
                 model: ewModel
+                popup: Popup{
+                            id:popup1
+                            y: eastWestConvention.height - 1
+                            width: eastWestConvention.width
+                            height: eastWestConvention.height * 4
+                            padding: 0
+
+                            contentItem: ListView {
+                                id: listview1
+                                implicitHeight: popup1.height
+                                clip: true
+                                model:eastWestConvention.delegateModel
+                                currentIndex: eastWestConvention.highlightedIndex
+                                interactive: true
+                                highlightMoveDuration: 0
+                                boundsBehavior: ListView.StopAtBounds
+
+                                ScrollBar.vertical:ScrollBar {}
+                            }
+                        }
             }
         }
     }
 
-    Row
+    RowLayout
     {
         id: rowLine
         anchors.top: groupBox.bottom
@@ -99,27 +142,30 @@ Item {
 
         Button {
             id: newConvention
-            width: 8 * fontPixelsize/2
+            Layout.preferredWidth: 11 * fontPixelsize/2
             text: qsTr("New")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: editConvention
-            width: 8 * fontPixelsize/2
+            Layout.preferredWidth: 11 * fontPixelsize/2
             text: qsTr("Edit")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: deleteConvention
-            width: 8 * fontPixelsize/2
+            Layout.preferredWidth: 11 * fontPixelsize/2
             text: qsTr("Delete")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: rowLine.bottom
@@ -129,15 +175,17 @@ Item {
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
     }

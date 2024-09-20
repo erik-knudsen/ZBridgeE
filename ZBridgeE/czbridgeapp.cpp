@@ -23,6 +23,7 @@
 #include <QTime>
 #include <QtWebView/QtWebView>
 #include <QScreen>
+#include <QQmlEngine>
 
 #include "czbridgeapp.h"
 #include "mt19937ar.h"
@@ -31,6 +32,7 @@
 #include "cgamesdoc.h"
 #include "Defines.h"
 #include "dll.h"
+#include "Singleton.h"
 
 Q_DECLARE_METATYPE(Seat)
 
@@ -68,39 +70,35 @@ int main(int argc, char *argv[])
 CZBridgeApp::CZBridgeApp(int &argc, char **argv) :
     QApplication(argc, argv)
 {    
-    //Calculate zoom factor for QML pixels.
-    //Pixel sizes are used in all QML displays.
     QRect rect = QGuiApplication::primaryScreen()->geometry();
-    qreal dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
-    qreal dpiC = 40;            //DPI used for QML pixels.
-    qreal zfr = dpi/dpiC;
+
+    /* Get number of dots/inch (each dot approx standard size 1/96 inch, 0,26 mm).
+    Qt internally scales the physical screen to this standard size of dots */
+    qreal dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch(); //Dots are approx 1/96 inch.
 
     //Must use landscape mode.
     qreal height = qMin(rect.width(), rect.height());
     qreal width = qMax(rect.width(), rect.height());
 
-    //Check for minimum display.
+    //Check for minimum display (size in inch).
     qreal xSize = width/dpi;
     qreal ySize = height/dpi;
     if ((xSize <= 4) || (ySize <= 2.25))
         exit(-1);
 
-    //Correct so that dialogs can be shown on screen
-    //Max dialog w x h: 150 x 170 QML pixels i.e.
-    //w = 150/40x2.54 = 9.525 cm, h = 170/40x2.54 = 10.975 cm
-    if (height < 170 * zfr)
-        zfr = height / 170;
-    if (width < 150 *zfr)
-        zfr = width / 150;
-
-    //Zoom factor to use for QML pixels.
-    zf = (int)(zfr + 0.5);
-
-    //Zoom factor for help screen (80% x 80% of available screen).
-    if ((zfs * 190) > (width - zfs * 20))
-        zfs = (width - zfs * 20) / 190;
-    if ((zfs * 100) > (height - zfs * 20))
-        zfs = (height - zfs * 20) / 100;
+    //Zoom factors to use for displays.
+    //This is done to make it easy to simultaneously scale all menus etc.
+    zf = 3;  //For menus.
+    zfs = 3; //For help screen.
+    //Below singleton is just for experimenting with a singleton.
+    qmlRegisterSingletonType<Singleton>("Singleton", 1, 0, "Singleton", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+        Singleton *singleton = new Singleton();
+        singleton->zh = zf;  //Zomm factor for height.
+        singleton->zw = zf;  //Zoom factor for width.
+        return singleton;
+    });
 
     QtWebView::initialize();
 

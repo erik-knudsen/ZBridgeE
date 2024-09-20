@@ -23,7 +23,7 @@
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 
-#include "defines.h"
+#include "Defines.h"
 #include "cbottominfobutton.h"
 
 CBottomInfoButton::CBottomInfoButton(int horSize, int verSize, QString text,

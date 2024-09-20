@@ -12,10 +12,11 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
-import Qt.labs.platform 1.0
-import Qt.labs.folderlistmodel 2.1
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform
+import Qt.labs.folderlistmodel
+import QtQuick.Layouts
 
 Item {
     signal on_ok_clicked()
@@ -29,55 +30,52 @@ Item {
     property string fontFamily: "MS Shell Dlg 2"
 
     width: 120 * zf
-    height: 95 * zf
-
-    ToolButton{
-        id: localStorage
-        height: 15 * zf
-        width: 15 * zf
-        anchors.top: directory.bottom
-        anchors.left: parent.left
-        font.pixelSize: fontPixelsize
-        text: qsTr("L")
-        onClicked: folderModel.folder = StandardPaths.writableLocation(StandardPaths.AppLocalDataLocation)
-//        onClicked: console.log(StandardPaths.writableLocation(StandardPaths.DataLocation))
-    }
-    ToolButton{
-        id: globalStorage
-        height: 15 * zf
-        width: 15 * zf
-        anchors.top: directory.bottom
-        anchors.left: localStorage.right
-        anchors.leftMargin: 1 * zf
-        font.pixelSize: fontPixelsize
-        text: qsTr("G")
-        onClicked: folderModel.folder = StandardPaths.writableLocation(StandardPaths.GenericDataLocation)
-//        onClicked: console.log(StandardPaths.writableLocation(StandardPaths.GenericDataLocation))
-    }
+    height: 110 * zf
 
     Text {
         id: directory
         width: parent.width
         height: 6 * zf
-        anchors.top: parent.top
-        anchors.topMargin: 0
-        anchors.left: parent.left
         anchors.leftMargin: 1 * zf
+        font.family: fontFamily
         font.pixelSize: fontPixelsize / 2
         color: "steelblue"
     }
 
+    RowLayout {
+        id: row0
+        anchors.top : directory.bottom
+
+        RowLayout {
+            id: row1
+            RadioButton {
+                id: localStorage
+                Layout.preferredHeight: 15 * zf
+                Layout.preferredWidth: 25 * zf
+                font.pixelSize: fontPixelsize
+                text: qsTr("L")
+                onClicked: folderModel.folder = StandardPaths.writableLocation(StandardPaths.AppLocalDataLocation)
+//              onClicked: console.log(StandardPaths.writableLocation(StandardPaths.DataLocation))
+            }
+            RadioButton {
+                id: globalStorage
+                Layout.preferredHeight: 15 * zf
+                Layout.preferredWidth: 25 * zf
+                font.pixelSize: fontPixelsize
+                text: qsTr("G")
+                onClicked: folderModel.folder = StandardPaths.writableLocation(StandardPaths.GenericDataLocation)
+//                onClicked: console.log(StandardPaths.writableLocation(StandardPaths.GenericDataLocation))
+            }
+        }
+
         TLineEdit {
             id: refFilename
-            width: parent.width - 50 * zf
-            height: 9 * zf
-            anchors.left: globalStorage.right
-            anchors.leftMargin: 20 * zf
-            anchors.top: directory.bottom
-            anchors.topMargin: 1 * zf
+            Layout.preferredWidth: 59 * zf
+            Layout.preferredHeight: 15 * zf
             input.font.pixelSize: fontPixelsize
             input.font.family: fontFamily
         }
+    }
 
     FolderListModel {
         id: folderModel
@@ -89,20 +87,21 @@ Item {
 
     ListView {
         id: list
-        width: parent.width
+        width: item1.width-15
         height: 55 * zf
         anchors.left: parent.left
-        anchors.leftMargin: 0 * zf
-        anchors.top: localStorage.bottom
+        anchors.leftMargin: 2 * zf
+        anchors.top: row0.bottom
         anchors.topMargin: 2 * zf
         model: folderModel
 
         delegate: Component {
             Item {
-                width: parent.width
+                width: item1.width-15
                 height: 12 * zf
                 Text {
                     text: fileName
+                    font.family: fontFamily
                     font.pixelSize: fontPixelsize
                 }
                 MouseArea {
@@ -128,7 +127,7 @@ Item {
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: list.bottom
@@ -138,16 +137,18 @@ Item {
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2+10
             text: qsTr("OK")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
             onClicked: on_ok_clicked()
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2+10
             text: qsTr("Cancel")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
             onClicked: on_cancel_clicked()
         }
@@ -156,6 +157,10 @@ Item {
     function setNameFilters(nameFilters)
     {
         folderModel.nameFilters = nameFilters
+    }
+    function globalStorageSetChecked()
+    {
+            localStorage.checked = true
     }
     function getFileURL()
     {

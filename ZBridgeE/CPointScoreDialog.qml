@@ -12,8 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: item1
@@ -32,6 +33,7 @@ Item {
 
     Button {
         id: okButton
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
@@ -41,46 +43,34 @@ Item {
         onClicked: on_OKButton_Clicked()
     }
 
-    Label {
-        id: board
-        text: qsTr("board")
-        font.pixelSize: fontPixelsize / 2
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 1 * zf
+    ColumnLayout {
+        id: col
+        anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: 1 * zf
-        anchors.top: okButton.bottom
-        anchors.topMargin: 2 * zf
-    }
+        anchors.right: okButton.left
+        Label {
+            id: board
+            text: qsTr("board")
+            font.family: fontFamily
+            font.pixelSize: fontPixelsize / 2
+            Layout.alignment: Qt.AlignHCenter
+        }
 
-    Label {
-        id: vulnerability
-        text: qsTr("vulnerability")
-        font.pixelSize: fontPixelsize / 2
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 1 * zf
-        anchors.left: parent.left
-        anchors.leftMargin: 1 * zf
-        anchors.top: board.bottom
-        anchors.topMargin: 1 * zf
-    }
+        Label {
+            id: vulnerability
+            text: qsTr("vulnerability")
+            font.family: fontFamily
+            font.pixelSize: fontPixelsize / 2
+            Layout.alignment: Qt.AlignHCenter
+        }
 
-    Label {
-        id: scoringMethod
-        text: qsTr("scoring method")
-        font.pixelSize: fontPixelsize / 2
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 1 * zf
-        anchors.left: parent.left
-        anchors.leftMargin: 1 * zf
-        anchors.top: vulnerability.bottom
-        anchors.topMargin: 1 * zf
+        Label {
+            id: scoringMethod
+            text: qsTr("scoring method")
+            font.family: fontFamily
+            font.pixelSize: fontPixelsize / 2
+            Layout.alignment: Qt.AlignHCenter
+        }
     }
 
     ListModel {
@@ -103,13 +93,14 @@ Item {
     }
     Component {
         id: scoreDelegate
-        Row {
+        RowLayout {
             id: row
             spacing: 1
             property int inx: index
             ItemDelegate {
-                width: listView.headerItem.headerAt(0).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(0).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: name
                 padding: 0 * zf
@@ -117,32 +108,36 @@ Item {
                 onClicked: namesClicked(row.inx)
             }
             Text {
-                width: listView.headerItem.headerAt(1).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(1).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: contract
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
             Text {
-                width: listView.headerItem.headerAt(2).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(2).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: tricks
             }
             Text {
-                width: listView.headerItem.headerAt(3).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(3).width
+                Layout.preferredHeight: h
                 verticalAlignment: Text.AlignVCenter
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 horizontalAlignment: Text.AlignHCenter
                 text: score
             }
             Text {
-                width: listView.headerItem.headerAt(4).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(4).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -159,13 +154,13 @@ Item {
         anchors.leftMargin: 0 * zf
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0 * zf
-        anchors.top: scoringMethod.bottom
+        anchors.top: col.bottom
         anchors.topMargin: 2 * zf
 
         contentWidth: headerItem.width
         flickableDirection: Flickable.HorizontalAndVerticalFlick
 
-        header: Row {
+        header: RowLayout {
             spacing: 1
             function headerAt(index) { return headerRepeater.itemAt(index) }
             Repeater {
@@ -174,6 +169,7 @@ Item {
                 Label {
                     text: modelData
                     font.bold: true
+                    font.family: fontFamily
                     font.pixelSize: fontPixelsize
                     padding: 1 * zf
                     background: Rectangle { color: "silver" }

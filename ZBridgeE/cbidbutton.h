@@ -27,7 +27,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsColorizeEffect>
 
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * @brief This class describes one bid in the bid dialog.

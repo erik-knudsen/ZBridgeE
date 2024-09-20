@@ -12,8 +12,8 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick.Controls 2.3
-import QtQuick 2.7
+import QtQuick.Controls
+import QtQuick
 
 Item {
     id: item1
@@ -52,18 +52,22 @@ Item {
 
     ToolBar {
         id: toolBar
-        height: 80
-        spacing: 15
+        height: 40
+        spacing: 25
         anchors.left: parent.left
         anchors.leftMargin: 0
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.top: parent.top
         anchors.topMargin: 0
+        background: Rectangle {
+            color: "#d3d3d3"
+        }
+
         ToolButton {
             id: newSession
-            height: 80
-            width: 80
+            height: 40
+            width: 40
             anchors.left: parent.left
             anchors.leftMargin: 0
             anchors.top: parent.top
@@ -82,8 +86,8 @@ Item {
         }
         ToolButton {
             id: undo
-            height: 80
-            width: 80
+            height: 40
+            width: 40
             anchors.left: newSession.right
             anchors.leftMargin: 0
             anchors.top: parent.top
@@ -102,8 +106,8 @@ Item {
         }
         ToolButton {
             id: hint
-            height: 80
-            width: 80
+            height: 40
+            width: 40
             anchors.left: undo.right
             anchors.leftMargin: 0
             anchors.top: parent.top
@@ -122,8 +126,8 @@ Item {
         }
         ToolButton {
             id: menu
-            height: 80
-            width: 80
+            height: 40
+            width: 40
             anchors.right: parent.right
             anchors.rightMargin: 0
             anchors.top: parent.top

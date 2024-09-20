@@ -25,7 +25,7 @@
 #include <QPainter>
 
 #include "ccenter.h"
-#include "defines.h"
+#include "Defines.h"
 
 CCenter::CCenter(QGraphicsWidget *parent) :
     QGraphicsWidget(parent)

@@ -12,8 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: item1
@@ -28,27 +29,28 @@ Item {
     property alias cancel: cancel
 
     width: 132 * zf
-    height: 48 * zf
+    height: 60 * zf
 
-    Grid {
+    GridLayout {
         id: grid
         rows: 2
         columns: 2
         anchors.top: parent.top
         anchors.topMargin: 4 * zf
         width: parent.width
-        spacing: 2 * zf
+//        spacing: 2 * zf
 
         Label {
             id: label
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
             text: qsTr(" Reference name")
         }
 
         TLineEdit {
             id: refConvention
-            width: 75 * zf
-            height: 9 * zf
+            Layout.preferredWidth: 75 * zf
+            Layout.preferredHeight: 12 * zf
             text: qsTr("")
             input.font.pixelSize: fontPixelsize
             input.font.family: fontFamily
@@ -56,39 +58,42 @@ Item {
 
         Label {
             id: label1
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
             text: qsTr(" New name")
         }
 
         TLineEdit {
             id: newConvention
-            width: 75 * zf
-            height: 9 * zf
+            Layout.preferredWidth: 75 * zf
+            Layout.preferredHeight: 12 * zf
             text: qsTr("")
             input.font.pixelSize: fontPixelsize
             input.font.family: fontFamily
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: grid.bottom
         anchors.topMargin: 6 *zf
         anchors.horizontalCenter: parent.horizontalCenter
-        spacing: 1 * zf
+        spacing: 2 * zf
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
     }

@@ -13,8 +13,9 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     property int zf: 10
@@ -22,10 +23,10 @@ Item {
     property string fontFamily: "MS Shell Dlg 2"
 
     property int editW: 15 * zf
-    property int editH: 9 * zf
+    property int editH: 10 * zf
 
     width: 100 * zf
-    height: 102 * zf
+    height: 115 * zf
 
     property alias ok: ok
     property alias cancel: cancel
@@ -74,6 +75,7 @@ Item {
         id: tabBar
         currentIndex: swipeView.currentIndex
         position: TabBar.Header
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         width: parent.width
         MouseArea
@@ -94,7 +96,7 @@ Item {
 
     SwipeView {
         id: swipeView
-        height: 65 * zf
+        height: 70 * zf
         anchors.right: parent.right
         anchors.rightMargin: 0 * zf
         anchors.left: parent.left
@@ -102,20 +104,18 @@ Item {
         anchors.top: tabBar.bottom
         anchors.topMargin: 0 * zf
         currentIndex: tabBar.currentIndex
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
 
         Item {
             id: hcp
             
-            Grid {
+            GridLayout {
                 id: grid
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 rows: 6
                 columns: 5
-                verticalItemAlignment: Grid.AlignVCenter
-                horizontalItemAlignment: Grid.AlignHCenter
-                spacing: 1 * zf
 
                 Label {
                     id: label
@@ -142,8 +142,8 @@ Item {
                     text: qsTr("Total")
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpTotalWest
                         anchors.fill: parent
@@ -153,8 +153,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpTotalNorth
                         anchors.fill: parent
@@ -164,8 +164,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpTotalEast
                         anchors.fill: parent
@@ -175,8 +175,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpTotalSouth
                         anchors.fill: parent
@@ -186,13 +186,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_spade.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpSpadeWest
                         anchors.fill: parent
@@ -202,8 +202,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpSpadeNorth
                         anchors.fill: parent
@@ -213,8 +213,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpSpadeEast
                         anchors.fill: parent
@@ -224,8 +224,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpSpadeSouth
                         anchors.fill: parent
@@ -235,13 +235,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_heart.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpHeartWest
                         anchors.fill: parent
@@ -251,8 +251,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpHeartNorth
                         anchors.fill: parent
@@ -262,8 +262,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpHeartEast
                         anchors.fill: parent
@@ -273,8 +273,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpHeartSouth
                         anchors.fill: parent
@@ -284,13 +284,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_diamond.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpDiamondWest
                         anchors.fill: parent
@@ -300,8 +300,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpDiamondNorth
                         anchors.fill: parent
@@ -311,8 +311,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpDiamondEast
                         anchors.fill: parent
@@ -322,8 +322,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpDiamondSouth
                         anchors.fill: parent
@@ -333,13 +333,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_club.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpClubWest
                         anchors.fill: parent
@@ -349,8 +349,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpClubNorth
                         anchors.fill: parent
@@ -360,8 +360,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpClubEast
                         anchors.fill: parent
@@ -371,8 +371,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: hcpClubSouth
                         anchors.fill: parent
@@ -386,15 +386,12 @@ Item {
         Item {
             id: length
 
-            Grid {
+            GridLayout {
                 id: grid1
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 rows: 5
                 columns: 5
-                verticalItemAlignment: Grid.AlignVCenter
-                horizontalItemAlignment: Grid.AlignHCenter
-                spacing: 1 * zf
 
                 Label {
                     id: label6
@@ -417,13 +414,13 @@ Item {
                     text: qsTr("South")
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_spade.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeSpadeWest
                         anchors.fill: parent
@@ -433,8 +430,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeSpadeNorth
                         anchors.fill: parent
@@ -444,8 +441,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeSpadeEast
                         anchors.fill: parent
@@ -455,8 +452,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeSpadeSouth
                         anchors.fill: parent
@@ -466,13 +463,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_heart.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeHeartWest
                         anchors.fill: parent
@@ -482,8 +479,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeHeartNorth
                         anchors.fill: parent
@@ -493,8 +490,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeHeartEast
                         anchors.fill: parent
@@ -504,8 +501,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeHeartSouth
                         anchors.fill: parent
@@ -515,13 +512,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_diamond.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeDiamondWest
                         anchors.fill: parent
@@ -531,8 +528,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeDiamondNorth
                         anchors.fill: parent
@@ -542,8 +539,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeDiamondEast
                         anchors.fill: parent
@@ -553,8 +550,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeDiamondSouth
                         anchors.fill: parent
@@ -564,13 +561,13 @@ Item {
                     }
                 }
                 Image {
-                    width: 5 * zf
-                    height: 5 * zf
+                    Layout.preferredWidth: 5 * zf
+                    Layout.preferredHeight: 5 * zf
                     source: "qrc:///resources/suit_club.ico"
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeClubWest
                         anchors.fill: parent
@@ -580,8 +577,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeClubNorth
                         anchors.fill: parent
@@ -591,8 +588,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeClubEast
                         anchors.fill: parent
@@ -602,8 +599,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: suitSizeClubSouth
                         anchors.fill: parent
@@ -618,15 +615,12 @@ Item {
         Item {
             id: dp
 
-            Grid {
+            GridLayout {
                 id: grid2
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 rows: 2
                 columns: 4
-                verticalItemAlignment: Grid.AlignVCenter
-                horizontalItemAlignment: Grid.AlignHCenter
-                spacing: 1 * zf
 
                 Label {
                     id: label11
@@ -645,8 +639,8 @@ Item {
                     text: qsTr("South")
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: dpWest
                         anchors.fill: parent
@@ -656,8 +650,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: dpNorth
                         anchors.fill: parent
@@ -667,8 +661,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: dpEast
                         anchors.fill: parent
@@ -678,8 +672,8 @@ Item {
                     }
                 }
                 Rectangle {
-                    width: editW
-                    height: editH
+                    Layout.preferredWidth: editW
+                    Layout.preferredHeight: editH
                     TLineEdit {
                         id: dpSouth
                         anchors.fill: parent
@@ -692,7 +686,7 @@ Item {
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: swipeView.bottom
@@ -702,15 +696,17 @@ Item {
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
+            font.family: fontFamily
             font.pixelSize: fontPixelsize
         }
     }

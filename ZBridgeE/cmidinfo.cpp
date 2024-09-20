@@ -25,7 +25,7 @@
 #include <QPainter>
 
 #include "cmidinfo.h"
-#include "defines.h"
+#include "Defines.h"
 
 CMidInfo::CMidInfo(QGraphicsWidget *parent) :
     QGraphicsWidget(parent)

@@ -12,8 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: item1
@@ -28,32 +29,34 @@ Item {
     property string fontFamily: "MS Shell Dlg 2"
     property int h: 9 * zf
 
-    width: 105 * zf
-    height: 85 * zf
+    width: 115 * zf
+    height: 100 * zf
 
     Button {
         id: okButton
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
         text: qsTr("OK")
         anchors.right: parent.right
         anchors.rightMargin: 1 * zf
         anchors.top: parent.top
-        anchors.topMargin: 0 * zf
+        anchors.topMargin: 8 * zf
         onClicked: on_OKButton_Clicked()
     }
 
     GroupBox {
         id: groupBox
-        anchors.right: parent.right
-        anchors.rightMargin: 1 * zf
+        anchors.right: okButton.left
+        anchors.rightMargin: 4 * zf
         anchors.left: parent.left
         anchors.leftMargin: 1 * zf
-        anchors.top: okButton.bottom
+        anchors.top: parent.top
         anchors.topMargin: 0 * zf
+        font.family: fontFamily
         font.pixelSize: fontPixelsize / 2
         title: qsTr("Participants")
 
-        Grid {
+        GridLayout {
             id: grid
             rows: 2
             columns: 2
@@ -61,18 +64,22 @@ Item {
 
             Label {
                 id: label
+                Layout.preferredWidth: 8 * zf
                 text: qsTr("NS: ")
             }
             Label {
                 id: nsNames
+                Layout.preferredWidth: 50 * zf
                 text: qsTr(" ")
             }
             Label {
                 id: label1
+                Layout.preferredWidth: 8 *zf
                 text: qsTr("EW: ")
             }
             Label {
                 id: ewNames
+                Layout.preferredWidth: 50 * zf
                 text: qsTr(" ")
             }
         }
@@ -81,6 +88,7 @@ Item {
     Label {
         id: scoringMethod
         text: qsTr(" ")
+        font.family: fontFamily
         font.pixelSize: fontPixelsize / 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
@@ -116,13 +124,14 @@ Item {
     }
     Component {
         id: scoreDelegate
-        Row {
+        RowLayout {
             id: row
             spacing: 1
             property int inx: index
             ItemDelegate {
-                width: listView.headerItem.headerAt(0).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(0).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: board
                 padding: 0 * zf
@@ -130,40 +139,45 @@ Item {
                 onClicked: rowClicked(row.inx)
             }
             Text {
-                width: listView.headerItem.headerAt(1).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(1).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: vul
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
             Text {
-                width: listView.headerItem.headerAt(2).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(2).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: contract
             }
             Text {
-                width: listView.headerItem.headerAt(3).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(3).width
+                Layout.preferredHeight: h
                 verticalAlignment: Text.AlignVCenter
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 horizontalAlignment: Text.AlignHCenter
                 text: tricks
             }
             Text {
-                width: listView.headerItem.headerAt(4).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(4).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: score
             }
             ItemDelegate {
-                width: listView.headerItem.headerAt(5).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(5).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: boardRes
                 padding: 0 * zf
@@ -171,8 +185,9 @@ Item {
                 onClicked: cellClicked(row.inx, 5)
             }
             ItemDelegate {
-                width: listView.headerItem.headerAt(6).width
-                height: h
+                Layout.preferredWidth: listView.headerItem.headerAt(6).width
+                Layout.preferredHeight: h
+                font.family: fontFamily
                 font.pixelSize: fontPixelsize
                 text: allRes
                 padding: 0 * zf
@@ -196,7 +211,7 @@ Item {
         contentWidth: headerItem.width
         flickableDirection: Flickable.HorizontalAndVerticalFlick
 
-        header: Row {
+        header: RowLayout {
             spacing: 1
             function headerAt(index) { return headerRepeater.itemAt(index) }
             Repeater {
@@ -205,6 +220,7 @@ Item {
                 Label {
                     text: modelData
                     font.bold: true
+                    font.family: fontFamily
                     font.pixelSize: fontPixelsize
                     padding: 1 * zf
                     background: Rectangle { color: "silver" }

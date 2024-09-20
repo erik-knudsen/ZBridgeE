@@ -13,8 +13,9 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     property int zf: 5
@@ -22,7 +23,7 @@ Item {
     property string fontFamily: "MS Shell Dlg 2"
 
     width: 120 *zf
-    height: 130 *zf
+    height: 145 *zf
 
     property alias jumpOvercallWeak: jumpOvercallWeak
     property alias unusualNT: unusualNT
@@ -68,7 +69,7 @@ Item {
 
     SwipeView {
         id: swipeView
-        height: 90 * zf
+        height: 95 * zf
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: tabBar.bottom
@@ -78,27 +79,28 @@ Item {
         Item {
             id: general
 
-            Grid {
+            GridLayout {
                 id: grid
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 rows: 2
                 columns: 2
-                spacing: 1 * zf
 
                 GroupBox {
                     id: groupBox
                     title: qsTr("Style")
 
-                    Column
+                    ColumnLayout
                     {
+                        spacing: 0
                         RadioButton {
                             id: americanStyle
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("American")
                         }
-
                         RadioButton {
                             id: europeanStyle
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("European")
                         }
                     }
@@ -108,17 +110,18 @@ Item {
                     id: groupBox1
                     title: qsTr("After 1NT")
 
-                    Column
+                    ColumnLayout
                     {
+                        spacing: 0
                         CheckBox {
                             id: stayman
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("Stayman")
                         }
-
                         CheckBox {
                             id: jacobyTransfers
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("Jacoby")
-                            height: fontPixelsize * 2
                         }
                     }
                 }
@@ -127,15 +130,17 @@ Item {
                     id: groupBox2
                     title: qsTr("Majors")
 
-                    Column
+                    ColumnLayout
                     {
+                        spacing: 0
                         RadioButton {
                             id: majorFour
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("Four-Card")
                         }
-
                         RadioButton {
                             id: majorFive
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("Five-Card")
                         }
                     }
@@ -145,15 +150,17 @@ Item {
                     id: groupBox3
                     title: qsTr("Other")
 
-                    Column
+                    ColumnLayout
                     {
+                        spacing: 0
                         CheckBox {
                             id: limitRaises
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("Limit Raises")
                         }
-
                         CheckBox {
                             id: weakTwo
+                            Layout.preferredHeight: 12 * zf
                             text: qsTr("Weak Two")
                         }
                     }
@@ -168,19 +175,22 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 title: qsTr("1NT Open Range")
 
-                Column
+                ColumnLayout
                 {
+                    spacing: 0
                     RadioButton {
                         id: oneNTRange12_14
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("12-14 points")
                     }
-
                     RadioButton {
                         id: oneNTRange15_17
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("15-17 points")
                     }
                     CheckBox {
                         id: open1NTWeakMajor
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("Weak 5 card major")
                     }
                 }
@@ -195,56 +205,62 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 title: qsTr("Advanced")
 
-                Column
+                ColumnLayout
                 {
+                    spacing: 0
                     CheckBox {
                         id: structuredReverses
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("Reverse Restriction")
                     }
-
                     CheckBox {
                         id: negativeDoubles
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("Negative Doubles")
                     }
                     CheckBox {
                         id: takeoutDoubles
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("Takeout Doubles")
                     }
                     CheckBox {
                         id: michaelsCueBid
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("Michaels Cue Bids")
                     }
                     CheckBox {
                         id: unusualNT
+                        Layout.preferredHeight: 12 * zf
                         text: qsTr("Unusual Notrump")
                     }
                     CheckBox {
                         id: jumpOvercallWeak
                         text: qsTr("Jump Overcalls Weak")
+                        Layout.preferredHeight: 14 * zf
                     }
                 }
             }
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: swipeView.bottom
-        anchors.topMargin: 6 *zf
+        anchors.topMargin: 7 *zf
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 1 * zf
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
             font.pixelSize: fontPixelsize
         }
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
         }

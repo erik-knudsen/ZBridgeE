@@ -24,7 +24,7 @@
 #include <QtGlobal>
 #include <QDataStream>
 
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * @brief The class handles the features for a bridge hand.

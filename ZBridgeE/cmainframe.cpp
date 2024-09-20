@@ -113,9 +113,9 @@ CMainFrame::CMainFrame(CZBridgeApp *app, CZBridgeDoc *doc, CGamesDoc *games)
     setCentralWidget(playView);
     setWindowIcon(QIcon(":/resources/ZBridgeICN.bmp"));
 
-    resize(QSize(SCENE_HOR_SIZE + 100, SCENE_VER_SIZE + 160));
-    setMinimumSize(QSize((SCENE_HOR_SIZE + 100) * .75, (SCENE_VER_SIZE + 160) * .75));
-    setMaximumSize(QSize((SCENE_HOR_SIZE + 100) * 2.0, (SCENE_VER_SIZE + 160) * 2.0));
+    resize(QSize(SCENE_HOR_SIZE + 100, SCENE_VER_SIZE + 60));
+    setMinimumSize(QSize((SCENE_HOR_SIZE + 100) * .75, (SCENE_VER_SIZE + 60) * .75));
+    setMaximumSize(QSize((SCENE_HOR_SIZE + 100) * 2.0, (SCENE_VER_SIZE + 60) * 2.0));
 
     move(0, 0);
 }

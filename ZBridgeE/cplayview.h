@@ -23,7 +23,7 @@
 
 #include <QGraphicsView>
 
-#include "defines.h"
+#include "Defines.h"
 
 class QGraphicsScene;
 class CCenterBid;

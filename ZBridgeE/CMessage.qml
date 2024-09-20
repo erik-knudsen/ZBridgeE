@@ -12,9 +12,9 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
-import QtQuick.Dialogs 1.1
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Dialogs
 
 CMessageForm {
     signal onAccepted()

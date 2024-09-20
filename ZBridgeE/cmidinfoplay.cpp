@@ -23,7 +23,7 @@
 #include <QBrush>
 #include <QPainter>
 
-#include "defines.h"
+#include "Defines.h"
 #include "cmidinfoplay.h"
 
 CMidInfoPlay::CMidInfoPlay(QGraphicsWidget *parent) :

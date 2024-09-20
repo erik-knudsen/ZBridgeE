@@ -12,8 +12,8 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 Item {
     id: item1
@@ -35,6 +35,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 0 * zf
         width: parent.width
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
     }
 
@@ -51,6 +52,7 @@ Item {
         anchors.verticalCenter: image.verticalCenter
         anchors.left: image.right
         anchors.leftMargin: 1 *zf
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
     }
 
@@ -60,6 +62,7 @@ Item {
         anchors.topMargin: 2 * zf
         width: parent.width
         height: 13 * zf
+        font.family: fontFamily
         font.pixelSize: fontPixelsize
     }
 }

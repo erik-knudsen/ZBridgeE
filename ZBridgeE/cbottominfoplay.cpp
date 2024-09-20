@@ -19,7 +19,7 @@
  *  Shows information for bottom info auction widget (definition).
  */
 
-#include "defines.h"
+#include "Defines.h"
 #include "cbottominfoplay.h"
 
 CBottomInfoPlay::CBottomInfoPlay(QGraphicsWidget *parent) :

@@ -53,6 +53,9 @@ CFileDialog::CFileDialog(QString headLine, QStringList nameFilters, QWidget *par
             Q_RETURN_ARG(QVariant, returnedValue),
             Q_ARG(QVariant, nameFilters));
 
+    QMetaObject::invokeMethod(pFileDialogObject, "globalStorageSetChecked",
+                              Q_RETURN_ARG(QVariant, returnedValue));
+
     connect(pFileDialogObject, SIGNAL(on_ok_clicked()), this, SLOT(on_ok_clicked()));
     connect(pFileDialogObject, SIGNAL(on_cancel_clicked()), this, SLOT(on_cancel_clicked()));
 }

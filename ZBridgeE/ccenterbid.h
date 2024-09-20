@@ -24,7 +24,7 @@
 #include <QGraphicsWidget>
 #include <QGraphicsSimpleTextItem>
 
-#include "defines.h"
+#include "Defines.h"
 
 class CBidButton;
 

@@ -24,7 +24,7 @@
 #include <QDataStream>
 #include <QtGlobal>
 
-#include "defines.h"
+#include "Defines.h"
 #include "cfeatures.h"
 
 /**

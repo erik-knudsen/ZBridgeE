@@ -12,16 +12,17 @@
 
   Platforms: Qt/QML.
 */
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {    
     property int zf: 10
     property int fontPixelsize: 7 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 110 * zf
-    height: 110 * zf
+    width: 115 * zf
+    height: 125 * zf
 
     signal on_ok_clicked()
     signal on_cancel_clicked()
@@ -48,6 +49,7 @@ Item {
         currentIndex: swipeView.currentIndex
         position: TabBar.Header
         font.pixelSize: fontPixelsize
+        font.family: fontFamily
         width: parent.width
         MouseArea
         {
@@ -73,75 +75,80 @@ Item {
         anchors.top: tabBar.bottom
         currentIndex: tabBar.currentIndex
         font.pixelSize: fontPixelsize
+        font.family: fontFamily
 
         Item {
             id: item1
+            ColumnLayout {
+                spacing: 5 *zf
+
             GroupBox {
                 id: groupBox1
-                anchors.horizontalCenter: parent.horizontalCenter
+                Layout.topMargin: 5 * zf
+                Layout.leftMargin: 3 * zf
 
-                label: CheckBox {
-                    id: insertBiddingPause
-                    checked: true
-                    text: qsTr("Insert pause between bids")
-                    onClicked: on_insertBiddingPause_clicked(checked)
-                }
-                Column {
-                    id: col
-                    anchors.fill: parent
-                    enabled: insertBiddingPause.checked
-
-                    Label {
-                        id: biddingPauseLength
-                        text: "Text"
+                ColumnLayout {
+                    CheckBox {
+                        id: insertBiddingPause
+                        Layout.preferredHeight: 12 *zf
+                        checked: true
+                        text: qsTr("Insert pause between bids ")
+                        onClicked: on_insertBiddingPause_clicked(checked)
                     }
-                    Slider {
-                        id: biddingPause
-                        anchors.left: parent.left
-                        anchors.leftMargin: 3 * zf
-                        anchors.right: parent.right
-                        anchors.rightMargin: 3 * zf
-                        from: 0
-                        to: 10
-                        stepSize: 1
-                        snapMode: Slider.SnapAlways
-                        onMoved: on_biddingPause_sliderMoved(value)
+
+                    RowLayout {
+                        enabled: insertBiddingPause.checked
+
+                        Label {
+                            id: biddingPauseLength
+                            Layout.preferredHeight: 10 *zf
+                            text: "Text"
+                        }
+                        Slider {
+                            id: biddingPause
+                            Layout.preferredHeight: 10 *zf
+                            from: 0
+                            to: 10
+                            stepSize: 1
+                            snapMode: Slider.SnapAlways
+                            onMoved: on_biddingPause_sliderMoved(value)
+                        }
                     }
                 }
             }
+
             GroupBox {
                 id: groupBox2
-                anchors.top: groupBox1.bottom
-                anchors.topMargin: 2 * zf
-                anchors.horizontalCenter: parent.horizontalCenter
+                Layout.leftMargin: 3 * zf
 
-                label: CheckBox {
-                    id: insertPlayPause
-                    checked: true
-                    text: qsTr("Insert pause between plays")
-                    onClicked: on_insertPlayPause_clicked(checked)
-                }
-                Column {
-                    anchors.fill: parent
-                    enabled: insertPlayPause.checked
-
-                    Label {
-                        id: playPauseLength
-                        text: "Text"
+                ColumnLayout {
+                    CheckBox {
+                        id: insertPlayPause
+                        Layout.preferredHeight: 12 *zf
+                        checked: true
+                        text: qsTr("Insert pause between plays")
+                        onClicked: on_insertPlayPause_clicked(checked)
                     }
-                    Slider {
-                        id: playPause
-                        anchors.left: parent.left
-                        anchors.leftMargin: 3 * zf
-                        anchors.right: parent.right
-                        anchors.rightMargin: 3 * zf
-                        from: 0
-                        to: 10
-                        stepSize: 1
-                        snapMode: Slider.SnapAlways
-                        onMoved: on_playPause_sliderMoved(value)
+                    RowLayout {
+                        enabled: insertPlayPause.checked
+
+                        Label {
+                            id: playPauseLength
+                            Layout.preferredHeight: 10 *zf
+                            text: "Text"
+                        }
+                        Slider {
+                            id: playPause
+                            Layout.preferredHeight: 10 *zf
+                            from: 0
+                            to: 10
+                            stepSize: 1
+                            snapMode: Slider.SnapAlways
+                            onMoved: on_playPause_sliderMoved(value)
+                        }
                     }
                 }
+            }
             }
         }
 
@@ -153,24 +160,28 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 title: "Scoring Method"
 
-                Column {
+                ColumnLayout {
                     RadioButton {
                         id: teamsImp
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Teams IMP")
                         onClicked: on_teamsIMP_clicked()
                     }
                     RadioButton {
                         id: duplicateMP
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Duplicate MP")
                         onClicked: on_duplicateMP_clicked()
                     }
                     RadioButton {
                         id: rubberBridge
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Rubber Bridge")
                         onClicked: on_rubberBridge_clicked()
                     }
                     RadioButton {
                         id: practice
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Practice")
                         onClicked: on_practice_clicked()
                     }
@@ -186,24 +197,28 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 title: "Computer Level"
 
-                Column {
+                ColumnLayout {
                     RadioButton {
                         id: computerLevel0
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Level 0")
                         onClicked: on_level0_clicked()
                     }
                     RadioButton {
                         id: computerLevel1
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Level 1")
                         onClicked: on_level1_clicked()
                     }
                     RadioButton {
                         id: computerLevel2
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Level 2")
                         onClicked: on_level2_clicked()
                     }
                     RadioButton {
                         id: computerLevel3
+                        Layout.preferredHeight: 10 * zf
                         text: qsTr("Level 3")
                         onClicked: on_level3_clicked()
                     }
@@ -212,7 +227,7 @@ Item {
         }
     }
 
-    Row
+    RowLayout
     {
         id: okBox
         anchors.top: swipeView.bottom
@@ -222,7 +237,7 @@ Item {
 
         Button {
             id: ok
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("OK")
             font.pixelSize: fontPixelsize
             onClicked: on_ok_clicked()
@@ -230,7 +245,7 @@ Item {
 
         Button {
             id: cancel
-            width: 10 * fontPixelsize/2
+            Layout.preferredWidth: 12 * fontPixelsize/2
             text: qsTr("Cancel")
             font.pixelSize: fontPixelsize
             onClicked: on_cancel_clicked()

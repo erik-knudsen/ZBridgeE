@@ -25,7 +25,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsColorizeEffect>
 
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * @brief This class describes one card in the play view.

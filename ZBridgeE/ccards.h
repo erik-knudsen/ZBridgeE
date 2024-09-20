@@ -25,7 +25,7 @@
 #include <QGraphicsWidget>
 
 #include "ccard.h"
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * @brief One hand of cards.

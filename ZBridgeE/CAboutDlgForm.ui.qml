@@ -13,8 +13,8 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.4
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
 Item {
     id: item1
@@ -24,7 +24,7 @@ Item {
     property string fontFamily: "MS Shell Dlg 2"
 
     width: 100 * zf
-    height: 85 * zf
+    height: 100 * zf
 
     property alias okButton: okButton
 
@@ -48,7 +48,7 @@ Item {
         anchors.rightMargin: 1 * zf
         anchors.top: parent.top
         anchors.topMargin: 1 * zf
-        width: 6 * fontPixelsize/2
+        width: 8 * fontPixelsize/2
     }
 
     Image {
@@ -105,7 +105,7 @@ Item {
     Label {
         id: label4
         font.pixelSize: fontPixelsize / 2
-        text: qsTr("Build Date: 15-jan-2018")
+        text: qsTr("Build Date: 29-aug-2024")
         horizontalAlignment: Text.AlignHCenter
         anchors.top: label3.bottom
         anchors.topMargin: 0

@@ -21,7 +21,7 @@
 #include <QQueue>
 
 #include "cpopup.h"
-#include "defines.h"
+#include "Defines.h"
 
 /**
  * \file

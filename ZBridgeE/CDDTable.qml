@@ -13,7 +13,7 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.4
+import QtQuick
 
 CDDTableForm {
     signal on_OKButton_Clicked()
@@ -73,6 +73,6 @@ CDDTableForm {
     }
     function setZoom(zoom)
     {
-        zf = zoom
+//        zf = zoom
     }
 }

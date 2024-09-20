@@ -23,7 +23,7 @@
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 
-#include "defines.h"
+#include "Defines.h"
 
 #include "cbottominfoplayshow.h"
 
@@ -98,12 +98,12 @@ void CBottomInfoPlayShow::paint(QPainter *painter, const QStyleOptionGraphicsIte
 
     //DD text.
     painter->setPen(Qt::blue);
-    painter ->setFont(QFont("Times New Roman", 10, QFont::Bold));
+    painter ->setFont(QFont("Times New Roman", 14, QFont::Bold));
     painter->drawText(ddButton, Qt::AlignCenter, tr("DD"));
 
     //OK text.
     painter->setPen(Qt::blue);
-    painter ->setFont(QFont("Times New Roman", 10, QFont::Bold));
+    painter ->setFont(QFont("Times New Roman", 14, QFont::Bold));
     painter->drawText(okButton, Qt::AlignCenter, tr("OK"));
 
     QGraphicsWidget::paint(painter, option, widget);

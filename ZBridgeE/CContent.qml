@@ -13,10 +13,10 @@
   Platforms: Qt/QML.
 */
 
-import QtQuick 2.2
-import QtQuick.Controls 2.0
-import QtWebView 1.1
-import QtQuick.Layouts 1.1
+import QtQuick
+import QtQuick.Controls
+import QtWebView
+import QtQuick.Layouts
 
 Item {
     id: itemWindow
@@ -29,7 +29,7 @@ Item {
     property int fontPixelsize: 6 * zf
     property string fontFamily: "MS Shell Dlg 2"
 
-    width: 190 * zfs
+    width: 250 * zfs
     height: 100 *zfs
 
     RowLayout {

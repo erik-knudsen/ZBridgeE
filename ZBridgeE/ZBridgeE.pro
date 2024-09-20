@@ -6,6 +6,7 @@
 
 QT       += core gui network webview
 QT       += help
+QT += quick quickcontrols2
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets qml quick quickwidgets
 
@@ -117,6 +118,7 @@ SOURCES +=\
     ccontent.cpp
 
 HEADERS  += cmainframe.h \
+    Singleton.h \
     czbridgedoc.h \
     czbridgeapp.h \
     caboutdlg.h \
