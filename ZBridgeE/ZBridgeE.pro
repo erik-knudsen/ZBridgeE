@@ -222,3 +222,14 @@ win32: {
 RC_ICONS = resources/IDR_MAIN.ICO
 }
 
+DISTFILES += \
+    android-sources/AndroidManifest.xml \
+    android-sources/build.gradle \
+    android-sources/gradle.properties \
+    android-sources/gradle/wrapper/gradle-wrapper.jar \
+    android-sources/gradle/wrapper/gradle-wrapper.properties \
+    android-sources/gradlew \
+    android-sources/gradlew.bat \
+    android-sources/res/values/libs.xml \
+    android-sources/res/xml/qtprovider_paths.xml
+
