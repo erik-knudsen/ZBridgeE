@@ -309,6 +309,27 @@ void CMainFrame::enableUIActionsClient()
     enableUIActions(CLIENT_ACTIONS);
 }
 
+/**
+ * @brief Set or clear pop up message.
+ *
+ * @param text The text to set or clear.
+ */
+void CMainFrame::sStatusText(QString text)
+{
+    if (text.size() > 0)
+    {
+        if (popup == 0)
+            popup = new CPopup();
+        popup->showPopup(text);
+    }
+    else
+    {
+        if (popup != 0)
+            delete popup;
+        popup = 0;
+    }
+}
+
 void CMainFrame::closeEvent(QCloseEvent *event)
 {
     exit(0);
@@ -425,6 +446,7 @@ void CMainFrame::resetPlay()
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(this, &CMainFrame::sAutoQuit, tableManagerAuto, &CTblMngrBase::sAutoQuit, Qt::QueuedConnection);
     connect(this, &CMainFrame::sNewSession, tableManagerAuto, &CTblMngrBase::sNewSession, Qt::QueuedConnection);
+    connect(tableManager, &CTblMngrBase::sStatusText , this, &CMainFrame::sStatusText);
     thread->start();
 
     connect(tableManager, &CTblMngr::sShowScore, this, &CMainFrame::on_action_Score_triggered,
@@ -790,6 +812,10 @@ void CMainFrame::on_actionActivate_Deal_Profile_triggered()
  */
 void CMainFrame::on_actionUndo_triggered()
 {
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_UNDO , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_REBID , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_REPLAY , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_HINT , false));
     tableManager->undo();
 }
 
@@ -798,6 +824,10 @@ void CMainFrame::on_actionUndo_triggered()
  */
 void CMainFrame::on_action_Bid_Rebid_triggered()
 {
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_UNDO , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_REBID , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_REPLAY , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_HINT , false));
     tableManager->reBid();
 }
 
@@ -806,6 +836,10 @@ void CMainFrame::on_action_Bid_Rebid_triggered()
  */
 void CMainFrame::on_action_Restart_Hand_triggered()
 {
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_UNDO , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_REBID , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_REPLAY , false));
+    QApplication::postEvent(this, new UPDATE_UI_ACTION_Event(UPDATE_UI_HINT , false));
     tableManager->rePlay();
 }
 

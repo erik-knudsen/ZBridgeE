@@ -111,8 +111,14 @@ public slots:
     void sUpdateGame();
     void sUpdateGameToNextDeal();
 
-    void sShowAuction();
-    void sShowPlay();
+    void sShowAuction(bool afterReplay, Seat dummy);
+    void sShowPlay(Suit trump);
+    void sUndoTrick(int noTrick, int nsTricks, int ewTricks);
+
+    void sEnableBidder(Seat bidder, Bids lastBid, Bids doubleBid);
+    void sDisableBidder(Seat bidder);
+    void sEnablePlayer(Seat player);
+    void sDisablePlayer(Seat player);
     void sEnableContinueSync(int syncState);
     void sDisableContinueSync(int syncState);
 
@@ -126,6 +132,7 @@ public slots:
     void startOfBoard();
     void playerToLead();
     void dummyToLead();
+    void getNextLeader();
     /*@}*/
 
     /** @name Synchronize slot.
@@ -149,7 +156,7 @@ private:
 
     void serverActions();
     void serverSyncActions();
-    void setShowUser(bool showAll);
+    void setShowUser();
     void setUpdateGameInfo();
 
     QMainWindow *pMainWindow;
@@ -175,7 +182,7 @@ private:
     int currentCards[4][13];
     bool showUser;      /**< If true then the server handles the play view. */
     bool updateGameInfo;/**< If true then update of game info is handle by Table Manager. */
-    bool waiting;
+    bool declarerSetManual;/**< If true then declarer temporarily set manual. */
 
     QTimer *leaderButton;
 

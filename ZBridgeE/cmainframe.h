@@ -29,6 +29,7 @@
 #include <QQuickWidget>
 
 #include "cmainframemenuenables.h"
+#include "cpopup.h"
 #include "Defines.h"
 
 class CZBridgeApp;
@@ -68,6 +69,9 @@ signals:
     void sAutoQuit();
     void sNewSession();
 
+public slots:
+    void sStatusText(QString text);
+
 private slots:
     void closeEvent(QCloseEvent *event);
 
@@ -101,6 +105,7 @@ private:
     bool scoreSelect;
 
     QQuickWidget *pToolBarWidget;
+    CPopup *popup = 0;
 
 private slots:
     //Menu actions.

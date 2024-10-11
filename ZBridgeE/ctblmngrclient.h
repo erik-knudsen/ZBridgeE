@@ -100,8 +100,9 @@ public slots:
     void sUpdateGame();
     void sUpdateGameToNextDeal();
 
-    void sShowAuction();
-    void sShowPlay();
+    void sShowAuction(bool afterReplay, Seat dummy);
+    void sShowPlay(Suit trump);
+
     void sEnableContinueSync(int syncState);
     void sDisableContinueSync(int syncState);
 

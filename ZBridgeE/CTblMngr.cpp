@@ -215,6 +215,7 @@ void CTblMngr::sShowTricks(int ewTricks, int nsTricks)
 void CTblMngr::sUndoBid(int noBid)
 {
     playView->undoBid(noBid);
+    sDisableBidder(NO_SEAT);
 }
 
 void CTblMngr::sUndoTrick(int noTrick, int nsTricks, int ewTricks)
@@ -228,7 +229,7 @@ void CTblMngr::sUndoTrick(int noTrick, int nsTricks, int ewTricks)
 }
 
 /**
- * @brief Enable next bidder tod bid.
+ * @brief Enable next bidder to bid.
  * @param bidder The bidder.
  * @param lastBid The last bid given.
  * @param doubleBid Double/redouble ?
