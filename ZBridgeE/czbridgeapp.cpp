@@ -22,6 +22,7 @@
 #include <QAbstractSocket>
 #include <QTime>
 #include <QtWebView/QtWebView>
+//#include <QtWebEngineQuick>
 #include <QScreen>
 #include <QQmlEngine>
 
@@ -47,6 +48,11 @@ int CZBridgeApp::zfs = 10;
 int main(int argc, char *argv[])
 {
     SetMaxThreads(0);
+
+//    QtWebEngineQuick::initialize();   //QtWebEngine is nor available on mobile platforms.
+    QtWebView::initialize();            //On Windows platform gives the error:
+    //DXGI ERROR: CreateDXGIFactory cannot be called from DllMain. [ MISCELLANEOUS ERROR #76: ]
+    //Is supposedly corrected in v. 6.8 of Qt. On Windows use QtWebEngineQuick::initialize() instead.
 
     CZBridgeApp app(argc, argv);
 
@@ -99,8 +105,8 @@ CZBridgeApp::CZBridgeApp(int &argc, char **argv) :
         singleton->zw = zf;  //Zoom factor for width.
         return singleton;
     });
-
-    QtWebView::initialize();
+//    QtWebEngineQuick::initialize();
+//    QtWebView::initialize();
 
     doc = new CZBridgeDoc(this);
     games = new CGamesDoc(this);

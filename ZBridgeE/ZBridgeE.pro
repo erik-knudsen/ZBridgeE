@@ -8,6 +8,9 @@ QT       += core gui network webview
 QT       += help
 QT += quick quickcontrols2
 
+#Only on Windows
+#QT += webenginequick
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets qml quick quickwidgets
 
 TARGET = ZBridgeE
