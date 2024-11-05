@@ -61,21 +61,6 @@
         <file>resources/BidHand.bmp</file>
         <file>resources/BlankBidPrompt.ico</file>
         <file>resources/BridgeScene.bmp</file>
-        <file>resources/BridgeSceneBB1.bmp</file>
-        <file>resources/BridgeSceneBB2.bmp</file>
-        <file>resources/BridgeSceneBB3.bmp</file>
-        <file>resources/BridgeSceneBB4.bmp</file>
-        <file>resources/BridgeSceneBB5.bmp</file>
-        <file>resources/BridgeSceneBB6.bmp</file>
-        <file>resources/BridgeSceneGG1.bmp</file>
-        <file>resources/BridgeSceneGG2.bmp</file>
-        <file>resources/BridgeSceneGG3.bmp</file>
-        <file>resources/BridgeSceneGG4.bmp</file>
-        <file>resources/BridgeSceneGG5.bmp</file>
-        <file>resources/BridgeSceneGG6.bmp</file>
-        <file>resources/BridgeSceneGG7.bmp</file>
-        <file>resources/BridgeSceneGG8.bmp</file>
-        <file>resources/BridgeSceneGG9.bmp</file>
         <file>resources/BULLET.BMP</file>
         <file>resources/cardback0.bmp</file>
         <file>resources/cardback1.bmp</file>
@@ -232,7 +217,6 @@
         <file>resources/ico_play_history.ico</file>
         <file>resources/ico_redouble.ico</file>
         <file>resources/idr_clos.ico</file>
-        <file>resources/IDR_MAIN.ICO</file>
         <file>resources/IDR_PLAY.ICO</file>
         <file>resources/idr_time.ico</file>
         <file>resources/Information Icon.bmp</file>
@@ -384,7 +368,6 @@
         <file>resources/winners_small.bmp</file>
         <file>resources/wizard.bmp</file>
         <file>resources/ZBridge.ico</file>
-        <file>resources/ZBridgeICN.bmp</file>
         <file>CAboutDlg.qml</file>
         <file>CAboutDlgForm.ui.qml</file>
         <file>CBidOptions.qml</file>

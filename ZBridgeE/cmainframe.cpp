@@ -111,7 +111,7 @@ CMainFrame::CMainFrame(CZBridgeApp *app, CZBridgeDoc *doc, CGamesDoc *games)
 
     //Initialization of main frame window.
     setCentralWidget(playView);
-    setWindowIcon(QIcon(":/resources/ZBridgeICN.bmp"));
+    setWindowIcon(QIcon(":/resources/ZBridge.ico"));
 
     resize(QSize(SCENE_HOR_SIZE + 100, SCENE_VER_SIZE + 60));
     setMinimumSize(QSize((SCENE_HOR_SIZE + 100) * .75, (SCENE_VER_SIZE + 60) * .75));

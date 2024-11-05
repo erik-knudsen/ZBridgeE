@@ -222,7 +222,7 @@ RESOURCES = \
     resources.qrc
 
 win32: {
-RC_ICONS = resources/IDR_MAIN.ICO
+RC_ICONS = resources/ZBridge.ico
 }
 
 DISTFILES += \
