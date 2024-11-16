@@ -43,6 +43,8 @@ CPlayDialog::CPlayDialog(CGamesDoc *games, int gameIndex, int auctionIndex, QWid
 
     //Customize window.
 //    setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::Window);
+    setWindowModality(Qt::ApplicationModal);
 
     //Set window title.
     QString westName, northName, eastName, southName;
@@ -181,6 +183,7 @@ void CPlayDialog::playValue(ReviewVal reviewVal)
             if (trickNo == (playHistory.getNoTrick() - 1))
             {
                 playView->setFwdEnabled(false);
+                playView->update();
                 return;
             }
 
@@ -224,6 +227,7 @@ void CPlayDialog::playValue(ReviewVal reviewVal)
             playHistory.getTrickInfo(trickNo - 1, ewTricks, nsTricks, player);
             playView->showNSTricks(nsTricks);
             playView->showEWTricks(ewTricks);
+            playView->update();
             return;
         }
 
@@ -236,6 +240,7 @@ void CPlayDialog::playValue(ReviewVal reviewVal)
         if ((playNo == 0) && (trickNo == 0))
         {
             playView->setBckEnabled(false);
+            playView->update();
             return;
         }
 
@@ -260,6 +265,7 @@ void CPlayDialog::playValue(ReviewVal reviewVal)
                 playNo = 4;
         }
     }
+    playView->update();
 }
 
 void CPlayDialog::buttonClicked(int button)
@@ -273,11 +279,15 @@ void CPlayDialog::buttonClicked(int button)
         playValue((REVIEW_PREV));
     }
     else if (button == BUTTON_DD)
-    {
-        hide();
-        CDDTable ddTable(cards, dealer, vulnerable, this->parentWidget());
+    {        
+//        hide();
+//        CDDTable ddTable(cards, dealer, vulnerable, this->parentWidget());
+        playView->setDdOkEnabled(false);
+        CDDTable ddTable(cards, dealer, vulnerable, playView);
         ddTable.exec();
-        show();
+        playView->setDdOkEnabled(true);
+
+//        show();
     }
     else if (button == BUTTON_OK)
         eventLoop.exit(QDialog::Accepted);

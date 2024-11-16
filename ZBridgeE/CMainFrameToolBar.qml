@@ -146,6 +146,14 @@ Item {
         }
     }
 
+    function actionMenu_SetEnabled(enable)
+    {
+        actionMenu.enabled =enable
+        if (enable)
+            menu.opacity = 1.0
+        else
+            menu.opacity = 0.2
+    }
     function actionNew_SessionSetEnabled(enable)
     {
         actionNew_Session.enabled =enable
@@ -169,5 +177,9 @@ Item {
             hint.opacity = 1.0
         else
             hint.opacity = 0.2
+    }
+    function isMenuEnabled()
+    {
+        return menu.enabled
     }
 }

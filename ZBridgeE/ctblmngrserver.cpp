@@ -1331,7 +1331,7 @@ void CTblMngrServer::sEnableContinueSync(int syncState)
         QApplication::postEvent(parent(), new UPDATE_UI_ACTION_Event(UPDATE_UI_SHOW_ALL , false));
         QApplication::postEvent(parent(), new UPDATE_UI_ACTION_Event(UPDATE_UI_PAR , false));
 
-        emit sShowScore();
+        emit sShowScore(false);
 
         playView->showInfoNextButton(true, BUTTON_DEAL);
         break;

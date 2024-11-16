@@ -68,13 +68,13 @@ void CBottomInfoPlayShow::paint(QPainter *painter, const QStyleOptionGraphicsIte
     painter->drawRect(bckButton);
 
     //DD background.
-    color = (ddPressed) ? (Qt::darkGray) : (ddEnabled) ? (Qt::lightGray) : (Qt::black);
+    color = (ddPressed) ? (Qt::darkGray) : (ddEnabled) ? (Qt::lightGray) : (Qt::gray);
     brush.setColor(color);
     painter->fillRect(ddButton, brush);
     painter->drawRect(ddButton);
 
     //OK background.
-    color = (okPressed) ? (Qt::darkGray) : (okEnabled) ? (Qt::lightGray) : (Qt::black);
+    color = (okPressed) ? (Qt::darkGray) : (okEnabled) ? (Qt::lightGray) : (Qt::gray);
     brush.setColor(color);
     painter->fillRect(okButton, brush);
     painter->drawRect(okButton);
@@ -137,6 +137,12 @@ void CBottomInfoPlayShow::setBckEnabled(bool enabled)
 bool CBottomInfoPlayShow::isBckEnabled()
 {
     return bckEnabled;
+}
+void CBottomInfoPlayShow::setDdOkEnabled(bool enabled)
+{
+    ddEnabled = enabled;
+    okEnabled = enabled;
+    update();
 }
 
 void CBottomInfoPlayShow::mousePressEvent(QGraphicsSceneMouseEvent *event)

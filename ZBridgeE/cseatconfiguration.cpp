@@ -45,8 +45,8 @@ CSeatConfiguration::CSeatConfiguration(CZBridgeApp *app, CZBridgeDoc *doc, QWidg
     QObject *pSeatConfigurationObject = pWidget->rootObject();
 
     //Screen zoom factor.
-    QVariant returnedValue;
     int zf = CZBridgeApp::getZoom();
+    QVariant returnedValue;
     QMetaObject::invokeMethod(pSeatConfigurationObject, "setZoom",
                               Q_RETURN_ARG(QVariant, returnedValue),
                               Q_ARG(QVariant, zf));

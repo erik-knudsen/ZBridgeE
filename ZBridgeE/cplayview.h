@@ -103,6 +103,7 @@ public:
     bool isFwdEnabled();
     void setBckEnabled(bool enabled);
     bool isBckEnabled();
+    void setDdOkEnabled(bool enabled);
     /*@}*/
 
     /** @name Cards group

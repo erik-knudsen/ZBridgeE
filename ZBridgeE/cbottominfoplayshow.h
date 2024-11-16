@@ -54,6 +54,7 @@ public:
     bool isFwdEnabled();
     void setBckEnabled(bool enabled);
     bool isBckEnabled();
+    void setDdOkEnabled(bool enabled);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

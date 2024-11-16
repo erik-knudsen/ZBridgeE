@@ -24,13 +24,17 @@
 CMessage::CMessage(QWidget *parent) :
     QWidget(parent)
 {
+    setWindowFlags(Qt::Dialog);
+    setWindowModality(Qt::ApplicationModal);
+    move(50, 50);
+
     //Initialize with QML seat configuration dialog.
     pWidget = new QQuickWidget();
     pWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     connect(pWidget, &QQuickWidget::statusChanged, this, &CMessage::quickWidgetStatusChanged);
     connect(pWidget, &QQuickWidget::sceneGraphError, this, &CMessage::sceneGraphError);
-    if (parent == 0)
-        setWindowFlags ((Qt::WindowFlags)Qt::Dialog & (~Qt::WindowContextHelpButtonHint) | Qt::WindowStaysOnTopHint);
+//    if (parent == 0)
+//        setWindowFlags ((Qt::WindowFlags)Qt::Dialog & (~Qt::WindowContextHelpButtonHint) | Qt::WindowStaysOnTopHint);
     setWindowTitle(tr("ZBridge - Message Dialog"));
     pWidget->setSource(QUrl("qrc:///CMessage.qml"));
 

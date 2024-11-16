@@ -35,26 +35,6 @@
 CDDTable::CDDTable(int cards[][13], Seat dealer, Team vulnerable, QWidget *parent) :
     QWidget(parent)
 {
-    //Initialize with QML DD table dialog.
-    pWidget = new QQuickWidget();
-    pWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    connect(pWidget, &QQuickWidget::statusChanged, this, &CDDTable::quickWidgetStatusChanged);
-    connect(pWidget, &QQuickWidget::sceneGraphError, this, &CDDTable::sceneGraphError);
-    setWindowTitle(tr("ZBridge - Double Dummy table"));
-    pWidget->setSource(QUrl("qrc:///CDDTable.qml"));
-
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->addWidget(pWidget);
-
-    QObject *pDDTableObject = pWidget->rootObject();
-    QVariant returnedValue;
-
-    //Screen zoom factor.
-    int zf = CZBridgeApp::getZoom();
-    QMetaObject::invokeMethod(pDDTableObject, "setZoom",
-                              Q_RETURN_ARG(QVariant, returnedValue),
-                              Q_ARG(QVariant, zf));
-
     ddTableDeal tableDeal;
     ddTableResults table;
     parResultsDealer pRes;
@@ -75,24 +55,46 @@ CDDTable::CDDTable(int cards[][13], Seat dealer, Team vulnerable, QWidget *paren
         }
 
     CddsLock::mutex.lock();     //Static lock to protect dds static data.
-
-    int res = CalcDDtable(tableDeal, &table);
-    if (res != RETURN_NO_FAULT)
+    resDD = CalcDDtable(tableDeal, &table);
+    if (resDD == RETURN_NO_FAULT)
+    {
+        int vul = (vulnerable == NEITHER) ? (0) : (vulnerable == NORTH_SOUTH) ? (2) :
+                                                  (vulnerable == EAST_WEST) ? (3) : (1);
+        int deal = (dealer == WEST_SEAT) ? (3) : (dealer == NORTH_SEAT) ? (0) :
+                                                 (dealer == EAST_SEAT) ? (1) : (2);
+        resDD = DealerPar(&table, &pRes, deal, vul);
+    }
+    if (resDD != RETURN_NO_FAULT)
     {
         char line[80];
-        ErrorMessage(res, line);
-        hide();
+        ErrorMessage(resDD, line);
+        //        hide();
         CMessageBox::critical(this->parentWidget(), tr("ZBridge Error"), tr("DDS Error: ") + QString(line));
-        show();
+        //        show();
     }
-
-    int vul = (vulnerable == NEITHER) ? (0) : (vulnerable == NORTH_SOUTH) ? (2) :
-              (vulnerable == EAST_WEST) ? (3) : (1);
-    int deal = (dealer == WEST_SEAT) ? (3) : (dealer == NORTH_SEAT) ? (0) :
-               (dealer == EAST_SEAT) ? (1) : (2);
-    res = DealerPar(&table, &pRes, deal, vul);
-
     CddsLock::mutex.unlock();
+    if (resDD != RETURN_NO_FAULT)
+        return;
+
+    //Initialize with QML DD table dialog.
+    pWidget = new QQuickWidget();
+    pWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    connect(pWidget, &QQuickWidget::statusChanged, this, &CDDTable::quickWidgetStatusChanged);
+    connect(pWidget, &QQuickWidget::sceneGraphError, this, &CDDTable::sceneGraphError);
+    setWindowTitle(tr("ZBridge - Double Dummy table"));
+    pWidget->setSource(QUrl("qrc:///CDDTable.qml"));
+
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->addWidget(pWidget);
+
+    QObject *pDDTableObject = pWidget->rootObject();
+    QVariant returnedValue;
+
+    //Screen zoom factor.
+    int zf = CZBridgeApp::getZoom();
+    QMetaObject::invokeMethod(pDDTableObject, "setZoom",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, zf));
 
     QString txt;
 
@@ -209,6 +211,9 @@ CDDTable::~CDDTable()
 
 int CDDTable::exec()
 {
+    if (resDD != RETURN_NO_FAULT)
+        return QDialog::Rejected;
+
     show();
     int ret = eventLoop.exec();
     hide();

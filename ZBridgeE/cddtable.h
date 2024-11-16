@@ -49,8 +49,8 @@ private slots:
     void quickWidgetStatusChanged(QQuickWidget::Status);
     void sceneGraphError(QQuickWindow::SceneGraphError error, const QString &message);
 
-private:    
-
+private:
+    int resDD;
     QQuickWidget *pWidget;
 
     QEventLoop eventLoop;

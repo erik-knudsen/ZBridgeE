@@ -102,8 +102,6 @@ private:
     QHostAddress hostAddress;
     QSemaphore sem1, sem2;
 
-    bool scoreSelect;
-
     QQuickWidget *pToolBarWidget;
     CPopup *popup = 0;
 
@@ -115,7 +113,7 @@ private slots:
     void on_actionDelete_triggered();
 
     void on_action_Expose_All_Cards_triggered();
-    void on_action_Score_triggered();
+    void on_action_Score_triggered(bool menuSelect);
     void on_actionDouble_Dummy_Results_triggered();
 
     void on_actionNew_Session_triggered();

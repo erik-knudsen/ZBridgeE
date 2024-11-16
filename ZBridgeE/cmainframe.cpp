@@ -84,8 +84,6 @@ CMainFrame::CMainFrame(CZBridgeApp *app, CZBridgeDoc *doc, CGamesDoc *games)
     tableManager = 0;
     tableManagerAuto = 0;
 
-    scoreSelect = false;
-
     //Bid and play engines.
     bidAndPlayEngines = new CBidAndPlayEngines();
 
@@ -714,22 +712,39 @@ void CMainFrame::on_action_Expose_All_Cards_triggered()
 /**
 * @brief Show score dialog.
 */
-void CMainFrame::on_action_Score_triggered()
+void CMainFrame::on_action_Score_triggered(bool menuSelect)
 {
-    bool enabled = menuWidget()->isEnabled();
+    bool enabled;
 
-    if (!scoreSelect && !enabled)
+    QObject *pToolBarObject = pToolBarWidget->rootObject();
+    QVariant returnedValue;
+
+    QMetaObject::invokeMethod(pToolBarObject, "isMenuEnabled",
+                              Q_RETURN_ARG(QVariant, returnedValue));
+    enabled = returnedValue.toBool();
+//    enabled = menuWidget()->isEnabled();
+
+    if (!menuSelect && !enabled)
         return;
 
     if (enabled)
-        menuWidget()->setEnabled(false);
-
+    {
+        QMetaObject::invokeMethod(pToolBarObject, "actionMenu_SetEnabled",
+                                  Q_RETURN_ARG(QVariant, returnedValue),
+                                  Q_ARG(QVariant, false));
+//        menuWidget()->setEnabled(false);
+    }
     CMainScoreDialog mainScoreDialog(games, this->centralWidget());
-    scoreSelect = false;
     mainScoreDialog.exec();
 
     if (enabled)
-        menuWidget()->setEnabled(true);
+    {
+        QMetaObject::invokeMethod(pToolBarObject, "actionMenu_SetEnabled",
+                                  Q_RETURN_ARG(QVariant, returnedValue),
+                                  Q_ARG(QVariant, true));
+
+//        menuWidget()->setEnabled(true);
+    }
 }
 
 /**
@@ -951,7 +966,13 @@ void CMainFrame::on_action_About_ZBridge_triggered()
 
 void CMainFrame::on_showMenu_triggered()
 {
-    menuWidget()->setEnabled(false);
+    menuWidget()->setEnabled(true);
+    QObject *pToolBarObject = pToolBarWidget->rootObject();
+    QVariant returnedValue;
+
+    QMetaObject::invokeMethod(pToolBarObject, "actionMenu_SetEnabled",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, false));
 
     CMainFrameMenu mainFrameMenu(mainFrameMenuEnables, this->centralWidget());
     if (mainFrameMenu.exec() == QDialog::Accepted)
@@ -974,8 +995,7 @@ void CMainFrame::on_showMenu_triggered()
             on_action_Expose_All_Cards_triggered();
             break;
         case ACTION_SCORE:
-            scoreSelect = true;
-            on_action_Score_triggered();
+            on_action_Score_triggered(true);
             break;
         case ACTION_DOUBLE_DUMMY_RESULTS:
             on_actionDouble_Dummy_Results_triggered();
@@ -1026,5 +1046,9 @@ void CMainFrame::on_showMenu_triggered()
             break;
         }
     }
-    menuWidget()->setEnabled(true);
+//    menuWidget()->setEnabled(true);
+
+    QMetaObject::invokeMethod(pToolBarObject, "actionMenu_SetEnabled",
+                              Q_RETURN_ARG(QVariant, returnedValue),
+                              Q_ARG(QVariant, true));
 }

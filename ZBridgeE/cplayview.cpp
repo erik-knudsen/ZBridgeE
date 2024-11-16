@@ -625,6 +625,11 @@ bool CPlayView::isBckEnabled()
     return bottomInfoPlayShow->isBckEnabled();
 }
 
+void CPlayView::setDdOkEnabled(bool enabled)
+{
+    bottomInfoPlayShow->setDdOkEnabled(enabled);
+}
+
 /**
  * @brief Set the trump suit of the bridge play
  * @param trumpSuit The trumpsuit.

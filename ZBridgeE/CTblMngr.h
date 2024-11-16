@@ -60,7 +60,7 @@ public:
     /*@}*/
 
 signals:
-    void sShowScore();
+    void sShowScore(bool menuSelect);
 
 public slots:
     /** @name Play view slots.

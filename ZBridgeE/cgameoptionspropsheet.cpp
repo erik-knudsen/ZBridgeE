@@ -34,7 +34,6 @@
 CGameOptionsPropSheet::CGameOptionsPropSheet(CZBridgeApp *app, CZBridgeDoc *doc, QWidget *parent) :
     QWidget(parent)
 {
-    //Initialize with QML game options dialog.
     pWidget = new QQuickWidget();
     pWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     connect(pWidget, &QQuickWidget::statusChanged, this, &CGameOptionsPropSheet::quickWidgetStatusChanged);
