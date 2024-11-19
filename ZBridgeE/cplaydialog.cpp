@@ -42,9 +42,8 @@ CPlayDialog::CPlayDialog(CGamesDoc *games, int gameIndex, int auctionIndex, QWid
     this->auctionIndex = auctionIndex;
 
     //Customize window.
-//    setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-    setWindowFlags(Qt::Window);
-    setWindowModality(Qt::ApplicationModal);
+//    setWindowFlags(Qt::Window);
+//    setWindowModality(Qt::ApplicationModal);
 
     //Set window title.
     QString westName, northName, eastName, southName;
